@@ -16,9 +16,9 @@ export default function MembershipPage() {
   return (
     <>
       <PageHero
-        eyebrow="Recruitment"
+        eyebrow="University of Tampa · Recruitment"
         title="Join the Brotherhood"
-        description="Review eligibility and the four-step timeline, then register for rush."
+        description="Rush at UT — review eligibility and the timeline, then register for info sessions."
         image="/images/hero-recruit.jpg"
       />
 

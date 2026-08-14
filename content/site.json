@@ -2,11 +2,13 @@
   "name": "Mu Epsilon Delta",
   "shortName": "MED",
   "greek": "ΜΕΔ",
-  "tagline": "A professional medical fraternity built on scholarship, service, mentorship, and professional development.",
-  "chapter": "National Chapter",
-  "campus": "Ann Arbor, Michigan",
-  "email": "contact@mednational.org",
+  "tagline": "The University of Tampa’s pre-health professional fraternity—preparing the next generation of healthcare leaders through mentorship, service, and bonds that last beyond campus.",
+  "chapter": "University of Tampa Chapter",
+  "campus": "Tampa, Florida",
+  "university": "University of Tampa",
+  "email": "med@ut.edu",
   "founded": 1965,
+  "chapterFounded": null,
   "social": {
     "instagram": "https://www.instagram.com/",
     "linkedin": "https://www.linkedin.com/"

@@ -124,7 +124,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
         <div className="flex items-center gap-3">
           <Link
             href="/membership#register"
-            className="btn btn-primary !min-h-10 !px-4 !text-[0.68rem] max-[380px]:hidden"
+            className="btn btn-gold !min-h-10 !px-4 !text-[0.72rem] max-[380px]:hidden"
           >
             Register for Rush
           </Link>

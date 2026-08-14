@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Figtree, Fraunces } from "next/font/google";
+import { Figtree, Fraunces, Space_Mono } from "next/font/google";
 import { SiteShell } from "@/components/SiteShell";
 import { content } from "@/lib/content";
 import "./globals.css";
@@ -17,15 +17,21 @@ const sans = Figtree({
   weight: ["400", "500", "600", "700"],
 });
 
+const mono = Space_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mednational.org"),
+  metadataBase: new URL("https://medutampa.com"),
   title: {
-    default: `${content.site.name} | Professional Medical Fraternity`,
-    template: `%s | ${content.site.name}`,
+    default: `${content.site.name} | ${content.site.university}`,
+    template: `%s | ${content.site.shortName} at ${content.site.university}`,
   },
   description: content.site.tagline,
   openGraph: {
-    title: content.site.name,
+    title: `${content.site.name} — ${content.site.chapter}`,
     description: content.site.tagline,
     type: "website",
     locale: "en_US",
@@ -37,7 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${display.variable} ${sans.variable} h-full`}
+      className={`${display.variable} ${sans.variable} ${mono.variable} h-full`}
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col antialiased">

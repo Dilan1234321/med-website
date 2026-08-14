@@ -8,11 +8,14 @@ export function Footer() {
   return (
     <footer className="bg-footer text-center text-white">
       <section className="bg-maroon px-5 py-20 md:py-24">
-        <h2 className="heading-display text-[clamp(1.9rem,4.5vw,2.75rem)] text-white">
+        <p className="font-mono text-xs uppercase tracking-[0.2em] text-gold">
+          {site.university}
+        </p>
+        <h2 className="heading-display mt-4 text-[clamp(1.9rem,4.5vw,2.75rem)] text-white">
           Become a part of the legacy
         </h2>
         <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Link href="/membership#register" className="btn btn-primary">
+          <Link href="/membership#register" className="btn btn-gold">
             Register for Rush
           </Link>
           <Link href="/about" className="btn btn-secondary">
@@ -55,12 +58,14 @@ export function Footer() {
             Mu Epsilon Delta
           </span>
         </div>
-        <p className="text-sm text-white/70">
-          © {new Date().getFullYear()} Mu Epsilon Delta — Professional medical
-          fraternity
+        <p className="font-mono text-[0.7rem] uppercase tracking-[0.12em] text-white/65">
+          © {new Date().getFullYear()} Mu Epsilon Delta — {site.chapter}
         </p>
-        <p className="mt-3 text-xs tracking-wide text-white/40">
-          {site.campus} · {site.email}
+        <p className="mt-3 text-xs text-white/40">
+          {site.campus} ·{" "}
+          <a className="hover:text-gold" href={`mailto:${site.email}`}>
+            {site.email}
+          </a>
         </p>
       </div>
     </footer>

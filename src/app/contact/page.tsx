@@ -14,9 +14,9 @@ export default function ContactPage() {
   return (
     <>
       <PageHero
-        eyebrow="Contact"
+        eyebrow="University of Tampa"
         title="Get in Touch"
-        description="Recruitment questions, partnerships, alumni mentorship, and general inquiries."
+        description="Recruitment, partnerships, alumni mentorship, and chapter questions for MED at UT."
         image="/images/hero-about.jpg"
       />
       <section className="container-page grid gap-10 py-16 md:grid-cols-2 md:py-20">
