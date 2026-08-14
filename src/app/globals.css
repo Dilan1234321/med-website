@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f4f2ee;
+  --bg-elevated: #fffcf8;
+  --bg-muted: #e8e4dc;
+  --ink: #161412;
+  --ink-muted: #5c574f;
+  --line: #d6d0c6;
+  --accent: #6b1e2a;
+  --accent-hover: #541722;
+  --accent-soft: #f0e4e6;
+  --focus: #6b1e2a;
+  --success: #2f5d3a;
+  --error: #8b1e1e;
+  --shadow: 0 1px 2px rgba(22, 20, 18, 0.06), 0 8px 24px rgba(22, 20, 18, 0.04);
+}
+
+.dark {
+  --bg: #121110;
+  --bg-elevated: #1c1a18;
+  --bg-muted: #262320;
+  --ink: #f3efe8;
+  --ink-muted: #b0a89c;
+  --line: #3a3530;
+  --accent: #c98993;
+  --accent-hover: #d9a0a8;
+  --accent-soft: #2a1a1d;
+  --focus: #d9a0a8;
+  --success: #7cbc8a;
+  --error: #e07070;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-elevated: var(--bg-elevated);
+  --color-bg-muted: var(--bg-muted);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-soft: var(--accent-soft);
+  --color-focus: var(--focus);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans), system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.font-serif {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+}
+
+.container-page {
+  width: min(1120px, calc(100% - 2rem));
+  margin-inline: auto;
+}
+
+.prose-med {
+  max-width: 42rem;
+  color: var(--ink-muted);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  text-align: left;
+}
+
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.7rem 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.dark .btn-primary {
+  color: #121110;
+}
+
+.btn-primary:hover {
+  background: var(--accent-hover);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--ink);
+  border-color: var(--line);
+}
+
+.btn-secondary:hover {
+  border-color: var(--ink-muted);
+  background: var(--bg-muted);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.2rem 0.65rem;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -100px;
+  z-index: 100;
+  background: var(--accent);
+  color: #fff;
+  padding: 0.75rem 1rem;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

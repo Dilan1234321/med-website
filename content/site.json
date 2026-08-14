@@ -1,0 +1,17 @@
+{
+  "name": "Mu Epsilon Delta",
+  "shortName": "MED",
+  "greek": "ΜΕΔ",
+  "tagline": "A professional medical fraternity built on scholarship, service, mentorship, and professional development.",
+  "chapter": "National Chapter",
+  "campus": "Ann Arbor, Michigan",
+  "email": "contact@mednational.org",
+  "founded": 1965,
+  "social": {
+    "instagram": "https://www.instagram.com/",
+    "linkedin": "https://www.linkedin.com/"
+  },
+  "rushFormUrl": "",
+  "donateUrl": "",
+  "applicationFormUrl": ""
+}

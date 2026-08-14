@@ -1,0 +1,99 @@
+{
+  "categories": [
+    {
+      "id": "professional",
+      "title": "Professional development",
+      "description": "Speaker series, admissions panels, resume/AMCAS clinics, and clinical skills workshops."
+    },
+    {
+      "id": "academic",
+      "title": "Academic support",
+      "description": "MCAT cohorts, course tutoring circles, and study halls before major exams."
+    },
+    {
+      "id": "service",
+      "title": "Service & philanthropy",
+      "description": "Clinic volunteering, blood drives, health fairs, and partner nonprofit projects."
+    },
+    {
+      "id": "mentorship",
+      "title": "Mentorship",
+      "description": "1:1 mentor matching, alumni office hours, and pathway roundtables."
+    },
+    {
+      "id": "community",
+      "title": "Chapter community",
+      "description": "Member dinners, retreats, and outings framed as cohort-building—not party culture."
+    }
+  ],
+  "upcoming": [
+    {
+      "id": "rush-info-1",
+      "title": "Fall Rush Info Session",
+      "date": "2026-09-08",
+      "time": "7:00 PM",
+      "location": "Campus Student Center, Room 210",
+      "category": "professional",
+      "summary": "Overview of membership expectations, programming, and the application timeline."
+    },
+    {
+      "id": "mcat-kickoff",
+      "title": "MCAT Study Cohort Kickoff",
+      "date": "2026-09-15",
+      "time": "6:00 PM",
+      "location": "Science Library",
+      "category": "academic",
+      "summary": "Form study teams, set a 12-week schedule, and review resources."
+    },
+    {
+      "id": "blood-drive",
+      "title": "Campus Blood Drive",
+      "date": "2026-09-22",
+      "time": "10:00 AM – 4:00 PM",
+      "location": "Union Ballroom",
+      "category": "service",
+      "summary": "Partner drive with the regional blood center; members staff registration and donor support."
+    },
+    {
+      "id": "speaker-cardio",
+      "title": "Speaker Series: Cardiology Pathways",
+      "date": "2026-10-02",
+      "time": "7:30 PM",
+      "location": "Medical Sciences Building",
+      "category": "professional",
+      "summary": "Physician panel on training paths, lifestyle, and early clinical exposure."
+    },
+    {
+      "id": "alumni-hours",
+      "title": "Alumni Mentorship Office Hours",
+      "date": "2026-10-10",
+      "time": "5:00 PM",
+      "location": "Virtual",
+      "category": "mentorship",
+      "summary": "Drop-in advising with alumni in MS1–MS4 and residency."
+    }
+  ],
+  "past": [
+    {
+      "id": "suturing-clinic",
+      "title": "Suturing Skills Clinic",
+      "date": "2026-03-12",
+      "category": "professional",
+      "summary": "Hands-on workshop led by clinical volunteers; 32 members participated."
+    },
+    {
+      "id": "health-fair",
+      "title": "Community Health Fair",
+      "date": "2026-02-08",
+      "category": "service",
+      "summary": "Blood pressure and wellness education booths with a local free clinic."
+    },
+    {
+      "id": "retreat",
+      "title": "Spring Member Retreat",
+      "date": "2026-04-05",
+      "category": "community",
+      "summary": "Day retreat focused on leadership transitions and mentorship training."
+    }
+  ]
+}

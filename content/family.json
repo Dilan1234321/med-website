@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Taylor Brooks",
+    "year": "Class of 2027",
+    "major": "Molecular Biology",
+    "pathway": "MD",
+    "hometown": "Chicago, IL",
+    "photo": ""
+  },
+  {
+    "name": "Avery Kim",
+    "year": "Class of 2028",
+    "major": "Biomedical Engineering",
+    "pathway": "MD/PhD",
+    "hometown": "Seattle, WA",
+    "photo": ""
+  },
+  {
+    "name": "Cameron Diaz",
+    "year": "Class of 2028",
+    "major": "Psychology",
+    "pathway": "PA",
+    "hometown": "Austin, TX",
+    "photo": ""
+  },
+  {
+    "name": "Quinn Hassan",
+    "year": "Class of 2029",
+    "major": "Chemistry",
+    "pathway": "Dental",
+    "hometown": "Detroit, MI",
+    "photo": ""
+  },
+  {
+    "name": "Jamie Ortega",
+    "year": "Class of 2029",
+    "major": "Neuroscience",
+    "pathway": "MD",
+    "hometown": "Miami, FL",
+    "photo": ""
+  },
+  {
+    "name": "Reese Thompson",
+    "year": "Class of 2027",
+    "major": "Public Health",
+    "pathway": "MD",
+    "hometown": "Atlanta, GA",
+    "photo": ""
+  },
+  {
+    "name": "Parker Singh",
+    "year": "Class of 2030",
+    "major": "Biology",
+    "pathway": "Pharmacy",
+    "hometown": "Columbus, OH",
+    "photo": ""
+  },
+  {
+    "name": "Drew Alvarez",
+    "year": "Class of 2028",
+    "major": "Human Biology",
+    "pathway": "DO",
+    "hometown": "Phoenix, AZ",
+    "photo": ""
+  }
+]

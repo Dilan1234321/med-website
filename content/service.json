@@ -1,0 +1,25 @@
+{
+  "intro": "Service is a standing obligation of membership—measured in hours, continuity with partners, and outcomes for patients and neighbors.",
+  "partners": [
+    {
+      "name": "Regional Blood Center",
+      "role": "Campus blood drives each semester",
+      "impact": "340+ units collected across last three drives"
+    },
+    {
+      "name": "Free Clinic Network",
+      "role": "Patient intake, health education, and logistics support",
+      "impact": "480 member service hours last academic year"
+    },
+    {
+      "name": "Relay for Life / cancer fundraising",
+      "role": "Team fundraising and event staffing",
+      "impact": "$12,400 raised in the most recent campaign"
+    }
+  ],
+  "metrics": [
+    { "label": "Service hours (last year)", "value": "1,200+" },
+    { "label": "Active partners", "value": "6" },
+    { "label": "Campus health events", "value": "9" }
+  ]
+}
