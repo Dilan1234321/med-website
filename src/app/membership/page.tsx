@@ -25,7 +25,7 @@ export default function MembershipPage() {
       <section className="container-page py-16 md:py-24">
         <p className="section-label text-center">Why join</p>
         <div className="accent-line" />
-        <h2 className="text-center font-display text-3xl font-bold uppercase tracking-[0.08em] text-maroon dark:text-gold">
+        <h2 className="text-center font-display text-3xl font-bold tracking-tight text-maroon dark:text-gold">
           Why brothers choose MED
         </h2>
         <div className="mt-12 grid gap-6 md:grid-cols-2">
@@ -34,7 +34,7 @@ export default function MembershipPage() {
               <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold">
                 0{i + 1}
               </p>
-              <h3 className="mt-3 font-display text-xl font-bold uppercase text-maroon dark:text-gold">
+              <h3 className="mt-3 font-display text-xl font-bold tracking-tight text-maroon dark:text-gold">
                 {item.title}
               </h3>
               <p className="mt-2 text-ink-muted">{item.body}</p>
@@ -48,7 +48,7 @@ export default function MembershipPage() {
           <div>
             <p className="section-label">Eligibility</p>
             <div className="accent-line-left" />
-            <h2 className="font-display text-3xl font-bold uppercase text-maroon dark:text-gold">
+            <h2 className="font-display text-3xl font-bold tracking-tight text-maroon dark:text-gold">
               Requirements
             </h2>
             <ul className="mt-6 list-disc space-y-3 pl-5 text-ink-muted">
@@ -56,7 +56,7 @@ export default function MembershipPage() {
                 <li key={item}>{item}</li>
               ))}
             </ul>
-            <h3 className="mt-10 font-display text-2xl font-bold uppercase text-maroon dark:text-gold">
+            <h3 className="mt-10 font-display text-2xl font-bold tracking-tight text-maroon dark:text-gold">
               Expectations
             </h3>
             <ul className="mt-4 list-disc space-y-3 pl-5 text-ink-muted">
@@ -68,7 +68,7 @@ export default function MembershipPage() {
           <div>
             <p className="section-label">Timeline</p>
             <div className="accent-line-left" />
-            <h2 className="font-display text-3xl font-bold uppercase text-maroon dark:text-gold">
+            <h2 className="font-display text-3xl font-bold tracking-tight text-maroon dark:text-gold">
               The process
             </h2>
             <ol className="mt-8 space-y-0">
@@ -87,7 +87,7 @@ export default function MembershipPage() {
                     {step.step}
                   </span>
                   <div>
-                    <p className="font-display text-lg font-bold uppercase text-maroon dark:text-gold">
+                    <p className="font-display text-lg font-bold tracking-tight text-maroon dark:text-gold">
                       {step.title}
                     </p>
                     <p className="mt-1 text-sm text-ink-muted">{step.detail}</p>
@@ -104,7 +104,7 @@ export default function MembershipPage() {
           <div>
             <p className="section-label">Register</p>
             <div className="accent-line-left" />
-            <h2 className="font-display text-3xl font-bold uppercase text-maroon dark:text-gold">
+            <h2 className="font-display text-3xl font-bold tracking-tight text-maroon dark:text-gold">
               Register for Rush
             </h2>
             <p className="mt-4 max-w-md text-ink-muted">
@@ -120,7 +120,7 @@ export default function MembershipPage() {
         <div className="container-page max-w-3xl">
           <p className="section-label text-center">FAQ</p>
           <div className="accent-line" />
-          <h2 className="text-center font-display text-3xl font-bold uppercase text-maroon dark:text-gold">
+          <h2 className="text-center font-display text-3xl font-bold tracking-tight text-maroon dark:text-gold">
             Frequently asked
           </h2>
           <div className="mt-10">

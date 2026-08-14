@@ -53,42 +53,42 @@ export function ScrollHero() {
         <div
           className="pointer-events-none absolute inset-0 z-[2]"
           style={{
-            background: `linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(58,9,15,${0.2 + p * 0.45}) 100%)`,
+            background: `linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(58,9,15,${0.25 + p * 0.45}) 100%)`,
             backdropFilter: `blur(${blur}px)`,
           }}
         />
 
         <div className="absolute inset-0 z-[3] text-white">
           <div
-            className="absolute left-1/2 top-1/2 w-[90%] -translate-x-1/2 -translate-y-1/2 text-center transition-opacity"
+            className="absolute left-1/2 top-[48%] w-[92%] max-w-4xl -translate-x-1/2 -translate-y-1/2 text-center transition-opacity"
             style={{ opacity: text1Opacity }}
           >
-            <p className="text-[clamp(0.7rem,3vw,1.1rem)] font-bold uppercase tracking-[0.35em]">
-              National Pre-Health Fraternity
+            <p className="text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-gold-soft md:text-sm">
+              National pre-health fraternity
             </p>
             <div className="accent-line" />
-            <h1 className="font-display text-[clamp(2rem,8vw,4.5rem)] font-bold leading-tight tracking-[0.12em] drop-shadow-[2px_2px_20px_rgba(0,0,0,0.8)]">
+            <h1 className="heading-display text-[clamp(2.75rem,9vw,5.5rem)] text-white drop-shadow-[0_8px_32px_rgba(0,0,0,0.45)]">
               Mu Epsilon Delta
             </h1>
-            <p className="mt-4 text-[clamp(0.65rem,2.2vw,0.95rem)] font-semibold uppercase tracking-[0.28em]">
-              Scholarship · Service · Mentorship · Professional Development
+            <p className="mx-auto mt-5 max-w-xl text-[clamp(0.95rem,2vw,1.15rem)] font-medium leading-relaxed text-white/88">
+              Scholarship · Service · Mentorship · Professional development
             </p>
-            <Link href="/membership#register" className="btn btn-primary mt-10">
+            <Link href="/membership#register" className="btn btn-primary mt-9">
               Register for Rush
             </Link>
           </div>
 
           <div
-            className="absolute left-1/2 top-1/2 w-[90%] max-w-3xl -translate-x-1/2 -translate-y-1/2 text-center"
+            className="absolute left-1/2 top-[48%] w-[92%] max-w-3xl -translate-x-1/2 -translate-y-1/2 text-center"
             style={{
               opacity: text2Opacity,
               pointerEvents: text2Opacity > 0.5 ? "auto" : "none",
             }}
           >
-            <h2 className="font-display text-[clamp(1.5rem,5.5vw,3.2rem)] font-bold uppercase tracking-[0.14em] drop-shadow-[0_10px_30px_rgba(0,0,0,0.9)]">
+            <h2 className="heading-display text-[clamp(2rem,6vw,3.75rem)] text-white drop-shadow-[0_10px_30px_rgba(0,0,0,0.55)]">
               Where brothers practice their art
             </h2>
-            <p className="mx-auto mt-5 max-w-2xl text-[clamp(0.7rem,2vw,1rem)] font-light uppercase leading-relaxed tracking-[0.08em] text-white/90">
+            <p className="mx-auto mt-5 max-w-2xl text-[clamp(0.95rem,2vw,1.1rem)] font-normal leading-relaxed text-white/88">
               A professional medical fraternity preparing members for healthcare
               careers through structured scholarship, clinical exposure, and
               lifelong mentorship.

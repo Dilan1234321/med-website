@@ -23,7 +23,7 @@ export default function AboutPage() {
         <div className="md:col-span-5">
           <p className="section-label">History</p>
           <div className="accent-line-left" />
-          <h2 className="font-display text-3xl font-bold uppercase tracking-[0.06em] text-maroon dark:text-gold">
+          <h2 className="font-display text-3xl font-bold tracking-tight text-maroon dark:text-gold">
             Est. {stats.foundingYear}
           </h2>
           <p className="mt-2 text-sm text-ink-muted">{site.campus}</p>
@@ -37,7 +37,7 @@ export default function AboutPage() {
         <div className="container-page">
           <p className="section-label text-center">Values</p>
           <div className="accent-line" />
-          <h2 className="text-center font-display text-3xl font-bold uppercase tracking-[0.08em] text-maroon dark:text-gold">
+          <h2 className="text-center font-display text-3xl font-bold tracking-tight text-maroon dark:text-gold">
             Values in practice
           </h2>
           <div className="mt-12 grid gap-5 md:grid-cols-2">
@@ -46,7 +46,7 @@ export default function AboutPage() {
                 <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold">
                   Pillar {["I", "II", "III", "IV"][i]}
                 </p>
-                <h3 className="mt-3 font-display text-2xl font-bold uppercase text-maroon dark:text-gold">
+                <h3 className="mt-3 font-display text-2xl font-bold tracking-tight text-maroon dark:text-gold">
                   {value.title}
                 </h3>
                 <p className="mt-3 text-ink-muted">{value.body}</p>

@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import { Cinzel, Montserrat } from "next/font/google";
+import { Figtree, Fraunces } from "next/font/google";
 import { SiteShell } from "@/components/SiteShell";
 import { content } from "@/lib/content";
 import "./globals.css";
 
-const display = Cinzel({
+const display = Fraunces({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["400", "700", "900"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
-const sans = Montserrat({
+const sans = Figtree({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {

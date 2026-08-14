@@ -20,16 +20,16 @@ export function PageHero({
       <div className="page-hero-overlay" />
       <div className="relative z-10 container-page w-full pb-14 pt-36 md:pb-20 md:pt-44">
         {eyebrow ? (
-          <p className="text-center text-[0.75rem] font-bold uppercase tracking-[0.28em] text-gold">
+          <p className="text-center text-[0.72rem] font-semibold uppercase tracking-[0.16em] text-gold-soft">
             {eyebrow}
           </p>
         ) : null}
         <div className="accent-line" />
-        <h1 className="text-center font-display text-[clamp(2rem,6vw,3.75rem)] font-bold uppercase tracking-[0.1em] text-white drop-shadow-lg">
+        <h1 className="heading-display text-center text-[clamp(2.25rem,6vw,4rem)] text-white drop-shadow-lg">
           {title}
         </h1>
         {description ? (
-          <p className="mx-auto mt-5 max-w-2xl text-center text-sm leading-relaxed text-white/85 md:text-base">
+          <p className="mx-auto mt-5 max-w-2xl text-center text-base leading-relaxed text-white/85 md:text-lg">
             {description}
           </p>
         ) : null}

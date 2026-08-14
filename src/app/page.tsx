@@ -27,7 +27,7 @@ export default function HomePage() {
       <ScrollHero />
 
       <section className="bg-bg py-10 md:py-14">
-        <h2 className="mb-8 text-center text-[0.8rem] font-bold uppercase tracking-[0.28em] text-[#aaa]">
+        <h2 className="mb-8 text-center text-[0.75rem] font-semibold uppercase tracking-[0.16em] text-ink-muted">
           Where our brothers lead
         </h2>
         <div className="marquee-mask overflow-hidden py-4">
@@ -35,7 +35,7 @@ export default function HomePage() {
             {[...destinations, ...destinations].map((name, i) => (
               <span
                 key={`${name}-${i}`}
-                className="font-display text-lg font-bold uppercase tracking-[0.12em] text-ink/35 whitespace-nowrap transition hover:text-maroon dark:text-gold md:text-xl"
+                className="font-display text-xl font-semibold tracking-tight text-ink/30 whitespace-nowrap transition hover:text-maroon dark:hover:text-gold md:text-2xl"
               >
                 {name}
               </span>
@@ -44,18 +44,21 @@ export default function HomePage() {
         </div>
         <div className="marquee-mask mt-2 overflow-hidden py-4">
           <div className="marquee-track-reverse gap-12 px-6">
-            {[...destinations].reverse().concat([...destinations].reverse()).map((name, i) => (
-              <span
-                key={`r-${name}-${i}`}
-                className="font-display text-base font-bold uppercase tracking-[0.12em] text-ink/30 whitespace-nowrap md:text-lg"
-              >
-                {name}
-              </span>
-            ))}
+            {[...destinations]
+              .reverse()
+              .concat([...destinations].reverse())
+              .map((name, i) => (
+                <span
+                  key={`r-${name}-${i}`}
+                  className="font-display text-lg font-medium tracking-tight text-ink/25 whitespace-nowrap md:text-xl"
+                >
+                  {name}
+                </span>
+              ))}
           </div>
         </div>
-        <p className="mt-6 text-center font-display text-sm font-bold uppercase tracking-[0.2em] text-maroon">
-          And so much more!
+        <p className="mt-6 text-center font-display text-base italic text-maroon dark:text-gold">
+          And so much more
         </p>
       </section>
 
@@ -63,16 +66,16 @@ export default function HomePage() {
         <div className="container-page">
           <p className="section-label text-center">Our pillars</p>
           <div className="accent-line" />
-          <h2 className="text-center font-display text-3xl font-bold uppercase tracking-[0.08em] text-maroon dark:text-gold dark:text-gold md:text-4xl">
+          <h2 className="heading-display text-center text-3xl text-maroon dark:text-gold md:text-4xl">
             What we stand for
           </h2>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {about.values.map((value, i) => (
               <article key={value.title} className="card p-6 text-center">
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-gold">
+                <p className="text-xs font-semibold uppercase tracking-[0.14em] text-gold">
                   Pillar {["I", "II", "III", "IV"][i]}
                 </p>
-                <h3 className="mt-3 font-display text-xl font-bold uppercase tracking-wide text-maroon">
+                <h3 className="mt-3 font-display text-2xl font-semibold tracking-tight text-maroon dark:text-gold">
                   {value.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-ink-muted">
@@ -89,14 +92,17 @@ export default function HomePage() {
           {[
             { label: "Active members", value: `${stats.members}` },
             { label: "Service hours", value: `${stats.serviceHours}+` },
-            { label: "Acceptance rate*", value: `${stats.medSchoolAcceptanceRate}%` },
+            {
+              label: "Acceptance rate*",
+              value: `${stats.medSchoolAcceptanceRate}%`,
+            },
             { label: "Founded", value: `${stats.foundingYear}` },
           ].map((stat) => (
             <div key={stat.label} className="text-center">
-              <p className="font-display text-4xl font-bold text-maroon dark:text-gold md:text-5xl">
+              <p className="font-display text-4xl font-semibold tracking-tight text-maroon dark:text-gold md:text-5xl">
                 {stat.value}
               </p>
-              <p className="mt-2 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-ink-muted">
+              <p className="mt-2 text-[0.7rem] font-semibold uppercase tracking-[0.12em] text-ink-muted">
                 {stat.label}
               </p>
             </div>
@@ -113,13 +119,13 @@ export default function HomePage() {
             <div>
               <p className="section-label">Programming</p>
               <div className="accent-line-left" />
-              <h2 className="font-display text-3xl font-bold uppercase tracking-[0.06em] text-maroon dark:text-gold dark:text-gold md:text-4xl">
+              <h2 className="heading-display text-3xl text-maroon dark:text-gold md:text-4xl">
                 Upcoming events
               </h2>
             </div>
             <Link
               href="/events"
-              className="text-sm font-bold uppercase tracking-[0.14em] text-gold hover:underline"
+              className="text-sm font-semibold text-gold hover:underline"
             >
               View all events →
             </Link>
@@ -130,11 +136,11 @@ export default function HomePage() {
                 key={event.id}
                 className="grid gap-2 px-5 py-5 md:grid-cols-[8rem_1fr_auto] md:items-center md:gap-6"
               >
-                <span className="text-sm font-bold uppercase tracking-wide text-gold">
+                <span className="text-sm font-semibold text-gold">
                   {formatDate(event.date)}
                 </span>
                 <div>
-                  <p className="font-display text-lg font-bold text-ink">
+                  <p className="font-display text-lg font-semibold tracking-tight text-ink">
                     {event.title}
                   </p>
                   <p className="text-sm text-ink-muted">{event.location}</p>
@@ -150,7 +156,7 @@ export default function HomePage() {
         <div className="container-page">
           <p className="section-label text-center">Leadership</p>
           <div className="accent-line" />
-          <h2 className="text-center font-display text-3xl font-bold uppercase tracking-[0.08em] text-maroon dark:text-gold dark:text-gold md:text-4xl">
+          <h2 className="heading-display text-center text-3xl text-maroon dark:text-gold md:text-4xl">
             Meet the board
           </h2>
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

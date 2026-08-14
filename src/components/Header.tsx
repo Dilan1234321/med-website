@@ -61,7 +61,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
         >
           <Crest className="h-11 w-11 text-gold md:h-12 md:w-12" title="Mu Epsilon Delta" />
           <span className="hidden h-8 w-px bg-white/35 sm:block" aria-hidden />
-          <span className="font-display text-sm font-bold tracking-[0.18em] text-white sm:text-base">
+          <span className="font-display text-base font-semibold tracking-tight text-white sm:text-base">
             ΜΕΔ
           </span>
         </Link>
@@ -105,7 +105,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="block px-5 py-3 text-center font-display text-[0.75rem] font-bold uppercase tracking-[0.16em] text-white/90 transition hover:bg-white/5 hover:text-gold"
+                        className="block px-5 py-3 text-center font-display text-[0.75rem] font-bold tracking-tight text-white/90 transition hover:bg-white/5 hover:text-gold"
                       >
                         {item.label}
                       </Link>
@@ -161,7 +161,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="font-display text-2xl font-bold uppercase tracking-[0.14em] text-white"
+              className="font-display text-2xl font-bold tracking-tight text-white"
             >
               {item.label}
             </Link>
@@ -174,7 +174,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="font-display text-xl font-bold uppercase tracking-[0.14em] text-white/90"
+              className="font-display text-xl font-bold tracking-tight text-white/90"
             >
               {item.label}
             </Link>
@@ -184,7 +184,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="font-display text-2xl font-bold uppercase tracking-[0.14em] text-white"
+              className="font-display text-2xl font-bold tracking-tight text-white"
             >
               {item.label}
             </Link>
@@ -192,7 +192,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           <Link
             href="/calendar"
             onClick={() => setOpen(false)}
-            className="font-display text-2xl font-bold uppercase tracking-[0.14em] text-white"
+            className="font-display text-2xl font-bold tracking-tight text-white"
           >
             Calendar
           </Link>

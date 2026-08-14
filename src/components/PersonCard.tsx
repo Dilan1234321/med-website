@@ -24,13 +24,15 @@ export function PersonCard({
         className="flex aspect-[4/5] items-end bg-gradient-to-br from-maroon to-maroon-deep p-5"
         aria-hidden
       >
-        <span className="font-display text-5xl font-bold text-gold/80">{mark}</span>
+        <span className="font-display text-5xl font-semibold text-gold/80">
+          {mark}
+        </span>
       </div>
       <div className="p-5 text-center">
-        <h3 className="font-display text-lg font-bold uppercase tracking-wide text-maroon">
+        <h3 className="font-display text-xl font-semibold tracking-tight text-maroon dark:text-gold">
           {name}
         </h3>
-        <p className="mt-1 text-xs font-bold uppercase tracking-[0.14em] text-gold">
+        <p className="mt-1 text-xs font-semibold uppercase tracking-[0.12em] text-gold">
           {meta}
         </p>
         {detail ? (
