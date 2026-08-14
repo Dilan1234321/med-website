@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Figtree, Fraunces, Space_Mono } from "next/font/google";
+import { Fraunces, Outfit, Space_Mono } from "next/font/google";
 import { SiteShell } from "@/components/SiteShell";
 import { content } from "@/lib/content";
 import "./globals.css";
@@ -11,7 +11,7 @@ const display = Fraunces({
   style: ["normal", "italic"],
 });
 
-const sans = Figtree({
+const sans = Outfit({
   variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
