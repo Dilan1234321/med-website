@@ -41,16 +41,26 @@ export default function FamilyPage() {
       </section>
 
       <section className="bg-bg py-10">
-        <div className="container-page flex flex-wrap gap-2">
-          {["All", ...Object.keys(byPathway)].map((label) => (
+          <div className="container-page flex flex-wrap items-center gap-2">
+          {["All", ...Object.keys(byPathway)].map((label, i) => (
             <a
               key={label}
               href={label === "All" ? "#roster" : `#path-${label}`}
-              className="rounded-full border border-line bg-bg-elevated px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-maroon transition hover:border-maroon dark:text-gold"
+              className={`rounded-full border px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] transition ${
+                i === 0
+                  ? "border-gold bg-gold/15 text-maroon dark:text-gold"
+                  : "border-line bg-bg-elevated text-maroon hover:border-maroon dark:text-gold"
+              }`}
             >
               {label}
             </a>
           ))}
+          <Link
+            href="/membership#register"
+            className="ml-auto rounded-full border border-gold px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-maroon dark:text-gold"
+          >
+            Brother portal · Join rush
+          </Link>
         </div>
       </section>
 

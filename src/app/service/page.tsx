@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { content } from "@/lib/content";
 
@@ -19,30 +20,68 @@ export default function ServicePage() {
         description={service.intro}
         image="/images/hero-about.jpg"
       />
+
       <section className="border-b border-line">
         <div className="container-page grid grid-cols-1 gap-px bg-line sm:grid-cols-3">
           {service.metrics.map((metric) => (
-            <div key={metric.label} className="bg-bg px-6 py-10">
-              <p className="font-display text-3xl text-ink">{metric.value}</p>
-              <p className="mt-2 text-xs uppercase tracking-[0.12em] text-ink-muted">
+            <div key={metric.label} className="bg-bg px-6 py-12 text-center">
+              <p className="font-display text-4xl font-semibold text-maroon dark:text-gold">
+                {metric.value}
+              </p>
+              <p className="mt-2 font-mono text-[0.65rem] uppercase tracking-[0.14em] text-ink-muted">
                 {metric.label}
               </p>
             </div>
           ))}
         </div>
       </section>
-      <section className="container-page py-16 md:py-20">
-        <h2 className="font-display text-3xl text-ink">Partners</h2>
-        <div className="mt-8 grid gap-5 md:grid-cols-3">
-          {service.partners.map((partner) => (
-            <article key={partner.name} className="card p-6">
-              <h3 className="font-display text-xl text-ink">{partner.name}</h3>
-              <p className="mt-2 text-sm text-ink-muted">{partner.role}</p>
-              <p className="mt-4 text-sm font-medium text-gold">
-                {partner.impact}
-              </p>
-            </article>
-          ))}
+
+      <section className="bg-bg py-16 md:py-24">
+        <div className="container-page">
+          <p className="section-label text-center">Partners</p>
+          <div className="accent-line" />
+          <h2 className="heading-display text-center text-3xl text-maroon dark:text-gold md:text-4xl">
+            Where we serve
+          </h2>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {service.partners.map((partner, i) => (
+              <article
+                key={partner.name}
+                className="card overflow-hidden border-t-4 border-t-gold p-6"
+              >
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-gold">
+                  Partner {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-3 font-display text-2xl font-semibold text-maroon dark:text-gold">
+                  {partner.name}
+                </h3>
+                <p className="mt-2 text-sm text-ink-muted">{partner.role}</p>
+                <p className="mt-4 text-sm font-medium text-gold">
+                  {partner.impact}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden py-20 md:py-28">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/hero-tampa-1.jpg')" }}
+        />
+        <div className="absolute inset-0 bg-maroon-deep/75" />
+        <div className="relative z-10 container-page text-center text-white">
+          <h2 className="heading-display text-3xl md:text-5xl">
+            Invest in service impact
+          </h2>
+          <p className="mx-auto mt-4 max-w-lg text-white/85">
+            Donations fund supplies, drives, and travel so more brothers can
+            serve Tampa Bay.
+          </p>
+          <Link href="/donate" className="btn btn-gold mt-8">
+            Support the chapter
+          </Link>
         </div>
       </section>
     </>

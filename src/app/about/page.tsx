@@ -38,8 +38,15 @@ export default function AboutPage() {
           style={{ backgroundImage: "url('/images/hero-tampa-1.jpg')" }}
         />
         <div className="page-hero-overlay" />
-        <div className="relative z-10 container-page flex min-h-[70vh] items-end pb-16 pt-36 md:pb-24">
-          <h1 className="heading-display max-w-4xl text-[clamp(2.5rem,8vw,5.5rem)] text-white">
+        <div className="relative z-10 container-page flex min-h-[70vh] flex-col items-center justify-center pb-16 pt-36 text-center md:pb-24">
+          <p
+            className="font-display text-[clamp(4rem,18vw,11rem)] font-semibold leading-none tracking-[0.08em] text-transparent"
+            style={{ WebkitTextStroke: "2px rgba(201,162,74,0.85)" }}
+            aria-hidden
+          >
+            ΜΕΔ
+          </p>
+          <h1 className="heading-display mt-6 max-w-4xl text-[clamp(2rem,5vw,3.5rem)] text-white">
             A network you grow with.
           </h1>
         </div>
@@ -145,6 +152,70 @@ export default function AboutPage() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Life as a brother — AKPsi masonry */}
+      <section className="bg-maroon-deep py-16 text-[#f7f5ef] md:py-24">
+        <div className="container-page">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-gold">
+            Chapter life
+          </p>
+          <h2 className="heading-display mt-3 text-3xl text-gold md:text-5xl">
+            Life as a brother
+          </h2>
+          <div className="mt-10 columns-2 gap-3 md:columns-3">
+            {[
+              { src: "/images/hero-1.jpg", h: "aspect-[3/4]" },
+              { src: "/images/hero-recruit.jpg", h: "aspect-square" },
+              { src: "/images/hero-about.jpg", h: "aspect-[4/5]" },
+              { src: "/images/hero-2.jpg", h: "aspect-[3/4]" },
+              { src: "/images/hero-tampa-1.jpg", h: "aspect-square" },
+              { src: "/images/hero-about.jpg", h: "aspect-[4/3]" },
+            ].map((item, i) => (
+              <figure
+                key={`${item.src}-${i}`}
+                className={`mb-3 break-inside-avoid overflow-hidden rounded-2xl ${item.h}`}
+              >
+                <div
+                  className="h-full w-full bg-cover bg-center"
+                  style={{ backgroundImage: `url('${item.src}')` }}
+                  role="img"
+                  aria-label={`Chapter life photo ${i + 1}`}
+                />
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Timeline — national + UT */}
+      <section className="bg-maroon-deep pb-20 text-[#f7f5ef]">
+        <div className="container-page grid gap-8 md:grid-cols-2">
+          <article className="border-t border-gold/40 pt-6">
+            <p className="font-mono text-xs uppercase tracking-[0.16em] text-gold">
+              1965 · Tennessee
+            </p>
+            <h3 className="mt-3 font-display text-2xl font-semibold text-gold">
+              Our global origins
+            </h3>
+            <p className="mt-3 text-white/75">
+              Mu Epsilon Delta founded at the University of Tennessee at Martin as
+              a co-ed pre-health professional fraternity.
+            </p>
+          </article>
+          <article className="border-t border-gold/40 pt-6">
+            <p className="font-mono text-xs uppercase tracking-[0.16em] text-gold">
+              Today · Tampa
+            </p>
+            <h3 className="mt-3 font-display text-2xl font-semibold text-gold">
+              University of Tampa chapter
+            </h3>
+            <p className="mt-3 text-white/75">
+              Building scholarship, service, and mentorship for Spartans on the
+              path to healthcare careers.
+            </p>
+          </article>
         </div>
       </section>
 

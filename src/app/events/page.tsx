@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHero } from "@/components/PageHero";
 import { content, formatDate } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -14,97 +13,118 @@ export default function EventsPage() {
 
   return (
     <>
-      <PageHero
-        eyebrow="Events"
-        title="Programming"
-        description="Professional development, academics, service, mentorship, and chapter community."
-        image="/images/hero-2.jpg"
-      />
-
-      <section className="container-page py-16 md:py-24">
-        <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:items-end">
-          <div>
-            <p className="section-label">Categories</p>
-            <div className="accent-line-left" />
-            <h2 className="font-display text-3xl font-bold tracking-tight text-maroon dark:text-gold dark:text-gold">
-              Event types
-            </h2>
-          </div>
-          <Link
-            href="/calendar"
-            className="text-sm font-bold uppercase tracking-[0.14em] text-gold hover:underline"
-          >
-            View calendar →
-          </Link>
-        </div>
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {events.categories.map((cat) => (
-            <article key={cat.id} className="card p-6">
-              <span className="badge">{cat.id}</span>
-              <h3 className="mt-4 font-display text-2xl font-bold tracking-tight text-maroon dark:text-gold">
-                {cat.title}
-              </h3>
-              <p className="mt-3 text-ink-muted">{cat.description}</p>
-            </article>
-          ))}
+      <section className="page-hero min-h-[55vh]">
+        <div
+          className="page-hero-bg"
+          style={{ backgroundImage: "url('/images/hero-2.jpg')" }}
+        />
+        <div className="page-hero-overlay" />
+        <div className="relative z-10 container-page flex min-h-[55vh] flex-col justify-end pb-14 pt-36">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-gold">
+            Programming
+          </p>
+          <h1 className="heading-display mt-3 text-[clamp(2.5rem,8vw,5rem)] text-white">
+            The professional journey
+          </h1>
+          <p className="mt-4 max-w-xl text-white/85">
+            Workshops, speakers, service, and mentorship that prepare brothers
+            for healthcare careers.
+          </p>
         </div>
       </section>
 
-      <section className="border-t border-line bg-bg-muted py-16 md:py-24">
+      <section className="bg-bg py-16 md:py-24">
         <div className="container-page">
-          <p className="section-label text-center">Upcoming</p>
-          <div className="accent-line" />
-          <h2 className="text-center font-display text-3xl font-bold tracking-tight text-maroon dark:text-gold">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <p className="section-label">Categories</p>
+              <div className="accent-line-left" />
+              <h2 className="heading-display text-3xl text-maroon dark:text-gold">
+                Event types
+              </h2>
+            </div>
+            <Link
+              href="/calendar"
+              className="font-mono text-xs uppercase tracking-[0.14em] text-gold hover:underline"
+            >
+              View calendar →
+            </Link>
+          </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {events.categories.map((cat, i) => (
+              <article
+                key={cat.id}
+                className="card overflow-hidden border-t-4 border-t-gold p-6"
+              >
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-gold">
+                  {String(i + 1).padStart(2, "0")} · {cat.id}
+                </p>
+                <h3 className="mt-3 font-display text-2xl font-semibold text-maroon dark:text-gold">
+                  {cat.title}
+                </h3>
+                <p className="mt-3 text-ink-muted">{cat.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden py-16 md:py-24">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/hero-recruit.jpg')" }}
+        />
+        <div className="absolute inset-0 bg-maroon-deep/80" />
+        <div className="relative z-10 container-page text-white">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-gold">
+            Upcoming
+          </p>
+          <h2 className="heading-display mt-2 text-3xl md:text-5xl">
             On the calendar
           </h2>
-          <ul className="mt-10 divide-y divide-line rounded-2xl border border-line bg-bg-elevated">
+          <ul className="mt-10 grid gap-4 md:grid-cols-2">
             {events.upcoming.map((event) => (
               <li
                 key={event.id}
-                className="grid gap-3 px-5 py-6 md:grid-cols-[8rem_1fr]"
+                className="rounded-[18px] border border-white/20 bg-white/10 p-5 backdrop-blur-md"
               >
-                <div>
-                  <p className="text-sm font-bold uppercase tracking-wide text-gold">
-                    {formatDate(event.date)}
-                  </p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.1em] text-ink-muted">
-                    {event.category}
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-display text-xl font-bold tracking-tight text-ink">
-                    {event.title}
-                  </h3>
-                  <p className="mt-1 text-sm text-ink-muted">
-                    {event.time} · {event.location}
-                  </p>
-                  <p className="mt-2 text-ink-muted">{event.summary}</p>
-                </div>
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-gold">
+                  {formatDate(event.date)} · {event.category}
+                </p>
+                <h3 className="mt-2 font-display text-xl font-semibold">
+                  {event.title}
+                </h3>
+                <p className="mt-1 text-sm text-white/70">
+                  {event.time} · {event.location}
+                </p>
+                <p className="mt-3 text-sm text-white/80">{event.summary}</p>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section className="container-page py-16 md:py-24">
-        <p className="section-label text-center">Archive</p>
-        <div className="accent-line" />
-        <h2 className="text-center font-display text-3xl font-bold tracking-tight text-maroon dark:text-gold">
-          Recent past events
-        </h2>
-        <ul className="mt-10 grid gap-5 md:grid-cols-3">
-          {events.past.map((event) => (
-            <li key={event.id} className="card p-5">
-              <p className="text-xs uppercase tracking-[0.1em] text-ink-muted">
-                {formatDate(event.date)} · {event.category}
-              </p>
-              <h3 className="mt-2 font-display text-xl font-bold tracking-tight text-maroon dark:text-gold">
-                {event.title}
-              </h3>
-              <p className="mt-2 text-sm text-ink-muted">{event.summary}</p>
-            </li>
-          ))}
-        </ul>
+      <section className="bg-bg-muted py-16 md:py-24">
+        <div className="container-page">
+          <p className="section-label text-center">Archive</p>
+          <div className="accent-line" />
+          <h2 className="heading-display text-center text-3xl text-maroon dark:text-gold">
+            Recent past events
+          </h2>
+          <ul className="mt-10 grid gap-5 md:grid-cols-3">
+            {events.past.map((event) => (
+              <li key={event.id} className="card p-5">
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.12em] text-ink-muted">
+                  {formatDate(event.date)} · {event.category}
+                </p>
+                <h3 className="mt-2 font-display text-xl font-semibold text-maroon dark:text-gold">
+                  {event.title}
+                </h3>
+                <p className="mt-2 text-sm text-ink-muted">{event.summary}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
     </>
   );

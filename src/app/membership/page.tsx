@@ -60,6 +60,135 @@ export default function MembershipPage() {
         </div>
       </section>
 
+      {/* Polaroid excellence — AKPsi recruitment */}
+      <section className="overflow-hidden bg-bg-muted py-16 md:py-24">
+        <div className="container-page grid items-center gap-10 md:grid-cols-[1fr_1.1fr_1fr]">
+          <div className="relative mx-auto hidden h-64 w-44 rotate-[-8deg] md:block">
+            <div className="absolute inset-0 rounded-md border-[10px] border-gold bg-cover bg-center shadow-xl"
+              style={{ backgroundImage: "url('/images/hero-1.jpg')" }}
+            />
+          </div>
+          <div className="text-center">
+            <p className="section-label">Recruitment</p>
+            <div className="accent-line" />
+            <h2 className="heading-display text-3xl text-maroon dark:text-gold md:text-4xl">
+              Excellence is a tradition
+            </h2>
+            <p className="mx-auto mt-4 max-w-md text-ink-muted">
+              Rush at UT is structured, transparent, and built around fit for
+              healthcare pathways—not parties.
+            </p>
+          </div>
+          <div className="relative mx-auto hidden h-64 w-44 rotate-[7deg] md:block">
+            <div className="absolute inset-0 rounded-md border-[10px] border-gold bg-cover bg-center shadow-xl"
+              style={{ backgroundImage: "url('/images/hero-recruit.jpg')" }}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Vertical pillars timeline — AKPsi */}
+      <section className="bg-bg py-16 md:py-24">
+        <div className="container-page">
+          <p className="section-label text-center">The professional journey</p>
+          <div className="accent-line" />
+          <h2 className="heading-display text-center text-3xl text-maroon dark:text-gold md:text-4xl">
+            Three pillars of membership
+          </h2>
+          <div className="relative mx-auto mt-14 max-w-3xl">
+            <div className="absolute top-0 bottom-0 left-4 w-px bg-gold/50 md:left-1/2 md:-translate-x-px" />
+            {[
+              {
+                label: "Pillar I",
+                title: "Scholarship",
+                body: "MCAT cohorts, tutoring, and application clinics that keep brothers competitive.",
+              },
+              {
+                label: "Pillar II",
+                title: "Service & mentorship",
+                body: "Tampa Bay partners and alumni mentors who turn hours into real readiness.",
+              },
+              {
+                label: "Pillar III",
+                title: "Professional development",
+                body: "Speakers, skills clinics, and interview practice for every pre-health path.",
+              },
+            ].map((pillar, i) => (
+              <article
+                key={pillar.label}
+                className={`relative mb-10 grid gap-4 pl-12 md:mb-14 md:grid-cols-2 md:gap-10 md:pl-0 ${
+                  i % 2 === 1 ? "md:text-right" : ""
+                }`}
+              >
+                <div
+                  className={`absolute top-1 left-2.5 h-3 w-3 rounded-full bg-gold md:left-1/2 md:-translate-x-1/2`}
+                />
+                <div className={i % 2 === 1 ? "md:col-start-2" : "md:col-start-1 md:pr-10"}>
+                  <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-gold">
+                    {pillar.label}
+                  </p>
+                  <h3 className="mt-2 font-display text-2xl font-semibold text-maroon dark:text-gold">
+                    {pillar.title}
+                  </h3>
+                  <p className="mt-2 text-ink-muted">{pillar.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Prepare steps — AKPsi */}
+      <section className="border-y border-line bg-bg-elevated py-16 md:py-24">
+        <div className="container-page">
+          <p className="section-label text-center">Prepare for Fall 2026</p>
+          <div className="accent-line" />
+          <h2 className="heading-display text-center text-3xl text-maroon dark:text-gold md:text-4xl">
+            The next chapter begins with you
+          </h2>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {[
+              {
+                step: "Step 1",
+                title: "Build your foundation",
+                body: "Know your pathway, GPA standing, and why healthcare—and MED—fit you.",
+              },
+              {
+                step: "Step 2",
+                title: "Connect with us",
+                body: "Hit info sessions, meet brothers, and ask Membership Chair the hard questions.",
+              },
+              {
+                step: "Step 3",
+                title: "Define your vision",
+                body: "Bring clear goals to the interview. We look for seriousness and service.",
+              },
+            ].map((card) => (
+              <article
+                key={card.step}
+                className="card border-t-4 border-t-gold p-6"
+              >
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-gold">
+                  {card.step}
+                </p>
+                <h3 className="mt-3 font-display text-xl font-semibold text-maroon dark:text-gold">
+                  {card.title}
+                </h3>
+                <p className="mt-2 text-sm text-ink-muted">{card.body}</p>
+              </article>
+            ))}
+          </div>
+          <div className="mx-auto mt-10 max-w-xl rounded-2xl border border-dashed border-maroon/30 bg-bg p-6 text-center dark:border-gold/40">
+            <p className="font-mono text-xs uppercase tracking-[0.16em] text-maroon dark:text-gold">
+              Formal recruitment opens Fall 2026
+            </p>
+            <a href="#register" className="btn btn-primary mt-5">
+              Get notified
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Rush schedule calendar cards */}
       <section className="relative overflow-hidden py-16 md:py-24">
         <div
