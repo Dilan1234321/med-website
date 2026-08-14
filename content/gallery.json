@@ -1,0 +1,65 @@
+{
+  "note": "Replace these placeholders with chapter photography. Prefer service events, workshops, campus landmarks, and member headshots—never stock doctors.",
+  "albums": [
+    {
+      "id": "programming",
+      "title": "Programming",
+      "items": [
+        {
+          "id": "p1",
+          "caption": "Speaker series — admissions panel",
+          "src": "",
+          "alt": "Placeholder for speaker series photo"
+        },
+        {
+          "id": "p2",
+          "caption": "MCAT cohort study hall",
+          "src": "",
+          "alt": "Placeholder for study hall photo"
+        },
+        {
+          "id": "p3",
+          "caption": "Clinical skills workshop",
+          "src": "",
+          "alt": "Placeholder for skills workshop photo"
+        }
+      ]
+    },
+    {
+      "id": "service",
+      "title": "Service",
+      "items": [
+        {
+          "id": "s1",
+          "caption": "Campus blood drive",
+          "src": "",
+          "alt": "Placeholder for blood drive photo"
+        },
+        {
+          "id": "s2",
+          "caption": "Community health fair booth",
+          "src": "",
+          "alt": "Placeholder for health fair photo"
+        }
+      ]
+    },
+    {
+      "id": "community",
+      "title": "Chapter life",
+      "items": [
+        {
+          "id": "c1",
+          "caption": "Member retreat",
+          "src": "",
+          "alt": "Placeholder for retreat photo"
+        },
+        {
+          "id": "c2",
+          "caption": "End-of-semester dinner",
+          "src": "",
+          "alt": "Placeholder for dinner photo"
+        }
+      ]
+    }
+  ]
+}

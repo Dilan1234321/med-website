@@ -1,43 +1,54 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Outfit } from "next/font/google";
+import { Inter, Source_Serif_4 } from "next/font/google";
+import { Footer } from "@/components/Footer";
+import { Header } from "@/components/Header";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { content } from "@/lib/content";
 import "./globals.css";
 
-const display = Cormorant_Garamond({
-  variable: "--font-display",
+const serif = Source_Serif_4({
+  variable: "--font-serif",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
 });
 
-const sans = Outfit({
+const sans = Inter({
   variable: "--font-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Mu Epsilon Delta | National Pre-Health Fraternity",
-  description:
-    "Mu Epsilon Delta (ΜΕΔ) is a national co-educational pre-health professional fraternity preparing members through scholarship, brotherhood, and service. Est. 1965.",
-  keywords: [
-    "Mu Epsilon Delta",
-    "MED",
-    "pre-med fraternity",
-    "pre-health",
-    "professional fraternity",
-  ],
-  openGraph: {
-    title: "Mu Epsilon Delta | National Pre-Health Fraternity",
-    description:
-      "Preparing brothers for careers in healthcare through scholarship, service, and lifelong fraternity.",
-    type: "website",
+  metadataBase: new URL("https://mednational.org"),
+  title: {
+    default: `${content.site.name} | Professional Medical Fraternity`,
+    template: `%s | ${content.site.name}`,
   },
+  description: content.site.tagline,
+  openGraph: {
+    title: content.site.name,
+    description: content.site.tagline,
+    type: "website",
+    locale: "en_US",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${display.variable} ${sans.variable} h-full`}>
-      <body className="min-h-full antialiased">{children}</body>
+    <html lang="en" className={`${serif.variable} ${sans.variable} h-full`} suppressHydrationWarning>
+      <body className="flex min-h-full flex-col antialiased">
+        <ThemeProvider>
+          <a href="#main" className="skip-link">
+            Skip to content
+          </a>
+          <Header />
+          <main id="main" className="flex-1">
+            {children}
+          </main>
+          <Footer />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

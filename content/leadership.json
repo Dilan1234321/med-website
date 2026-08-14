@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Alex Rivera",
+    "role": "President",
+    "year": "Class of 2027",
+    "major": "Neuroscience",
+    "focus": "Sets chapter strategy, chairs exec meetings, and represents MED to campus partners.",
+    "email": "president@med.example.edu",
+    "photo": ""
+  },
+  {
+    "name": "Jordan Lee",
+    "role": "Vice President",
+    "year": "Class of 2027",
+    "major": "Biology",
+    "focus": "Oversees programming calendar and coordinates committee chairs.",
+    "email": "vp@med.example.edu",
+    "photo": ""
+  },
+  {
+    "name": "Sam Okonkwo",
+    "role": "Membership Chair",
+    "year": "Class of 2028",
+    "major": "Biochemistry",
+    "focus": "Runs recruitment, interviews, and new-member education.",
+    "email": "membership@med.example.edu",
+    "photo": ""
+  },
+  {
+    "name": "Riley Chen",
+    "role": "Scholarship Chair",
+    "year": "Class of 2028",
+    "major": "Human Physiology",
+    "focus": "Leads MCAT cohorts, tutoring circles, and application workshops.",
+    "email": "scholarship@med.example.edu",
+    "photo": ""
+  },
+  {
+    "name": "Morgan Patel",
+    "role": "Service Chair",
+    "year": "Class of 2029",
+    "major": "Public Health",
+    "focus": "Manages nonprofit partnerships and tracks service hours.",
+    "email": "service@med.example.edu",
+    "photo": ""
+  },
+  {
+    "name": "Casey Nguyen",
+    "role": "Treasurer",
+    "year": "Class of 2028",
+    "major": "Economics & Biology",
+    "focus": "Budget, dues, event funding, and donation reporting.",
+    "email": "treasurer@med.example.edu",
+    "photo": ""
+  }
+]

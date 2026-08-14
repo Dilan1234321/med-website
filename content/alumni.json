@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Dr. Priya Nair",
+    "classYear": "2018",
+    "undergrad": "B.S. Neuroscience",
+    "outcome": "M.D., University of Michigan Medical School",
+    "current": "Internal Medicine Resident",
+    "quote": "MED gave me a disciplined study community and alumni who reviewed every draft of my application.",
+    "photo": ""
+  },
+  {
+    "name": "Marcus Webb",
+    "classYear": "2019",
+    "undergrad": "B.S. Biology",
+    "outcome": "D.O., Michigan State University College of Osteopathic Medicine",
+    "current": "Emergency Medicine Resident",
+    "quote": "The service partnerships and clinical workshops made my experiences concrete—not resume padding.",
+    "photo": ""
+  },
+  {
+    "name": "Elena Vargas",
+    "classYear": "2020",
+    "undergrad": "B.S. Biochemistry",
+    "outcome": "M.D., Feinberg School of Medicine",
+    "current": "Pediatrics Resident",
+    "quote": "Mentorship from older members shortened a learning curve that usually takes years.",
+    "photo": ""
+  },
+  {
+    "name": "Noah Park",
+    "classYear": "2021",
+    "undergrad": "B.S. Public Health",
+    "outcome": "M.P.A.S., Physician Assistant Program",
+    "current": "Physician Assistant, Family Medicine",
+    "quote": "MED treated PA applicants with the same seriousness as MD tracks—that mattered.",
+    "photo": ""
+  }
+]

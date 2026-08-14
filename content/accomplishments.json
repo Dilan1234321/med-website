@@ -1,0 +1,56 @@
+{
+  "awards": [
+    {
+      "year": "2025",
+      "title": "Outstanding Pre-Health Organization",
+      "issuer": "Campus Student Life",
+      "detail": "Recognized for programming quality and member academic outcomes."
+    },
+    {
+      "year": "2024",
+      "title": "Community Partner Award",
+      "issuer": "Regional Free Clinic Network",
+      "detail": "For sustained volunteer staffing across clinic weekends."
+    },
+    {
+      "year": "2023",
+      "title": "Chapter Excellence — Service",
+      "issuer": "MED National",
+      "detail": "Highest reported verified service hours among peer chapters."
+    }
+  ],
+  "milestones": [
+    {
+      "year": "2025",
+      "title": "Expanded mentorship to alumni office hours",
+      "detail": "Monthly virtual sessions with residents and medical students."
+    },
+    {
+      "year": "2024",
+      "title": "Launched suturing & clinical skills clinic",
+      "detail": "Now a recurring professional-development offering."
+    },
+    {
+      "year": "2023",
+      "title": "Formalized MCAT cohort model",
+      "detail": "Structured 12-week peer study tracks with accountability leads."
+    }
+  ],
+  "outings": [
+    {
+      "title": "Museum of Science afternoon",
+      "date": "2025-11-16",
+      "detail": "Member outing connecting anatomy exhibits to pathway conversations."
+    },
+    {
+      "title": "Fall hike & mentorship circles",
+      "date": "2025-10-05",
+      "detail": "Small-group mentoring outdoors between formal programming weeks."
+    },
+    {
+      "title": "End-of-semester dinner",
+      "date": "2025-12-08",
+      "detail": "Recognition for scholarship and service hour milestones."
+    }
+  ]
+}

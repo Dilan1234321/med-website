@@ -1,0 +1,22 @@
+{
+  "headline": "Support MED’s scholarship, service, and mentorship programs.",
+  "body": "Donations fund workshops, service supplies, speaker travel, and need-based dues support. Replace this copy with chapter-approved language and a linked giving platform (GiveButter, university foundation, etc.).",
+  "tiers": [
+    {
+      "name": "Friend",
+      "amount": "$50",
+      "description": "Underwrites materials for one skills workshop."
+    },
+    {
+      "name": "Supporter",
+      "amount": "$150",
+      "description": "Sponsors a semester of MCAT cohort resources."
+    },
+    {
+      "name": "Benefactor",
+      "amount": "$500+",
+      "description": "Funds a named service drive or speaker event."
+    }
+  ],
+  "contact": "treasurer@med.example.edu"
+}

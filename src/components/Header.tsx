@@ -1,144 +1,138 @@
 "use client";
 
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Caduceus } from "./Caduceus";
+import { Crest } from "./Crest";
+import { ThemeToggle } from "./ThemeToggle";
+import { primaryNav } from "@/lib/content";
 
-const links = [
-  { href: "#mission", label: "Mission" },
-  { href: "#pillars", label: "Pillars" },
-  { href: "#history", label: "History" },
-  { href: "#chapters", label: "Chapters" },
-  { href: "#join", label: "Join" },
+const compactNav = [
+  { href: "/about", label: "About" },
+  { href: "/membership", label: "Membership" },
+  { href: "/events", label: "Events" },
+  { href: "/leadership", label: "Board" },
+  { href: "/family", label: "Family" },
+  { href: "/donate", label: "Donate" },
 ];
 
 export function Header() {
-  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
+    if (!open) return;
+    document.body.style.overflow = "hidden";
     return () => {
       document.body.style.overflow = "";
     };
   }, [open]);
 
+  function closeMenu() {
+    setOpen(false);
+  }
+
   return (
-    <>
-      <header
-        className={`fixed inset-x-0 top-0 z-[60] transition-all duration-500 ${
-          scrolled || open
-            ? "bg-[#3d080f]/95 backdrop-blur-md shadow-[0_8px_32px_rgba(26,15,16,0.35)]"
-            : "bg-transparent"
-        }`}
-      >
-        <div className="mx-auto flex h-16 w-full max-w-6xl items-center justify-between gap-4 px-5 md:h-20 md:px-8">
-          <a
-            href="#top"
-            className="group flex shrink-0 items-center gap-2.5 text-[#f7f2e8]"
-            onClick={() => setOpen(false)}
-          >
-            <Caduceus className="h-8 w-6 text-[#c9a24a] transition-transform duration-500 group-hover:scale-105 md:h-9 md:w-7" />
-            <span className="font-display text-xl tracking-[0.08em] md:text-2xl">
-              ΜΕΔ
-            </span>
-          </a>
+    <header className="sticky top-0 z-50 border-b border-line bg-bg/95 backdrop-blur-md">
+      <div className="container-page flex h-16 items-center justify-between gap-4 md:h-[4.25rem]">
+        <Link
+          href="/"
+          className="flex items-center gap-2.5 text-ink no-underline"
+          aria-label="Mu Epsilon Delta home"
+          onClick={closeMenu}
+        >
+          <Crest className="h-9 w-9 text-accent" />
+          <span className="font-serif text-lg tracking-wide md:text-xl">
+            ΜΕΔ
+          </span>
+        </Link>
 
-          <nav
-            className="hidden items-center gap-5 md:flex lg:gap-7 xl:gap-8"
-            aria-label="Primary"
-          >
-            {links.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="whitespace-nowrap text-[0.72rem] font-medium uppercase tracking-[0.16em] text-[#f7f2e8]/75 transition-colors hover:text-[#e4c76b] lg:text-[0.8rem] lg:tracking-[0.18em]"
+        <nav
+          className="hidden items-center gap-5 lg:flex"
+          aria-label="Primary"
+        >
+          {compactNav.map((item) => {
+            const active =
+              pathname === item.href || pathname.startsWith(`${item.href}/`);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`text-[0.75rem] font-medium uppercase tracking-[0.12em] no-underline transition-colors ${
+                  active ? "text-accent" : "text-ink-muted hover:text-ink"
+                }`}
               >
-                {link.label}
-              </a>
-            ))}
-            <a
-              href="#join"
-              className="shrink-0 whitespace-nowrap border border-[#c9a24a]/60 bg-[#c9a24a]/10 px-3.5 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.16em] text-[#e4c76b] transition-colors hover:bg-[#c9a24a] hover:text-[#3d080f] lg:px-4 lg:text-[0.75rem] lg:tracking-[0.18em]"
-            >
-              Become a Brother
-            </a>
-          </nav>
+                {item.label}
+              </Link>
+            );
+          })}
+        </nav>
 
+        <div className="flex items-center gap-2">
+          <div className="hidden sm:block">
+            <ThemeToggle />
+          </div>
+          <Link
+            href="/membership#register"
+            className="btn btn-primary !min-h-9 !px-3 !text-[0.68rem]"
+            onClick={closeMenu}
+          >
+            Register to Rush
+          </Link>
           <button
             type="button"
-            className="relative z-[70] flex h-10 w-10 shrink-0 items-center justify-center text-[#f7f2e8] md:hidden"
-            aria-label={open ? "Close menu" : "Open menu"}
+            className="flex h-10 w-10 items-center justify-center border border-line lg:hidden"
             aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label={open ? "Close menu" : "Open menu"}
             onClick={() => setOpen((v) => !v)}
           >
             <span className="sr-only">Menu</span>
-            <div className="flex w-5 flex-col gap-1.5">
+            <div className="flex w-4 flex-col gap-1">
               <span
-                className={`h-px w-full bg-current transition-transform duration-300 ${
-                  open ? "translate-y-[7px] rotate-45" : ""
-                }`}
+                className={`h-px w-full bg-ink transition ${open ? "translate-y-[5px] rotate-45" : ""}`}
               />
               <span
-                className={`h-px w-full bg-current transition-opacity duration-300 ${
-                  open ? "opacity-0" : ""
-                }`}
+                className={`h-px w-full bg-ink transition ${open ? "opacity-0" : ""}`}
               />
               <span
-                className={`h-px w-full bg-current transition-transform duration-300 ${
-                  open ? "-translate-y-[7px] -rotate-45" : ""
-                }`}
+                className={`h-px w-full bg-ink transition ${open ? "-translate-y-[5px] -rotate-45" : ""}`}
               />
             </div>
           </button>
         </div>
-      </header>
+      </div>
 
-      {/* Mobile menu as sibling overlay so it is never clipped by the header bar */}
       <div
-        className={`fixed inset-0 z-[55] md:hidden ${
-          open ? "pointer-events-auto" : "pointer-events-none"
-        }`}
-        aria-hidden={!open}
+        id="mobile-nav"
+        className={`border-t border-line bg-bg lg:hidden ${open ? "block" : "hidden"}`}
       >
-        <div
-          className={`absolute inset-0 bg-[#3d080f] transition-opacity duration-300 ${
-            open ? "opacity-100" : "opacity-0"
-          }`}
-        />
         <nav
-          className={`relative flex h-full flex-col items-center justify-center gap-5 px-6 pt-16 transition-opacity duration-300 ${
-            open ? "opacity-100" : "opacity-0"
-          }`}
+          className="container-page flex max-h-[70vh] flex-col gap-1 overflow-y-auto py-4"
           aria-label="Mobile"
         >
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              tabIndex={open ? 0 : -1}
-              className="font-display text-3xl tracking-wide text-[#f7f2e8] transition-colors hover:text-[#c9a24a]"
+          {primaryNav.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              className="px-1 py-2.5 font-serif text-xl text-ink no-underline"
+              onClick={closeMenu}
             >
-              {link.label}
-            </a>
+              {item.label}
+            </Link>
           ))}
-          <a
-            href="#join"
-            onClick={() => setOpen(false)}
-            tabIndex={open ? 0 : -1}
-            className="mt-4 border border-[#c9a24a]/60 px-6 py-3 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-[#e4c76b]"
+          <Link
+            href="/calendar"
+            className="px-1 py-2.5 font-serif text-xl text-ink no-underline"
+            onClick={closeMenu}
           >
-            Become a Brother
-          </a>
+            Calendar
+          </Link>
+          <div className="mt-3 sm:hidden">
+            <ThemeToggle />
+          </div>
         </nav>
       </div>
-    </>
+    </header>
   );
 }

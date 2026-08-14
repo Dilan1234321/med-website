@@ -1,70 +1,102 @@
-import { Caduceus } from "./Caduceus";
+import Link from "next/link";
+import { Crest } from "./Crest";
+import { content, primaryNav } from "@/lib/content";
 
 export function Footer() {
+  const { site } = content;
+
   return (
-    <footer className="border-t border-line bg-ivory-soft py-14">
-      <div className="mx-auto flex max-w-6xl flex-col gap-10 px-5 md:flex-row md:items-start md:justify-between md:px-8">
+    <footer className="mt-auto border-t border-line bg-bg-muted">
+      <div className="container-page grid gap-10 py-14 md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
-          <div className="flex items-center gap-2.5 text-maroon">
-            <Caduceus className="h-8 w-6 text-gold-muted" />
-            <span className="font-display text-2xl tracking-[0.06em]">
-              Mu Epsilon Delta
-            </span>
+          <div className="flex items-center gap-2.5 text-ink">
+            <Crest className="h-8 w-8 text-accent" />
+            <span className="font-serif text-xl">{site.name}</span>
           </div>
-          <p className="mt-4 max-w-sm text-base leading-relaxed text-ink-soft">
-            National co-educational pre-health professional fraternity.
-            Headquarters · Ann Arbor, Michigan.
+          <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-muted">
+            {site.tagline}
+          </p>
+          <p className="mt-4 text-sm text-ink-muted">
+            {site.campus}
+            <br />
+            <a className="text-accent underline-offset-2 hover:underline" href={`mailto:${site.email}`}>
+              {site.email}
+            </a>
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-10 text-sm sm:grid-cols-3">
-          <div>
-            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-maroon">
-              Explore
-            </p>
-            <ul className="mt-3 space-y-2 text-ink-soft">
-              <li>
-                <a href="#mission" className="hover:text-maroon">
-                  Mission
-                </a>
+        <div>
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-ink">
+            Explore
+          </p>
+          <ul className="mt-3 space-y-2 text-sm text-ink-muted">
+            {primaryNav.slice(0, 6).map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="hover:text-ink">
+                  {item.label}
+                </Link>
               </li>
-              <li>
-                <a href="#pillars" className="hover:text-maroon">
-                  Pillars
-                </a>
-              </li>
-              <li>
-                <a href="#chapters" className="hover:text-maroon">
-                  Chapters
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-maroon">
-              Symbols
-            </p>
-            <ul className="mt-3 space-y-2 text-ink-soft">
-              <li>Maroon &amp; Gold</li>
-              <li>Caduceus</li>
-              <li>Red Rambling Rose</li>
-            </ul>
-          </div>
-          <div className="col-span-2 sm:col-span-1">
-            <p className="text-[0.65rem] font-semibold uppercase tracking-[0.2em] text-maroon">
-              Motto
-            </p>
-            <p className="mt-3 font-display text-base italic leading-snug text-ink-soft">
-              With purity and passion I pass my life and practice my art.
-            </p>
-          </div>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-ink">
+            Get involved
+          </p>
+          <ul className="mt-3 space-y-2 text-sm text-ink-muted">
+            <li>
+              <Link href="/membership#register" className="hover:text-ink">
+                Register to Rush
+              </Link>
+            </li>
+            <li>
+              <Link href="/calendar" className="hover:text-ink">
+                Calendar
+              </Link>
+            </li>
+            <li>
+              <Link href="/donate" className="hover:text-ink">
+                Donate
+              </Link>
+            </li>
+            <li>
+              <Link href="/contact" className="hover:text-ink">
+                Contact
+              </Link>
+            </li>
+            <li>
+              <a
+                href={site.social.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-ink"
+              >
+                Instagram
+              </a>
+            </li>
+            <li>
+              <a
+                href={site.social.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-ink"
+              >
+                LinkedIn
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
 
-      <div className="mx-auto mt-12 max-w-6xl px-5 md:px-8">
-        <p className="border-t border-line pt-6 text-xs text-ink-soft/80">
-          © {new Date().getFullYear()} Mu Epsilon Delta. All rights reserved.
-        </p>
+      <div className="border-t border-line">
+        <div className="container-page flex flex-col gap-2 py-5 text-xs text-ink-muted sm:flex-row sm:justify-between">
+          <p>
+            © {new Date().getFullYear()} {site.name}. Professional medical
+            fraternity.
+          </p>
+          <p>Content editable via JSON files in <code>/content</code>.</p>
+        </div>
       </div>
     </footer>
   );
