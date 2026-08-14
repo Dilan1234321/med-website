@@ -22,11 +22,11 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
                 type="button"
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                className="flex w-full items-center justify-between gap-4 py-4 text-left font-serif text-lg text-ink"
+                className="flex w-full items-center justify-between gap-4 py-4 text-left font-display text-lg text-ink"
                 onClick={() => setOpen(isOpen ? null : index)}
               >
                 {item.q}
-                <span aria-hidden className="text-accent">
+                <span aria-hidden className="text-gold">
                   {isOpen ? "−" : "+"}
                 </span>
               </button>

@@ -1,102 +1,67 @@
 import Link from "next/link";
 import { Crest } from "./Crest";
-import { content, primaryNav } from "@/lib/content";
+import { content } from "@/lib/content";
 
 export function Footer() {
   const { site } = content;
 
   return (
-    <footer className="mt-auto border-t border-line bg-bg-muted">
-      <div className="container-page grid gap-10 py-14 md:grid-cols-[1.2fr_1fr_1fr]">
-        <div>
-          <div className="flex items-center gap-2.5 text-ink">
-            <Crest className="h-8 w-8 text-accent" />
-            <span className="font-serif text-xl">{site.name}</span>
-          </div>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-muted">
-            {site.tagline}
-          </p>
-          <p className="mt-4 text-sm text-ink-muted">
-            {site.campus}
-            <br />
-            <a className="text-accent underline-offset-2 hover:underline" href={`mailto:${site.email}`}>
-              {site.email}
-            </a>
-          </p>
+    <footer className="bg-footer text-center text-white">
+      <section className="bg-maroon px-5 py-20 md:py-24">
+        <h2 className="font-display text-[clamp(1.8rem,5vw,2.6rem)] font-bold tracking-[0.08em]">
+          Become a Part of the Legacy
+        </h2>
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+          <Link href="/membership#register" className="btn btn-primary">
+            Register for Rush
+          </Link>
+          <Link href="/about" className="btn btn-secondary">
+            Explore Chapter
+          </Link>
         </div>
+        <div className="mt-10 flex items-center justify-center gap-5 text-white/85">
+          <a
+            href={site.social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 transition hover:border-gold hover:text-gold"
+            aria-label="Instagram"
+          >
+            IG
+          </a>
+          <a
+            href={site.social.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 transition hover:border-gold hover:text-gold"
+            aria-label="LinkedIn"
+          >
+            in
+          </a>
+          <a
+            href={`mailto:${site.email}`}
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-white/25 transition hover:border-gold hover:text-gold"
+            aria-label="Email"
+          >
+            @
+          </a>
+        </div>
+      </section>
 
-        <div>
-          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-ink">
-            Explore
-          </p>
-          <ul className="mt-3 space-y-2 text-sm text-ink-muted">
-            {primaryNav.slice(0, 6).map((item) => (
-              <li key={item.href}>
-                <Link href={item.href} className="hover:text-ink">
-                  {item.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
+      <div className="px-5 py-12">
+        <div className="mb-5 flex items-center justify-center gap-3">
+          <Crest className="h-8 w-8 text-gold" />
+          <span className="font-display text-sm font-bold uppercase tracking-[0.2em]">
+            Mu Epsilon Delta
+          </span>
         </div>
-
-        <div>
-          <p className="text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-ink">
-            Get involved
-          </p>
-          <ul className="mt-3 space-y-2 text-sm text-ink-muted">
-            <li>
-              <Link href="/membership#register" className="hover:text-ink">
-                Register to Rush
-              </Link>
-            </li>
-            <li>
-              <Link href="/calendar" className="hover:text-ink">
-                Calendar
-              </Link>
-            </li>
-            <li>
-              <Link href="/donate" className="hover:text-ink">
-                Donate
-              </Link>
-            </li>
-            <li>
-              <Link href="/contact" className="hover:text-ink">
-                Contact
-              </Link>
-            </li>
-            <li>
-              <a
-                href={site.social.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-ink"
-              >
-                Instagram
-              </a>
-            </li>
-            <li>
-              <a
-                href={site.social.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-ink"
-              >
-                LinkedIn
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="border-t border-line">
-        <div className="container-page flex flex-col gap-2 py-5 text-xs text-ink-muted sm:flex-row sm:justify-between">
-          <p>
-            © {new Date().getFullYear()} {site.name}. Professional medical
-            fraternity.
-          </p>
-          <p>Content editable via JSON files in <code>/content</code>.</p>
-        </div>
+        <p className="text-[0.72rem] uppercase tracking-[0.18em] text-white/70">
+          © {new Date().getFullYear()} Mu Epsilon Delta — Professional Medical
+          Fraternity
+        </p>
+        <p className="mt-3 text-[0.65rem] tracking-wide text-white/40">
+          {site.campus} · {site.email}
+        </p>
       </div>
     </footer>
   );

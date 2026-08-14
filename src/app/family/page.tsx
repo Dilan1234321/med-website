@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/PageHeader";
+import { PageHero } from "@/components/PageHero";
 import { PersonCard } from "@/components/PersonCard";
 import { content } from "@/lib/content";
 
@@ -13,10 +13,11 @@ export default function FamilyPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="Meet the Family"
-        title="The current chapter"
-        description="Members across MD, DO, PA, dental, pharmacy, and related pathways. Update the roster in content/family.json and swap initials for real headshots when available."
+      <PageHero
+        eyebrow="The Family"
+        title="The Brothers"
+        description="Members across MD, DO, PA, dental, pharmacy, and related pathways."
+        image="/images/hero-recruit.jpg"
       />
       <section className="container-page py-16 md:py-20">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">

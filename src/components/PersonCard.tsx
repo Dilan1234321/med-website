@@ -19,18 +19,24 @@ export function PersonCard({
       .toUpperCase();
 
   return (
-    <article className="card flex flex-col p-5">
+    <article className="card overflow-hidden">
       <div
-        className="flex h-40 items-end justify-start bg-bg-muted p-4"
+        className="flex aspect-[4/5] items-end bg-gradient-to-br from-maroon to-maroon-deep p-5"
         aria-hidden
       >
-        <span className="font-serif text-4xl text-accent/70">{mark}</span>
+        <span className="font-display text-5xl font-bold text-gold/80">{mark}</span>
       </div>
-      <h3 className="mt-4 font-serif text-xl text-ink">{name}</h3>
-      <p className="mt-1 text-sm font-medium text-accent">{meta}</p>
-      {detail ? (
-        <p className="mt-3 text-sm leading-relaxed text-ink-muted">{detail}</p>
-      ) : null}
+      <div className="p-5 text-center">
+        <h3 className="font-display text-lg font-bold uppercase tracking-wide text-maroon">
+          {name}
+        </h3>
+        <p className="mt-1 text-xs font-bold uppercase tracking-[0.14em] text-gold">
+          {meta}
+        </p>
+        {detail ? (
+          <p className="mt-2 text-sm text-ink-muted">{detail}</p>
+        ) : null}
+      </div>
     </article>
   );
 }

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/PageHeader";
+import { PageHero } from "@/components/PageHero";
 import { content } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -12,15 +12,16 @@ export default function GalleryPage() {
 
   return (
     <>
-      <PageHeader
+      <PageHero
         eyebrow="Gallery"
-        title="Chapter photography"
+        title="Chapter Life"
         description={gallery.note}
+        image="/images/hero-recruit.jpg"
       />
       <section className="container-page space-y-14 py-16 md:py-20">
         {gallery.albums.map((album) => (
           <div key={album.id}>
-            <h2 className="font-serif text-2xl text-ink">{album.title}</h2>
+            <h2 className="font-display text-2xl text-ink">{album.title}</h2>
             <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {album.items.map((item) => (
                 <figure key={item.id} className="card overflow-hidden">

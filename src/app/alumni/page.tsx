@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/PageHeader";
+import { PageHero } from "@/components/PageHero";
 import { content } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -13,10 +13,11 @@ export default function AlumniPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="Alumni"
-        title="Where members go next"
-        description="Outcomes published with consent. Replace placeholders with verified alumni records before launch."
+      <PageHero
+        eyebrow="The Family"
+        title="Alumni"
+        description="Where brothers continue their careers in medicine and healthcare."
+        image="/images/hero-2.jpg"
       />
       <section className="container-page py-16 md:py-20">
         <div className="overflow-x-auto">
@@ -48,7 +49,7 @@ export default function AlumniPage() {
           {alumni.map((person) =>
             person.quote ? (
               <blockquote key={`${person.name}-quote`} className="card p-6">
-                <p className="font-serif text-xl leading-relaxed text-ink">
+                <p className="font-display text-xl leading-relaxed text-ink">
                   “{person.quote}”
                 </p>
                 <footer className="mt-4 text-sm text-ink-muted">

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/PageHeader";
+import { PageHero } from "@/components/PageHero";
 import { PersonCard } from "@/components/PersonCard";
 import { content } from "@/lib/content";
 
@@ -13,10 +13,11 @@ export default function LeadershipPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="Leadership"
-        title="Meet the board"
-        description="Executive officers responsible for strategy, membership, scholarship, service, and chapter operations. Replace placeholder names and add headshots in content/leadership.json."
+      <PageHero
+        eyebrow="The Family"
+        title="Chapter Leadership"
+        description="Executive officers who run strategy, membership, scholarship, and service."
+        image="/images/hero-1.jpg"
       />
       <section className="container-page py-16 md:py-20">
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

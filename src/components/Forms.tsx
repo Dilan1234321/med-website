@@ -58,7 +58,7 @@ export function RushForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="card grid gap-4 p-6" noValidate>
+    <form onSubmit={onSubmit} className="card grid gap-4 rounded-2xl p-6 md:p-8" noValidate>
       <Field
         label="Full name"
         name="name"
@@ -88,7 +88,7 @@ export function RushForm() {
         <select
           id="pathway"
           name="pathway"
-          className="w-full border border-line bg-bg px-3 py-2.5 text-ink"
+          className="w-full rounded-xl border border-line bg-bg px-3 py-3 text-ink"
           defaultValue=""
           required
           aria-invalid={Boolean(errors.pathway)}
@@ -118,7 +118,7 @@ export function RushForm() {
           id="notes"
           name="notes"
           rows={4}
-          className="w-full border border-line bg-bg px-3 py-2.5 text-ink"
+          className="w-full rounded-xl border border-line bg-bg px-3 py-3 text-ink"
         />
       </div>
       <button
@@ -192,7 +192,7 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="card grid gap-4 p-6" noValidate>
+    <form onSubmit={onSubmit} className="card grid gap-4 rounded-2xl p-6 md:p-8" noValidate>
       <Field label="Full name" name="name" error={errors.name} required />
       <Field
         label="Email"
@@ -208,7 +208,7 @@ export function ContactForm() {
         <select
           id="reason"
           name="reason"
-          className="w-full border border-line bg-bg px-3 py-2.5 text-ink"
+          className="w-full rounded-xl border border-line bg-bg px-3 py-3 text-ink"
           defaultValue=""
           required
           aria-invalid={Boolean(errors.reason)}
@@ -237,7 +237,7 @@ export function ContactForm() {
           name="message"
           rows={5}
           required
-          className="w-full border border-line bg-bg px-3 py-2.5 text-ink"
+          className="w-full rounded-xl border border-line bg-bg px-3 py-3 text-ink"
           aria-invalid={Boolean(errors.message)}
         />
         {errors.message ? (
@@ -296,7 +296,7 @@ function Field({
         placeholder={placeholder}
         autoComplete={autoComplete}
         aria-invalid={Boolean(error)}
-        className="w-full border border-line bg-bg px-3 py-2.5 text-ink"
+        className="w-full rounded-xl border border-line bg-bg px-3 py-3 text-ink"
       />
       {error ? (
         <p className="mt-1 text-sm text-error" role="alert">

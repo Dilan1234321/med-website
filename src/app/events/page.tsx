@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHeader } from "@/components/PageHeader";
+import { PageHero } from "@/components/PageHero";
 import { content, formatDate } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -14,16 +14,26 @@ export default function EventsPage() {
 
   return (
     <>
-      <PageHeader
+      <PageHero
         eyebrow="Events"
-        title="What MED programs look like."
-        description="Programming spans professional development, academics, service, mentorship, and chapter community—scheduled on the public calendar."
+        title="Programming"
+        description="Professional development, academics, service, mentorship, and chapter community."
+        image="/images/hero-2.jpg"
       />
 
-      <section className="container-page py-16 md:py-20">
-        <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-          <h2 className="font-serif text-3xl text-ink">Event types</h2>
-          <Link href="/calendar" className="text-sm font-semibold text-accent hover:underline">
+      <section className="container-page py-16 md:py-24">
+        <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <p className="section-label">Categories</p>
+            <div className="accent-line-left" />
+            <h2 className="font-display text-3xl font-bold uppercase tracking-[0.06em] text-maroon dark:text-gold dark:text-gold">
+              Event types
+            </h2>
+          </div>
+          <Link
+            href="/calendar"
+            className="text-sm font-bold uppercase tracking-[0.14em] text-gold hover:underline"
+          >
             View calendar →
           </Link>
         </div>
@@ -31,21 +41,30 @@ export default function EventsPage() {
           {events.categories.map((cat) => (
             <article key={cat.id} className="card p-6">
               <span className="badge">{cat.id}</span>
-              <h3 className="mt-4 font-serif text-2xl text-ink">{cat.title}</h3>
+              <h3 className="mt-4 font-display text-2xl font-bold uppercase text-maroon dark:text-gold">
+                {cat.title}
+              </h3>
               <p className="mt-3 text-ink-muted">{cat.description}</p>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="border-t border-line bg-bg-elevated py-16 md:py-20">
+      <section className="border-t border-line bg-bg-muted py-16 md:py-24">
         <div className="container-page">
-          <h2 className="font-serif text-3xl text-ink">Upcoming</h2>
-          <ul className="mt-8 divide-y divide-line border-y border-line">
+          <p className="section-label text-center">Upcoming</p>
+          <div className="accent-line" />
+          <h2 className="text-center font-display text-3xl font-bold uppercase text-maroon dark:text-gold">
+            On the calendar
+          </h2>
+          <ul className="mt-10 divide-y divide-line rounded-2xl border border-line bg-bg-elevated">
             {events.upcoming.map((event) => (
-              <li key={event.id} className="grid gap-3 py-6 md:grid-cols-[8rem_1fr]">
+              <li
+                key={event.id}
+                className="grid gap-3 px-5 py-6 md:grid-cols-[8rem_1fr]"
+              >
                 <div>
-                  <p className="text-sm font-medium text-accent">
+                  <p className="text-sm font-bold uppercase tracking-wide text-gold">
                     {formatDate(event.date)}
                   </p>
                   <p className="mt-1 text-xs uppercase tracking-[0.1em] text-ink-muted">
@@ -53,7 +72,9 @@ export default function EventsPage() {
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-serif text-xl text-ink">{event.title}</h3>
+                  <h3 className="font-display text-xl font-bold uppercase text-ink">
+                    {event.title}
+                  </h3>
                   <p className="mt-1 text-sm text-ink-muted">
                     {event.time} · {event.location}
                   </p>
@@ -65,15 +86,21 @@ export default function EventsPage() {
         </div>
       </section>
 
-      <section className="container-page py-16 md:py-20">
-        <h2 className="font-serif text-3xl text-ink">Recent past events</h2>
-        <ul className="mt-8 grid gap-5 md:grid-cols-3">
+      <section className="container-page py-16 md:py-24">
+        <p className="section-label text-center">Archive</p>
+        <div className="accent-line" />
+        <h2 className="text-center font-display text-3xl font-bold uppercase text-maroon dark:text-gold">
+          Recent past events
+        </h2>
+        <ul className="mt-10 grid gap-5 md:grid-cols-3">
           {events.past.map((event) => (
             <li key={event.id} className="card p-5">
               <p className="text-xs uppercase tracking-[0.1em] text-ink-muted">
                 {formatDate(event.date)} · {event.category}
               </p>
-              <h3 className="mt-2 font-serif text-xl text-ink">{event.title}</h3>
+              <h3 className="mt-2 font-display text-xl font-bold uppercase text-maroon dark:text-gold">
+                {event.title}
+              </h3>
               <p className="mt-2 text-sm text-ink-muted">{event.summary}</p>
             </li>
           ))}

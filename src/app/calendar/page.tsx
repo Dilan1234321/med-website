@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHeader } from "@/components/PageHeader";
+import { PageHero } from "@/components/PageHero";
 import { content, formatDate } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -16,10 +16,11 @@ export default function CalendarPage() {
 
   return (
     <>
-      <PageHeader
+      <PageHero
         eyebrow="Calendar"
-        title="Chapter calendar"
-        description="Upcoming info sessions, workshops, service projects, and mentorship hours. Update dates in content/events.json."
+        title="Chapter Calendar"
+        description="Upcoming info sessions, workshops, service projects, and mentorship hours."
+        image="/images/hero-about.jpg"
       />
       <section className="container-page py-16 md:py-20">
         <div className="mb-8 flex flex-wrap gap-3">
@@ -38,7 +39,7 @@ export default function CalendarPage() {
             >
               <time
                 dateTime={event.date}
-                className="font-serif text-lg text-accent"
+                className="font-display text-lg text-gold"
               >
                 {formatDate(event.date)}
               </time>

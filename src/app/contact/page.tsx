@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/Forms";
-import { PageHeader } from "@/components/PageHeader";
+import { PageHero } from "@/components/PageHero";
 import { content } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -13,19 +13,20 @@ export default function ContactPage() {
 
   return (
     <>
-      <PageHeader
+      <PageHero
         eyebrow="Contact"
-        title="Reach the chapter"
-        description="Recruitment questions, programming partnerships, alumni mentorship, and general inquiries."
+        title="Get in Touch"
+        description="Recruitment questions, partnerships, alumni mentorship, and general inquiries."
+        image="/images/hero-about.jpg"
       />
       <section className="container-page grid gap-10 py-16 md:grid-cols-2 md:py-20">
         <div>
-          <h2 className="font-serif text-2xl text-ink">Chapter details</h2>
+          <h2 className="font-display text-2xl text-ink">Chapter details</h2>
           <dl className="mt-6 space-y-4 text-sm">
             <div>
               <dt className="font-semibold text-ink">Email</dt>
               <dd className="mt-1">
-                <a className="text-accent hover:underline" href={`mailto:${site.email}`}>
+                <a className="text-gold hover:underline" href={`mailto:${site.email}`}>
                   {site.email}
                 </a>
               </dd>
@@ -41,7 +42,7 @@ export default function ContactPage() {
                   href={site.social.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-accent"
+                  className="hover:text-gold"
                 >
                   Instagram
                 </a>
@@ -49,7 +50,7 @@ export default function ContactPage() {
                   href={site.social.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-accent"
+                  className="hover:text-gold"
                 >
                   LinkedIn
                 </a>
