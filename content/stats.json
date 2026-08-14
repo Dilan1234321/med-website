@@ -1,9 +1,11 @@
 {
-  "members": 36,
-  "serviceHours": 780,
-  "medSchoolAcceptanceRate": 80,
+  "members": 28,
+  "serviceHours": 320,
+  "medSchoolAcceptanceRate": null,
   "foundingYear": 1965,
-  "programs": 5,
-  "alumniInMedicine": 24,
-  "note": "Replace placeholder stats with verified University of Tampa chapter figures before launch."
+  "chapterFounded": 2026,
+  "programs": 4,
+  "alumniInMedicine": 0,
+  "nationalChapters": 15,
+  "note": "Chi Chapter est. 2026 — replace placeholder member/service figures with verified UT chapter numbers before launch. Acceptance rate hidden until the chapter has graduating classes."
 }

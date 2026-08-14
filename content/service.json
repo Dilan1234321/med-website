@@ -1,25 +1,41 @@
 {
-  "intro": "Service is a standing obligation of membership—measured in hours, continuity with Tampa Bay partners, and outcomes for patients and neighbors.",
+  "intro": "Service is a standing obligation of membership—measured in hours, continuity with Tampa Bay partners, and outcomes for patients and neighbors. As Chi Chapter we prioritize underserved communities across the city of Tampa, alongside MED’s national philanthropy with Gift of Life Bone Marrow Registry.",
+  "nationalPhilanthropy": {
+    "name": "Gift of Life Bone Marrow Registry",
+    "eyebrow": "National philanthropy partner",
+    "body": "In remembrance of late brother and USF chapter founder Emma Huffman, Mu Epsilon Delta named Gift of Life its national philanthropy partner. Chi Chapter hosts donor drives, educates members on the registry’s mission, and advocates for patients battling blood cancer.",
+    "goals": [
+      "Learn Gift of Life’s mission and operations",
+      "Host campus donor drives for brothers and Spartans to join the registry",
+      "Coordinate with Gift of Life on local needs and follow-up"
+    ],
+    "url": "https://www.giftoflife.org/"
+  },
   "partners": [
+    {
+      "name": "Gift of Life Bone Marrow Registry",
+      "role": "National philanthropy — campus donor drives & advocacy",
+      "impact": "Registry education and swab drives each semester"
+    },
+    {
+      "name": "Moffitt Cancer Center",
+      "role": "Tampa Bay cancer-care volunteering and education support",
+      "impact": "Featured regional partner for Florida MED chapters"
+    },
     {
       "name": "OneBlood",
       "role": "Campus blood drives each semester",
-      "impact": "340+ units collected across last three drives"
+      "impact": "Units collected for Tampa Bay patients"
     },
     {
-      "name": "Tampa Bay free clinic partners",
-      "role": "Patient intake, health education, and logistics support",
-      "impact": "480 member service hours last academic year"
-    },
-    {
-      "name": "Relay for Life / cancer fundraising",
-      "role": "Team fundraising and event staffing",
-      "impact": "$12,400 raised in the most recent campaign"
+      "name": "Tampa free clinic & health-education partners",
+      "role": "Patient intake, health education, and logistics for underserved neighbors",
+      "impact": "Core Chi Chapter service focus across the city"
     }
   ],
   "metrics": [
-    { "label": "Service hours (last year)", "value": "1,200+" },
-    { "label": "Active partners", "value": "6" },
-    { "label": "Campus health events", "value": "9" }
+    { "label": "Chapter founded", "value": "2026" },
+    { "label": "Active partners", "value": "4+" },
+    { "label": "National philanthropy", "value": "Gift of Life" }
   ]
 }

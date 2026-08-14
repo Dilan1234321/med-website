@@ -121,8 +121,8 @@ export default function HomePage() {
             { label: "Active members", value: `${stats.members}` },
             { label: "Service hours", value: `${stats.serviceHours}+` },
             {
-              label: "Acceptance rate*",
-              value: `${stats.medSchoolAcceptanceRate}%`,
+              label: "Chi Chapter",
+              value: `${stats.chapterFounded}`,
             },
             { label: "National founding", value: `${stats.foundingYear}` },
           ].map((stat) => (
@@ -137,7 +137,7 @@ export default function HomePage() {
           ))}
         </div>
         <p className="container-page mt-6 text-center text-xs text-ink-muted">
-          *Replace placeholder stats in content/stats.json before launch.
+          {stats.note}
         </p>
       </section>
 

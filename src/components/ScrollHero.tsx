@@ -66,7 +66,7 @@ export function ScrollHero() {
             style={{ opacity: text1Opacity }}
           >
             <p className="font-mono text-[0.7rem] tracking-[0.2em] text-gold-soft uppercase md:text-xs">
-              {site.university}
+              Chi Chapter · {site.university}
             </p>
             <div className="accent-line" />
             <h1 className="heading-display text-[clamp(2.75rem,9vw,5.5rem)] text-white drop-shadow-[0_8px_32px_rgba(0,0,0,0.45)]">
@@ -105,7 +105,7 @@ export function ScrollHero() {
             className="absolute bottom-6 left-4 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-white/85 md:bottom-8 md:left-8 md:text-xs"
             style={{ opacity: text1Opacity }}
           >
-            UT Chapter
+            UT · Chi Chapter
           </p>
           <p
             className="absolute bottom-6 right-4 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-white/85 md:bottom-8 md:right-8 md:text-xs"

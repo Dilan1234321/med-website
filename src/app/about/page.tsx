@@ -62,12 +62,32 @@ export default function AboutPage() {
           <p className="section-label !text-gold">About us</p>
           <div className="accent-line-left !bg-gold" />
           <h2 className="heading-display mt-2 text-3xl md:text-5xl">
-            Founded in {stats.foundingYear}. University of Tampa chapter
-            carrying the mission forward.
+            Founded nationally in {stats.foundingYear}. Chi Chapter at UT
+            chartered {site.chapterFounded}.
           </h2>
           <div className="mt-8 space-y-5 text-base leading-relaxed text-white/88 md:text-lg">
             <p>{about.history}</p>
+            <p>{about.chapterBlurb}</p>
             <p>{about.foundingStory}</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="border-b border-line bg-bg py-14 md:py-16">
+        <div className="container-page">
+          <p className="section-label text-center">National identity</p>
+          <div className="accent-line" />
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {about.identity.map((item) => (
+              <div key={item.label} className="text-center sm:text-left">
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-gold">
+                  {item.label}
+                </p>
+                <p className="mt-2 font-display text-lg font-semibold text-maroon dark:text-gold md:text-xl">
+                  {item.value}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -206,15 +226,12 @@ export default function AboutPage() {
           </article>
           <article className="border-t border-gold/40 pt-6">
             <p className="font-mono text-xs uppercase tracking-[0.16em] text-gold">
-              Today · Tampa
+              {site.chapterFounded} · Chi Chapter
             </p>
             <h3 className="mt-3 font-display text-2xl font-semibold text-gold">
-              University of Tampa chapter
+              University of Tampa
             </h3>
-            <p className="mt-3 text-white/75">
-              Building scholarship, service, and mentorship for Spartans on the
-              path to healthcare careers.
-            </p>
+            <p className="mt-3 text-white/75">{about.chapterBlurb}</p>
           </article>
         </div>
       </section>

@@ -1,7 +1,16 @@
 {
-  "mission": "Prepare University of Tampa students for careers in healthcare through rigorous scholarship, structured mentorship, clinical exposure, and sustained community service in the Tampa Bay area.",
-  "history": "Mu Epsilon Delta was founded in 1965 at the University of Tennessee at Martin as a co-educational professional fraternity for students pursuing pre-health careers. The University of Tampa chapter carries that mission onto Plant Hall’s campus—connecting pre-med, pre-PA, dental, pharmacy, nursing, and research-bound Spartans.",
-  "foundingStory": "National colors are maroon and gold; the symbol is the caduceus; the flower is the red rambling rose; the jewel is the ruby. Our motto: “With purity and passion I pass my life and practice my art.” At UT, we live that vow through scholarship cohorts, Tampa Bay service partnerships, and a brotherhood that shows up for one another.",
+  "mission": "We are a co-educational, pre-health professional fraternity whose mission is to prepare University of Tampa members for healthcare careers through scholarship, brotherhood, and service. Chi Chapter is a family of Spartans who celebrate each other’s wins and walk together through the hard parts of the pre-health path—growing as servant leaders, confronting bias, and building character for the clinic and beyond.",
+  "history": "Mu Epsilon Delta was founded in 1965 at the University of Tennessee at Martin as a national co-educational professional fraternity for students pursuing pre-health careers. Today chapters span the country. The University of Tampa’s Chi Chapter—chartered in 2026—is the first pre-health fraternity on campus, carrying that mission onto Plant Hall with a focus on supporting underserved communities throughout Tampa.",
+  "foundingStory": "National colors are maroon and gold; the symbol is the caduceus; the flower is the red rambling rose; the jewel is the ruby. Our motto: “With purity and passion I pass my life and practice my art.” At UT we live that vow through scholarship cohorts, Tampa Bay service (including Gift of Life Bone Marrow Registry drives), and a brotherhood that shows up for one another.",
+  "chapterBlurb": "As Chi Chapter, we take heavy strides to support underserved communities across the city of Tampa while building the academic, clinical, and leadership habits healthcare careers demand.",
+  "identity": [
+    { "label": "Motto", "value": "With purity and passion I pass my life and practice my art." },
+    { "label": "Colors", "value": "Maroon & gold" },
+    { "label": "Symbol", "value": "Caduceus" },
+    { "label": "Flower", "value": "Red rambling rose" },
+    { "label": "Jewel", "value": "Ruby" },
+    { "label": "Pillars", "value": "Brotherhood, service & scholarship" }
+  ],
   "values": [
     {
       "title": "Brotherhood",
@@ -11,7 +20,7 @@
     {
       "title": "Service",
       "subtitle": "Give back",
-      "body": "Sustained partnerships with Tampa Bay clinics, blood drives, and health-education initiatives—not one-off photo ops."
+      "body": "Local Tampa Bay partners plus national philanthropy with Gift of Life Bone Marrow Registry—service that creates real registry and clinic impact."
     },
     {
       "title": "Leadership",
@@ -29,6 +38,6 @@
     "role": "President",
     "year": "Class of 2027",
     "email": "president@med.ut.edu",
-    "quote": "Since joining MED at UT, this chapter has been the most consistent source of support on my pre-health path. Upperclass mentors, alumni advice, and a brotherhood that feels like home have made Tampa feel smaller—and the journey clearer. Whatever stage you’re at, I hope you find the same belonging and mentorship here. Reach out anytime."
+    "quote": "Witnessing our brothers flourish at UT—and contribute to a growing Tampa Bay healthcare community—is what MED is for. This chapter celebrates your wins, guides you through the hard semesters, and asks you to lead with service. Whatever stage you’re at on the pre-health path, I hope you find belonging and mentorship here. Reach out anytime."
   }
 }

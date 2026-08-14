@@ -1,55 +1,61 @@
 {
   "awards": [
     {
-      "year": "2025",
-      "title": "Outstanding Pre-Health Organization",
-      "issuer": "Campus Student Life",
-      "detail": "Recognized for programming quality and member academic outcomes."
+      "year": "2026",
+      "title": "Chi Chapter charter",
+      "issuer": "Mu Epsilon Delta National",
+      "detail": "University of Tampa recognized as Chi Chapter—the first pre-health fraternity on campus."
     },
     {
-      "year": "2024",
-      "title": "Community Partner Award",
-      "issuer": "Regional Free Clinic Network",
-      "detail": "For sustained volunteer staffing across clinic weekends."
-    },
-    {
-      "year": "2023",
-      "title": "Chapter Excellence — Service",
+      "year": "Open",
+      "title": "Emma N. Huffman Chapter Project Grant",
       "issuer": "MED National",
-      "detail": "Highest reported verified service hours among peer chapters."
+      "detail": "$1,150 grant for a chapter service project benefiting the local community (named for USF founder Emma Huffman)."
+    },
+    {
+      "year": "Open",
+      "title": "Distinguished Individual Award",
+      "issuer": "MED National",
+      "detail": "$400 for a brother who embodies the pillars—usable for conferences, exam prep, or application fees."
+    },
+    {
+      "year": "Open",
+      "title": "Global Giving Grant",
+      "issuer": "MED National",
+      "detail": "$1,000 to help 1–3 members travel abroad for a service project."
     }
   ],
   "milestones": [
     {
-      "year": "2025",
-      "title": "Expanded mentorship to alumni office hours",
-      "detail": "Monthly virtual sessions with residents and medical students."
+      "year": "2026",
+      "title": "Chi Chapter established at the University of Tampa",
+      "detail": "First pre-health fraternity on campus; mission centered on scholarship, brotherhood, service, and underserved Tampa communities."
     },
     {
-      "year": "2024",
-      "title": "Launched suturing & clinical skills clinic",
-      "detail": "Now a recurring professional-development offering."
+      "year": "2026",
+      "title": "Adopted Gift of Life as chapter philanthropy focus",
+      "detail": "Aligning with MED’s national partnership—donor drives and blood-cancer advocacy."
     },
     {
-      "year": "2023",
-      "title": "Formalized MCAT cohort model",
-      "detail": "Structured 12-week peer study tracks with accountability leads."
+      "year": "2026",
+      "title": "Launching Fall Rush & programming calendar",
+      "detail": "Info sessions, MCAT cohorts, speaker series, and Tampa Bay service partners."
     }
   ],
   "outings": [
     {
-      "title": "Museum of Science afternoon",
-      "date": "2025-11-16",
-      "detail": "Member outing connecting anatomy exhibits to pathway conversations."
+      "title": "Chapter kickoff & mentorship circles",
+      "date": "2026-09-20",
+      "detail": "Welcome dinner and small-group mentoring for the founding Chi class."
     },
     {
-      "title": "Fall hike & mentorship circles",
-      "date": "2025-10-05",
-      "detail": "Small-group mentoring outdoors between formal programming weeks."
+      "title": "Gift of Life donor drive",
+      "date": "2026-10-18",
+      "detail": "Campus swab drive with education on bone marrow donation."
     },
     {
       "title": "End-of-semester dinner",
-      "date": "2025-12-08",
+      "date": "2026-12-08",
       "detail": "Recognition for scholarship and service hour milestones."
     }
   ]

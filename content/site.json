@@ -2,13 +2,15 @@
   "name": "Mu Epsilon Delta",
   "shortName": "MED",
   "greek": "ΜΕΔ",
-  "tagline": "The University of Tampa’s pre-health professional fraternity—preparing the next generation of healthcare leaders through mentorship, service, and bonds that last beyond campus.",
-  "chapter": "University of Tampa Chapter",
+  "tagline": "Chi Chapter at the University of Tampa—the first pre-health fraternity on campus—preparing healthcare leaders through scholarship, brotherhood, and service across Tampa Bay.",
+  "chapter": "Chi Chapter · University of Tampa",
+  "chapterDesignation": "Chi",
   "campus": "Tampa, Florida",
   "university": "University of Tampa",
   "email": "med@ut.edu",
   "founded": 1965,
-  "chapterFounded": null,
+  "chapterFounded": 2026,
+  "nationalUrl": "https://mednational.org/",
   "social": {
     "instagram": "https://www.instagram.com/",
     "linkedin": "https://www.linkedin.com/"

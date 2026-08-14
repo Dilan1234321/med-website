@@ -5,6 +5,7 @@
   "eligibility": [
     "Enrolled undergraduate at the University of Tampa with interest in a healthcare or health-sciences career",
     "Minimum cumulative GPA of 3.0 (confirm current threshold with Membership Chair)",
+    "Attend at least one official info session to be eligible to rush",
     "Ability to attend weekly chapter meetings and required programming",
     "Commitment to service hour expectations each semester"
   ],
@@ -14,12 +15,30 @@
     "Uphold academic and conduct standards in the chapter bylaws",
     "Participate in mentorship as mentee (and later as mentor)"
   ],
+  "benefits": [
+    {
+      "title": "Events & activities",
+      "body": "Be first to know about workshops, speaker nights, service drives, and add the chapter calendar to your semester plan."
+    },
+    {
+      "title": "Exclusive resources",
+      "body": "MCAT cohorts, application clinics, alumni office hours, and member newsletters that keep you on track."
+    },
+    {
+      "title": "Connections that last",
+      "body": "Meet Spartans across MD, DO, PA, dental, pharmacy, nursing, and research paths who share your seriousness about healthcare."
+    },
+    {
+      "title": "Service with impact",
+      "body": "Local Tampa partners plus national Gift of Life Bone Marrow Registry drives—hours that matter to patients and applications."
+    }
+  ],
   "timeline": [
     {
       "step": 1,
       "title": "Info sessions",
       "date": "Sep 8–10",
-      "detail": "Meet officers, learn programming requirements, and ask questions about time commitment.",
+      "detail": "Meet officers, learn programming requirements, and ask questions about time commitment. At least one session is required to rush.",
       "location": "Vaughan Center"
     },
     {
@@ -68,6 +87,10 @@
       "a": "No. MED welcomes students across pre-health pathways including MD, DO, PA, dental, pharmacy, nursing, PT/OT, and biomedical research."
     },
     {
+      "q": "Do I have to attend an info session?",
+      "a": "Yes. Prospective members should attend at least one official info session to be eligible for the rush cycle. The interview is also required."
+    },
+    {
       "q": "Do I have to attend every rush event?",
       "a": "Info sessions and the interview are required. Additional events help us get to know you—ask Membership Chair which ones are mandatory for this cycle."
     },
@@ -85,7 +108,11 @@
     },
     {
       "q": "When does rush happen at UT?",
-      "a": "We typically recruit at the start of fall and/or spring. Register for rush to receive this cycle’s dates."
+      "a": "Chi Chapter typically recruits at the start of fall and/or spring. Register for rush to receive this cycle’s dates."
+    },
+    {
+      "q": "What is Gift of Life?",
+      "a": "Gift of Life Bone Marrow Registry is MED’s national philanthropy partner. Chapters host donor drives so members can join the registry and advocate for patients with blood cancer."
     }
   ]
 }

@@ -66,6 +66,19 @@ export function Footer() {
           <a className="hover:text-gold" href={`mailto:${site.email}`}>
             {site.email}
           </a>
+          {site.nationalUrl ? (
+            <>
+              {" · "}
+              <a
+                className="hover:text-gold"
+                href={site.nationalUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                MED National
+              </a>
+            </>
+          ) : null}
         </p>
       </div>
     </footer>

@@ -267,8 +267,32 @@ export default function MembershipPage() {
         </div>
       </section>
 
-      {/* Why join */}
+      {/* Member benefits — content pattern from peer MED chapters */}
       <section className="bg-bg py-16 md:py-24">
+        <div className="container-page">
+          <p className="section-label text-center">Member benefits</p>
+          <div className="accent-line" />
+          <h2 className="heading-display text-center text-3xl text-maroon dark:text-gold md:text-4xl">
+            What membership unlocks
+          </h2>
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            {membership.benefits.map((item, i) => (
+              <article key={item.title} className="card border-t-4 border-t-gold p-6">
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-gold">
+                  {String(i + 1).padStart(2, "0")}
+                </p>
+                <h3 className="mt-3 font-display text-xl font-semibold text-maroon dark:text-gold">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm text-ink-muted">{item.body}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why join */}
+      <section className="border-t border-line bg-bg-muted py-16 md:py-24">
         <div className="container-page">
           <p className="section-label text-center">Why rush</p>
           <div className="accent-line" />
