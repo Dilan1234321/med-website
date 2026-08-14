@@ -1,7 +1,10 @@
 {
+  "season": "Fall Rush 2026",
+  "seasonShort": "Fall 2026",
+  "countdownLabel": "Until rush begins",
   "eligibility": [
-    "Enrolled undergraduate student with a demonstrated interest in a healthcare or health-sciences career",
-    "Minimum cumulative GPA of 3.0 (or chapter-specific requirement—confirm before publishing)",
+    "Enrolled undergraduate at the University of Tampa with interest in a healthcare or health-sciences career",
+    "Minimum cumulative GPA of 3.0 (confirm current threshold with Membership Chair)",
     "Ability to attend weekly chapter meetings and required programming",
     "Commitment to service hour expectations each semester"
   ],
@@ -15,46 +18,58 @@
     {
       "step": 1,
       "title": "Info sessions",
-      "detail": "Meet officers, learn programming requirements, and ask questions about time commitment."
+      "date": "Sep 8–10",
+      "detail": "Meet officers, learn programming requirements, and ask questions about time commitment.",
+      "location": "Vaughan Center"
     },
     {
       "step": 2,
       "title": "Application",
-      "detail": "Submit academic info, pathway interest, service background, and short written responses."
+      "date": "Sep 12",
+      "detail": "Submit academic info, pathway interest, service background, and short written responses.",
+      "location": "Online"
     },
     {
       "step": 3,
       "title": "Interview",
-      "detail": "Structured conversation with membership committee focused on fit, goals, and readiness."
+      "date": "Sep 15–17",
+      "detail": "Structured conversation with membership committee focused on fit, goals, and readiness.",
+      "location": "Plant Hall"
     },
     {
       "step": 4,
       "title": "Bid & education",
-      "detail": "Accepted candidates receive a bid and complete new-member education before initiation."
+      "date": "Sep 19",
+      "detail": "Accepted candidates receive a bid and complete new-member education before initiation.",
+      "location": "TBA"
     }
   ],
   "whyJoin": [
     {
-      "title": "Structured pre-health support",
-      "body": "MCAT study groups, application workshops, and pathway-specific advising from peers who recently completed the process."
+      "title": "Professional development & service",
+      "body": "Speaker series, skills clinics, and Tampa Bay service partners that strengthen both applications and character."
     },
     {
-      "title": "Clinical and professional exposure",
-      "body": "Shadowing coordination, speaker series with physicians and admissions officers, and skills clinics."
+      "title": "Academic support",
+      "body": "MCAT cohorts, tutoring circles, and application workshops led by brothers who just finished the process."
     },
     {
-      "title": "Service that strengthens applications—and communities",
-      "body": "Recurring partnerships with measurable hours, not sporadic volunteering."
+      "title": "Inclusivity across pathways",
+      "body": "MD, DO, PA, dental, pharmacy, nursing, and research tracks—same seriousness for every path."
     },
     {
-      "title": "A network that continues after graduation",
-      "body": "Alumni across medical schools and specialties available for advising, interview prep, and residency insight."
+      "title": "Community that lasts",
+      "body": "A brotherhood at UT that shows up for exams, interviews, and life after Tampa."
     }
   ],
   "faq": [
     {
       "q": "Is MED only for pre-med students?",
       "a": "No. MED welcomes students across pre-health pathways including MD, DO, PA, dental, pharmacy, nursing, PT/OT, and biomedical research."
+    },
+    {
+      "q": "Do I have to attend every rush event?",
+      "a": "Info sessions and the interview are required. Additional events help us get to know you—ask Membership Chair which ones are mandatory for this cycle."
     },
     {
       "q": "How much time does membership require?",
@@ -69,8 +84,8 @@
       "a": "MED is a professional fraternity. Social connection matters, but programming centers on scholarship, service, mentorship, and professional development."
     },
     {
-      "q": "When does rush / recruitment happen?",
-      "a": "Most chapters recruit at the start of fall and/or spring. Register for rush to receive the current cycle’s dates."
+      "q": "When does rush happen at UT?",
+      "a": "We typically recruit at the start of fall and/or spring. Register for rush to receive this cycle’s dates."
     }
   ]
 }
