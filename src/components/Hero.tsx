@@ -10,8 +10,7 @@ export function Hero() {
       <div
         className="absolute inset-0 opacity-40"
         style={{
-          backgroundImage:
-            "url('https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=2400&q=80')",
+          backgroundImage: "url('/images/hero-healthcare.jpg')",
           backgroundSize: "cover",
           backgroundPosition: "center 35%",
           mixBlendMode: "luminosity",

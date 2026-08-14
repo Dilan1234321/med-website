@@ -10,8 +10,7 @@ export function History() {
               <div
                 className="absolute inset-0 scale-105 bg-cover bg-center"
                 style={{
-                  backgroundImage:
-                    "url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600&q=80')",
+                  backgroundImage: "url('/images/campus.jpg')",
                 }}
                 role="img"
                 aria-label="University campus architecture at dusk"

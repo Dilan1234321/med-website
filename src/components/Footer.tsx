@@ -11,7 +11,7 @@ export function Footer() {
               Mu Epsilon Delta
             </span>
           </div>
-          <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-soft">
+          <p className="mt-4 max-w-sm text-base leading-relaxed text-ink-soft">
             National co-educational pre-health professional fraternity.
             Headquarters · Ann Arbor, Michigan.
           </p>
