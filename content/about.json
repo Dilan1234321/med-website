@@ -1,23 +1,43 @@
 {
-  "mission": "Prepare members for careers in healthcare through rigorous scholarship, structured mentorship, clinical exposure, and sustained community service.",
-  "history": "Mu Epsilon Delta was founded in 1965 at the University of Tennessee at Martin as a co-educational professional fraternity for students pursuing pre-health careers. The organization exists to connect students across healthcare pathways, raise the standard of pre-professional preparation, and sustain a network of mentors from campus through clinical practice.",
-  "foundingStory": "What began as a single chapter focused on health-science scholarship has grown into a national network of chapters. Colors are maroon and gold; the symbol is the caduceus; the flower is the red rambling rose; the jewel is the ruby. The fraternity motto is: “With purity and passion I pass my life and practice my art.”",
+  "mission": "We are a co-educational, pre-health professional fraternity whose mission is to prepare University of Tampa members for healthcare careers through scholarship, brotherhood, and service. Gamma Chapter is a family of Spartans who celebrate each other’s wins and walk together through the hard parts of the pre-health path—growing as servant leaders, confronting bias, and building character for the clinic and beyond.",
+  "history": "Mu Epsilon Delta was founded in 1965 at the University of Tennessee at Martin as a national co-educational professional fraternity for students pursuing pre-health careers. Today chapters span the country. The University of Tampa’s Gamma Chapter—chartered in 2026—is the first pre-health fraternity on campus, carrying that mission onto Plant Hall with a focus on supporting underserved communities throughout Tampa.",
+  "foundingStory": "National colors are maroon and gold; the symbol is the caduceus; the flower is the red rambling rose; the jewel is the ruby. Our motto: “With purity and passion I pass my life and practice my art.” At UT we live that vow through scholarship cohorts, Tampa Bay service (including Gift of Life Bone Marrow Registry drives), and a brotherhood that shows up for one another.",
+  "chapterBlurb": "As Gamma Chapter, we take heavy strides to support underserved communities across the city of Tampa while building the academic, clinical, and leadership habits healthcare careers demand.",
+  "identity": [
+    { "label": "Motto", "value": "With purity and passion I pass my life and practice my art." },
+    { "label": "Colors", "value": "Maroon & gold" },
+    { "label": "Symbol", "value": "Caduceus" },
+    { "label": "Flower", "value": "Red rambling rose" },
+    { "label": "Jewel", "value": "Ruby" },
+    { "label": "Pillars", "value": "Brotherhood, service & scholarship" }
+  ],
   "values": [
     {
-      "title": "Scholarship",
-      "body": "Academic standards, peer study structure, and application-ready advising for medical and health-professional schools."
+      "title": "Brotherhood",
+      "subtitle": "Family for life",
+      "body": "A diverse fraternity of UT students bound by shared purpose—supporting one another through the rigor of pre-health pathways and beyond."
     },
     {
       "title": "Service",
-      "body": "Sustained partnerships with local clinics, blood drives, and health-education initiatives—not one-off photo ops."
+      "subtitle": "Give back",
+      "body": "Local Tampa Bay partners plus national philanthropy with Gift of Life Bone Marrow Registry—service that creates real registry and clinic impact."
     },
     {
-      "title": "Mentorship",
-      "body": "Upperclass and alumni mentors matched to members by pathway (MD, DO, PA, dental, pharmacy, nursing, research)."
+      "title": "Leadership",
+      "subtitle": "Lead the way",
+      "body": "Chapter roles, event planning, and mentorship that build the judgment healthcare careers demand."
     },
     {
-      "title": "Professional Development",
-      "body": "Speaker series, suturing and clinical skills workshops, interview practice, and AMCAS/AACOMAS application clinics."
+      "title": "Scholarship",
+      "subtitle": "Excel academically",
+      "body": "MCAT cohorts, application clinics, and peer advising from brothers who recently completed the process."
     }
-  ]
+  ],
+  "president": {
+    "name": "Alex Rivera",
+    "role": "President",
+    "year": "Class of 2027",
+    "email": "president@med.ut.edu",
+    "quote": "Witnessing our brothers flourish at UT—and contribute to a growing Tampa Bay healthcare community—is what MED is for. This chapter celebrates your wins, guides you through the hard semesters, and asks you to lead with service. Whatever stage you’re at on the pre-health path, I hope you find belonging and mentorship here. Reach out anytime."
+  }
 }

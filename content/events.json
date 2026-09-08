@@ -23,7 +23,7 @@
     {
       "id": "community",
       "title": "Chapter community",
-      "description": "Member dinners, retreats, and outings framed as cohort-building—not party culture."
+      "description": "Member dinners, retreats, and outings framed as cohort-building\u2014not party culture."
     }
   ],
   "upcoming": [
@@ -32,7 +32,7 @@
       "title": "Fall Rush Info Session",
       "date": "2026-09-08",
       "time": "7:00 PM",
-      "location": "Campus Student Center, Room 210",
+      "location": "Vaughan Center, Room 210",
       "category": "professional",
       "summary": "Overview of membership expectations, programming, and the application timeline."
     },
@@ -41,7 +41,7 @@
       "title": "MCAT Study Cohort Kickoff",
       "date": "2026-09-15",
       "time": "6:00 PM",
-      "location": "Science Library",
+      "location": "Plant Hall \u00b7 Science Wing",
       "category": "academic",
       "summary": "Form study teams, set a 12-week schedule, and review resources."
     },
@@ -49,8 +49,8 @@
       "id": "blood-drive",
       "title": "Campus Blood Drive",
       "date": "2026-09-22",
-      "time": "10:00 AM – 4:00 PM",
-      "location": "Union Ballroom",
+      "time": "10:00 AM \u2013 4:00 PM",
+      "location": "Ferman Center for the Arts",
       "category": "service",
       "summary": "Partner drive with the regional blood center; members staff registration and donor support."
     },
@@ -59,7 +59,7 @@
       "title": "Speaker Series: Cardiology Pathways",
       "date": "2026-10-02",
       "time": "7:30 PM",
-      "location": "Medical Sciences Building",
+      "location": "Plant Hall Auditorium",
       "category": "professional",
       "summary": "Physician panel on training paths, lifestyle, and early clinical exposure."
     },
@@ -70,7 +70,7 @@
       "time": "5:00 PM",
       "location": "Virtual",
       "category": "mentorship",
-      "summary": "Drop-in advising with alumni in MS1–MS4 and residency."
+      "summary": "Drop-in advising with alumni in MS1\u2013MS4 and residency."
     }
   ],
   "past": [

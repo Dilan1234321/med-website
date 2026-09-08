@@ -1,32 +1,37 @@
 import type { Metadata } from "next";
-import { Inter, Source_Serif_4 } from "next/font/google";
-import { Footer } from "@/components/Footer";
-import { Header } from "@/components/Header";
-import { ThemeProvider } from "@/components/ThemeProvider";
+import { Fraunces, Outfit, Space_Mono } from "next/font/google";
+import { SiteShell } from "@/components/SiteShell";
 import { content } from "@/lib/content";
 import "./globals.css";
 
-const serif = Source_Serif_4({
-  variable: "--font-serif",
+const display = Fraunces({
+  variable: "--font-display",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
-const sans = Inter({
+const sans = Outfit({
   variable: "--font-sans",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
 
+const mono = Space_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "700"],
+});
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mednational.org"),
+  metadataBase: new URL("https://medutampa.com"),
   title: {
-    default: `${content.site.name} | Professional Medical Fraternity`,
-    template: `%s | ${content.site.name}`,
+    default: `${content.site.name} | ${content.site.university}`,
+    template: `%s | ${content.site.shortName} at ${content.site.university}`,
   },
   description: content.site.tagline,
   openGraph: {
-    title: content.site.name,
+    title: `${content.site.name} — ${content.site.chapter}`,
     description: content.site.tagline,
     type: "website",
     locale: "en_US",
@@ -36,18 +41,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable} h-full`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${display.variable} ${sans.variable} ${mono.variable} h-full`}
+      suppressHydrationWarning
+    >
       <body className="flex min-h-full flex-col antialiased">
-        <ThemeProvider>
-          <a href="#main" className="skip-link">
-            Skip to content
-          </a>
-          <Header />
-          <main id="main" className="flex-1">
-            {children}
-          </main>
-          <Footer />
-        </ThemeProvider>
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );

@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHeader } from "@/components/PageHeader";
 import { content, formatDate } from "@/lib/content";
 
 export const metadata: Metadata = {
@@ -14,70 +13,118 @@ export default function EventsPage() {
 
   return (
     <>
-      <PageHeader
-        eyebrow="Events"
-        title="What MED programs look like."
-        description="Programming spans professional development, academics, service, mentorship, and chapter community—scheduled on the public calendar."
-      />
-
-      <section className="container-page py-16 md:py-20">
-        <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
-          <h2 className="font-serif text-3xl text-ink">Event types</h2>
-          <Link href="/calendar" className="text-sm font-semibold text-accent hover:underline">
-            View calendar →
-          </Link>
-        </div>
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {events.categories.map((cat) => (
-            <article key={cat.id} className="card p-6">
-              <span className="badge">{cat.id}</span>
-              <h3 className="mt-4 font-serif text-2xl text-ink">{cat.title}</h3>
-              <p className="mt-3 text-ink-muted">{cat.description}</p>
-            </article>
-          ))}
+      <section className="page-hero min-h-[55vh]">
+        <div
+          className="page-hero-bg"
+          style={{ backgroundImage: "url('/images/hero-2.jpg')" }}
+        />
+        <div className="page-hero-overlay" />
+        <div className="relative z-10 container-page flex min-h-[55vh] flex-col justify-end pb-14 pt-36">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-gold">
+            Programming
+          </p>
+          <h1 className="heading-display mt-3 text-[clamp(2.5rem,8vw,5rem)] text-white">
+            The professional journey
+          </h1>
+          <p className="mt-4 max-w-xl text-white/85">
+            Workshops, speakers, service, and mentorship that prepare brothers
+            for healthcare careers.
+          </p>
         </div>
       </section>
 
-      <section className="border-t border-line bg-bg-elevated py-16 md:py-20">
+      <section className="bg-bg py-16 md:py-24">
         <div className="container-page">
-          <h2 className="font-serif text-3xl text-ink">Upcoming</h2>
-          <ul className="mt-8 divide-y divide-line border-y border-line">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row md:items-end">
+            <div>
+              <p className="section-label">Categories</p>
+              <div className="accent-line-left" />
+              <h2 className="heading-display text-3xl text-maroon dark:text-gold">
+                Event types
+              </h2>
+            </div>
+            <Link
+              href="/calendar"
+              className="font-mono text-xs uppercase tracking-[0.14em] text-gold hover:underline"
+            >
+              View calendar →
+            </Link>
+          </div>
+          <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {events.categories.map((cat, i) => (
+              <article
+                key={cat.id}
+                className="card overflow-hidden border-t-4 border-t-gold p-6"
+              >
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-gold">
+                  {String(i + 1).padStart(2, "0")} · {cat.id}
+                </p>
+                <h3 className="mt-3 font-display text-2xl font-semibold text-maroon dark:text-gold">
+                  {cat.title}
+                </h3>
+                <p className="mt-3 text-ink-muted">{cat.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden py-16 md:py-24">
+        <div
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/hero-recruit.jpg')" }}
+        />
+        <div className="absolute inset-0 bg-maroon-deep/80" />
+        <div className="relative z-10 container-page text-white">
+          <p className="font-mono text-xs uppercase tracking-[0.18em] text-gold">
+            Upcoming
+          </p>
+          <h2 className="heading-display mt-2 text-3xl md:text-5xl">
+            On the calendar
+          </h2>
+          <ul className="mt-10 grid gap-4 md:grid-cols-2">
             {events.upcoming.map((event) => (
-              <li key={event.id} className="grid gap-3 py-6 md:grid-cols-[8rem_1fr]">
-                <div>
-                  <p className="text-sm font-medium text-accent">
-                    {formatDate(event.date)}
-                  </p>
-                  <p className="mt-1 text-xs uppercase tracking-[0.1em] text-ink-muted">
-                    {event.category}
-                  </p>
-                </div>
-                <div>
-                  <h3 className="font-serif text-xl text-ink">{event.title}</h3>
-                  <p className="mt-1 text-sm text-ink-muted">
-                    {event.time} · {event.location}
-                  </p>
-                  <p className="mt-2 text-ink-muted">{event.summary}</p>
-                </div>
+              <li
+                key={event.id}
+                className="rounded-[18px] border border-white/20 bg-white/10 p-5 backdrop-blur-md"
+              >
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-gold">
+                  {formatDate(event.date)} · {event.category}
+                </p>
+                <h3 className="mt-2 font-display text-xl font-semibold">
+                  {event.title}
+                </h3>
+                <p className="mt-1 text-sm text-white/70">
+                  {event.time} · {event.location}
+                </p>
+                <p className="mt-3 text-sm text-white/80">{event.summary}</p>
               </li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section className="container-page py-16 md:py-20">
-        <h2 className="font-serif text-3xl text-ink">Recent past events</h2>
-        <ul className="mt-8 grid gap-5 md:grid-cols-3">
-          {events.past.map((event) => (
-            <li key={event.id} className="card p-5">
-              <p className="text-xs uppercase tracking-[0.1em] text-ink-muted">
-                {formatDate(event.date)} · {event.category}
-              </p>
-              <h3 className="mt-2 font-serif text-xl text-ink">{event.title}</h3>
-              <p className="mt-2 text-sm text-ink-muted">{event.summary}</p>
-            </li>
-          ))}
-        </ul>
+      <section className="bg-bg-muted py-16 md:py-24">
+        <div className="container-page">
+          <p className="section-label text-center">Archive</p>
+          <div className="accent-line" />
+          <h2 className="heading-display text-center text-3xl text-maroon dark:text-gold">
+            Recent past events
+          </h2>
+          <ul className="mt-10 grid gap-5 md:grid-cols-3">
+            {events.past.map((event) => (
+              <li key={event.id} className="card p-5">
+                <p className="font-mono text-[0.65rem] uppercase tracking-[0.12em] text-ink-muted">
+                  {formatDate(event.date)} · {event.category}
+                </p>
+                <h3 className="mt-2 font-display text-xl font-semibold text-maroon dark:text-gold">
+                  {event.title}
+                </h3>
+                <p className="mt-2 text-sm text-ink-muted">{event.summary}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
     </>
   );

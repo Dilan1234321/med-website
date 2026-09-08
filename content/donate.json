@@ -1,22 +1,40 @@
 {
-  "headline": "Support MED’s scholarship, service, and mentorship programs.",
-  "body": "Donations fund workshops, service supplies, speaker travel, and need-based dues support. Replace this copy with chapter-approved language and a linked giving platform (GiveButter, university foundation, etc.).",
+  "headline": "Support the Brotherhood.",
+  "eyebrow": "Philanthropic giving",
+  "body": "Donations fund workshops, service supplies, speaker travel, convention travel, and need-based dues support for University of Tampa brothers.",
+  "fund": {
+    "name": "Convention Delegate Fund",
+    "percent": 68,
+    "raised": "$3,400",
+    "goal": "$5,000"
+  },
   "tiers": [
     {
-      "name": "Friend",
+      "name": "The Supporter",
       "amount": "$50",
-      "description": "Underwrites materials for one skills workshop."
+      "description": "Underwrites materials for one skills workshop.",
+      "perks": ["Workshop materials credit", "Donor thank-you in newsletter"]
     },
     {
-      "name": "Supporter",
+      "name": "The Mentor",
       "amount": "$150",
-      "description": "Sponsors a semester of MCAT cohort resources."
+      "description": "Sponsors a semester of MCAT cohort resources.",
+      "perks": ["MCAT cohort support", "Named mention at chapter meeting"]
     },
     {
-      "name": "Benefactor",
-      "amount": "$500+",
-      "description": "Funds a named service drive or speaker event."
+      "name": "The Partner",
+      "amount": "$500",
+      "description": "Funds a named service drive or speaker event.",
+      "perks": ["Named event sponsorship", "Invitation to speaker dinner"]
+    },
+    {
+      "name": "Legacy Giving",
+      "amount": "Custom",
+      "description": "Endow lasting scholarship or dues assistance.",
+      "perks": ["Custom recognition plan", "Direct treasurer coordination"]
     }
   ],
-  "contact": "treasurer@med.example.edu"
+  "quote": "Supporting MED at UT means more brothers get to clinics, conferences, and the next step in healthcare.",
+  "quoteBy": "Casey Nguyen, Treasurer",
+  "contact": "treasurer@med.ut.edu"
 }
