@@ -37,6 +37,11 @@ export function isValidSessionToken(token: string | undefined | null): boolean {
     return false;
   }
   if (expectedBuf.length !== actualBuf.length) return false;
+  // Buffer.from(str, "hex") silently truncates at the first invalid hex
+  // char instead of throwing, so a tampered signature with garbage
+  // appended can decode to a buffer of the same byte length as the
+  // expected one. Guard against that by also checking the raw string
+  // length before trusting the decoded buffers.
   if (signature.length !== expectedBuf.length * 2) return false;
   if (!timingSafeEqual(expectedBuf, actualBuf)) return false;
 
