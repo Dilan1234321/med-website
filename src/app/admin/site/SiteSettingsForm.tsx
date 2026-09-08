@@ -38,6 +38,7 @@ export function SiteSettingsForm({ initialSite, initialSha }: { initialSite: Sit
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (pending) return;
     setError(null);
     startTransition(async () => {
       const result = await saveSite(site, sha);

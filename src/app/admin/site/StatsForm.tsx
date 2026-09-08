@@ -32,6 +32,7 @@ export function StatsForm({ initialStats, initialSha }: { initialStats: StatsCon
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (pending) return;
     setError(null);
     startTransition(async () => {
       const result = await saveStats(stats, sha);
