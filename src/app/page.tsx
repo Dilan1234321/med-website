@@ -121,7 +121,7 @@ export default function HomePage() {
             { label: "Active members", value: `${stats.members}` },
             { label: "Service hours", value: `${stats.serviceHours}+` },
             {
-              label: "Chi Chapter",
+              label: "Gamma Chapter",
               value: `${stats.chapterFounded}`,
             },
             { label: "National founding", value: `${stats.foundingYear}` },

@@ -62,7 +62,7 @@ export default function AboutPage() {
           <p className="section-label !text-gold">About us</p>
           <div className="accent-line-left !bg-gold" />
           <h2 className="heading-display mt-2 text-3xl md:text-5xl">
-            Founded nationally in {stats.foundingYear}. Chi Chapter at UT
+            Founded nationally in {stats.foundingYear}. Gamma Chapter at UT
             chartered {site.chapterFounded}.
           </h2>
           <div className="mt-8 space-y-5 text-base leading-relaxed text-white/88 md:text-lg">
@@ -226,7 +226,7 @@ export default function AboutPage() {
           </article>
           <article className="border-t border-gold/40 pt-6">
             <p className="font-mono text-xs uppercase tracking-[0.16em] text-gold">
-              {site.chapterFounded} · Chi Chapter
+              {site.chapterFounded} · Gamma Chapter
             </p>
             <h3 className="mt-3 font-display text-2xl font-semibold text-gold">
               University of Tampa

@@ -6,7 +6,7 @@ import { content } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Service & Philanthropy",
   description:
-    "Gift of Life Bone Marrow Registry, Tampa Bay partners, and Chi Chapter service impact.",
+    "Gift of Life Bone Marrow Registry, Tampa Bay partners, and Gamma Chapter service impact.",
 };
 
 export default function ServicePage() {
