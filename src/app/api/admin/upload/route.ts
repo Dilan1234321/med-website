@@ -57,7 +57,8 @@ export async function POST(request: NextRequest) {
     const blob = await put(pathname, file, { access: "public", contentType: sniffed.contentType });
 
     return NextResponse.json({ url: blob.url });
-  } catch {
+  } catch (error) {
+    console.error("Blob upload failed:", error);
     return NextResponse.json({ error: "Upload failed. Try again." }, { status: 500 });
   }
 }
