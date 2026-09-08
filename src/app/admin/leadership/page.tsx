@@ -2,6 +2,8 @@ import { AdminShell } from "@/components/admin/AdminShell";
 import { getContentFile } from "@/lib/admin/github";
 import { LeadershipForm, type LeadershipMember } from "./LeadershipForm";
 
+export const dynamic = "force-dynamic";
+
 export default async function LeadershipPage() {
   const leadership = await getContentFile<LeadershipMember[]>("content/leadership.json");
 

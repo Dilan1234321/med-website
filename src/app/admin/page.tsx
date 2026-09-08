@@ -1,6 +1,8 @@
 import { AdminShell } from "@/components/admin/AdminShell";
 import { listRecentContentChanges } from "@/lib/admin/github";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminDashboardPage() {
   const changes = await listRecentContentChanges(20);
 

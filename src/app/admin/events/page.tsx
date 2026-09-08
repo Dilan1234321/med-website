@@ -2,6 +2,8 @@ import { AdminShell } from "@/components/admin/AdminShell";
 import { getContentFile } from "@/lib/admin/github";
 import { EventsForm, type EventsContent } from "./EventsForm";
 
+export const dynamic = "force-dynamic";
+
 export default async function EventsPage() {
   const events = await getContentFile<EventsContent>("content/events.json");
 

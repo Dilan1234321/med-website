@@ -3,6 +3,8 @@ import { getContentFile } from "@/lib/admin/github";
 import { SiteSettingsForm, type SiteContent } from "./SiteSettingsForm";
 import { StatsForm, type StatsContent } from "./StatsForm";
 
+export const dynamic = "force-dynamic";
+
 export default async function SiteSettingsPage() {
   const [site, stats] = await Promise.all([
     getContentFile<SiteContent>("content/site.json"),
