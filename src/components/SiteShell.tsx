@@ -9,6 +9,11 @@ import { ThemeToggle } from "./ThemeToggle";
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const transparent = pathname === "/";
+  const isAdmin = pathname?.startsWith("/admin") ?? false;
+
+  if (isAdmin) {
+    return <ThemeProvider>{children}</ThemeProvider>;
+  }
 
   return (
     <ThemeProvider>
