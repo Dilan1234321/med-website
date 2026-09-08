@@ -1,5 +1,7 @@
 "use client";
 
+import { useId } from "react";
+
 type TextFieldProps = {
   label: string;
   value: string;
@@ -10,7 +12,9 @@ type TextFieldProps = {
 };
 
 export function TextField({ label, value, onChange, type = "text", required = false, helperText }: TextFieldProps) {
-  const id = `field-${label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+  const uid = useId();
+  const slug = label.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const id = `field-${uid}-${slug}`;
   return (
     <div className="flex flex-col gap-1.5">
       <label htmlFor={id} className="text-sm font-medium text-ink">

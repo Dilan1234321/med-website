@@ -1,5 +1,7 @@
 "use client";
 
+import { useId } from "react";
+
 type TextAreaFieldProps = {
   label: string;
   value: string;
@@ -10,7 +12,9 @@ type TextAreaFieldProps = {
 };
 
 export function TextAreaField({ label, value, onChange, rows = 4, required = false, helperText }: TextAreaFieldProps) {
-  const id = `field-${label.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`;
+  const uid = useId();
+  const slug = label.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+  const id = `field-${uid}-${slug}`;
   return (
     <div className="flex flex-col gap-1.5">
       <label htmlFor={id} className="text-sm font-medium text-ink">

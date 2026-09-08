@@ -62,6 +62,7 @@ export function ImageField({ label, value, onChange }: ImageFieldProps) {
           <input
             type="file"
             accept="image/jpeg,image/png,image/webp"
+            aria-label={`Upload ${label.toLowerCase()}`}
             className="hidden"
             onChange={(e) => {
               const file = e.target.files?.[0];
