@@ -23,6 +23,17 @@ function authHeaders(token: string): Record<string, string> {
   };
 }
 
+/**
+ * Encodes a repo-relative file path for use as a URL path segment.
+ * Encodes each "/"-separated segment individually (rather than the whole
+ * string) so that legitimate directory separators in the path survive,
+ * while special characters within a segment (spaces, #, ?, &, etc.) are
+ * safely escaped.
+ */
+function encodePathSegments(path: string): string {
+  return path.split("/").map(encodeURIComponent).join("/");
+}
+
 export class ContentConflictError extends Error {
   constructor(path: string) {
     super(`"${path}" was changed by someone else since you loaded it. Reload the page to see the latest version.`);
@@ -33,14 +44,21 @@ export class ContentConflictError extends Error {
 /** Reads a JSON file from the repo at the current HEAD of the configured branch. */
 export async function getContentFile<T>(path: string): Promise<{ data: T; sha: string }> {
   const { owner, repo, branch, token } = repoConfig();
-  const url = `${GITHUB_API}/repos/${owner}/${repo}/contents/${path}?ref=${branch}`;
+  const url = `${GITHUB_API}/repos/${owner}/${repo}/contents/${encodePathSegments(path)}?ref=${encodeURIComponent(branch)}`;
   const res = await fetch(url, { headers: authHeaders(token), cache: "no-store" });
   if (!res.ok) {
     throw new Error(`Failed to load ${path} from GitHub (${res.status})`);
   }
   const json = (await res.json()) as { content: string; sha: string };
-  const decoded = Buffer.from(json.content, "base64").toString("utf-8");
-  return { data: JSON.parse(decoded) as T, sha: json.sha };
+  if (json.content === "") {
+    throw new Error(`${path} is empty or too large for GitHub's Contents API to return directly.`);
+  }
+  try {
+    const decoded = Buffer.from(json.content, "base64").toString("utf-8");
+    return { data: JSON.parse(decoded) as T, sha: json.sha };
+  } catch {
+    throw new Error(`Failed to parse ${path} as JSON — check it's valid JSON and not a directory or an unexpectedly large file.`);
+  }
 }
 
 /**
@@ -53,9 +71,9 @@ export async function updateContentFile(
   data: unknown,
   expectedSha: string,
   message: string,
-): Promise<void> {
+): Promise<{ sha: string }> {
   const { owner, repo, branch, token } = repoConfig();
-  const url = `${GITHUB_API}/repos/${owner}/${repo}/contents/${path}`;
+  const url = `${GITHUB_API}/repos/${owner}/${repo}/contents/${encodePathSegments(path)}`;
   const content = Buffer.from(JSON.stringify(data, null, 2) + "\n", "utf-8").toString("base64");
   const res = await fetch(url, {
     method: "PUT",
@@ -69,6 +87,8 @@ export async function updateContentFile(
     const body = await res.text();
     throw new Error(`Failed to update ${path} on GitHub (${res.status}): ${body}`);
   }
+  const body = (await res.json()) as { content: { sha: string } };
+  return { sha: body.content.sha };
 }
 
 export type RecentChange = { sha: string; message: string; author: string; date: string };
@@ -76,7 +96,7 @@ export type RecentChange = { sha: string; message: string; author: string; date:
 /** Lists the most recent commits that touched anything under content/. */
 export async function listRecentContentChanges(limit = 20): Promise<RecentChange[]> {
   const { owner, repo, branch, token } = repoConfig();
-  const url = `${GITHUB_API}/repos/${owner}/${repo}/commits?path=content&sha=${branch}&per_page=${limit}`;
+  const url = `${GITHUB_API}/repos/${owner}/${repo}/commits?path=content&sha=${encodeURIComponent(branch)}&per_page=${limit}`;
   const res = await fetch(url, { headers: authHeaders(token), cache: "no-store" });
   if (!res.ok) {
     throw new Error(`Failed to load recent changes (${res.status})`);
