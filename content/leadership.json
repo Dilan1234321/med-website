@@ -1,56 +1,146 @@
 [
   {
-    "name": "Alex Rivera",
+    "name": "Bridget Klauss",
     "role": "President",
-    "year": "Class of 2027",
-    "major": "Neuroscience",
-    "focus": "Sets chapter strategy, chairs exec meetings, and represents MED to UT partners.",
-    "email": "president@med.ut.edu",
+    "year": "",
+    "major": "",
+    "focus": "",
+    "email": "",
     "photo": ""
   },
   {
-    "name": "Jordan Lee",
-    "role": "Vice President",
-    "year": "Class of 2027",
-    "major": "Biology",
-    "focus": "Oversees programming calendar and coordinates committee chairs.",
-    "email": "vp@med.example.edu",
+    "name": "Ariana Kumar",
+    "role": "Vice President of Chapter Operations",
+    "year": "",
+    "major": "",
+    "focus": "",
+    "email": "",
     "photo": ""
   },
   {
-    "name": "Sam Okonkwo",
-    "role": "Membership Chair",
-    "year": "Class of 2028",
-    "major": "Biochemistry",
-    "focus": "Runs recruitment, interviews, and new-member education.",
-    "email": "membership@med.example.edu",
+    "name": "Janki Shah",
+    "role": "Vice President of Membership and Development",
+    "year": "",
+    "major": "",
+    "focus": "",
+    "email": "",
     "photo": ""
   },
   {
-    "name": "Riley Chen",
-    "role": "Scholarship Chair",
-    "year": "Class of 2028",
-    "major": "Human Physiology",
-    "focus": "Leads MCAT cohorts, tutoring circles, and application workshops.",
-    "email": "scholarship@med.example.edu",
+    "name": "Kayla Haufler",
+    "role": "VP of Internal Relations",
+    "year": "",
+    "major": "",
+    "focus": "",
+    "email": "",
     "photo": ""
   },
   {
-    "name": "Morgan Patel",
-    "role": "Service Chair",
-    "year": "Class of 2029",
-    "major": "Public Health",
-    "focus": "Manages nonprofit partnerships and tracks service hours.",
-    "email": "service@med.example.edu",
+    "name": "Alexa Janca",
+    "role": "Chair of Event Coordination",
+    "year": "",
+    "major": "",
+    "focus": "",
+    "email": "",
     "photo": ""
   },
   {
-    "name": "Casey Nguyen",
-    "role": "Treasurer",
-    "year": "Class of 2028",
-    "major": "Economics & Biology",
-    "focus": "Budget, dues, event funding, and donation reporting.",
-    "email": "treasurer@med.example.edu",
+    "name": "Marco Caponi",
+    "role": "Chair of Clinical and Shadowing",
+    "year": "",
+    "major": "",
+    "focus": "",
+    "email": "",
+    "photo": ""
+  },
+  {
+    "name": "Crystal Malithuruthel",
+    "role": "Chair of Research",
+    "year": "",
+    "major": "",
+    "focus": "",
+    "email": "",
+    "photo": ""
+  },
+  {
+    "name": "Andrew Dabbs",
+    "role": "Volunteer Chair",
+    "year": "",
+    "major": "",
+    "focus": "",
+    "email": "",
+    "photo": ""
+  },
+  {
+    "name": "Stefani Andrews",
+    "role": "VP of Outreach and External Relations",
+    "year": "",
+    "major": "",
+    "focus": "",
+    "email": "",
+    "photo": ""
+  },
+  {
+    "name": "Robert Mansfield",
+    "role": "Street Team Project Leader",
+    "year": "",
+    "major": "",
+    "focus": "",
+    "email": "",
+    "photo": ""
+  },
+  {
+    "name": "Anna Nolan",
+    "role": "Chair of Brand Relations",
+    "year": "",
+    "major": "",
+    "focus": "",
+    "email": "",
+    "photo": ""
+  },
+  {
+    "name": "Austin Leibowitz",
+    "role": "VP of Communications",
+    "year": "",
+    "major": "",
+    "focus": "",
+    "email": "",
+    "photo": ""
+  },
+  {
+    "name": "Carla Sales",
+    "role": "Chair of Communications",
+    "year": "",
+    "major": "",
+    "focus": "",
+    "email": "",
+    "photo": ""
+  },
+  {
+    "name": "Shreya Mehta",
+    "role": "VP of Finance",
+    "year": "",
+    "major": "",
+    "focus": "",
+    "email": "",
+    "photo": ""
+  },
+  {
+    "name": "Sydney Nguyen",
+    "role": "Chair of Philanthropy",
+    "year": "",
+    "major": "",
+    "focus": "",
+    "email": "",
+    "photo": ""
+  },
+  {
+    "name": "Dilan Kochhar",
+    "role": "Student Government Representative",
+    "year": "",
+    "major": "",
+    "focus": "",
+    "email": "",
     "photo": ""
   }
 ]
