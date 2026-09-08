@@ -347,3 +347,18 @@ a {
     transform: none;
   }
 }
+
+@layer components {
+  .admin-button-primary {
+    @apply inline-flex items-center justify-center rounded-lg bg-maroon px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-maroon-rich;
+  }
+  .admin-button-secondary {
+    @apply inline-flex items-center justify-center rounded-lg border border-line bg-bg px-4 py-2 text-sm font-semibold text-ink transition-colors hover:border-gold hover:text-gold;
+  }
+  .admin-icon-button {
+    @apply rounded-md border border-line bg-bg px-2 py-1 text-xs font-medium text-ink-muted transition-colors hover:bg-bg-muted disabled:cursor-not-allowed disabled:opacity-40;
+  }
+  .admin-icon-button-danger {
+    @apply border-maroon/30 text-maroon hover:bg-maroon/10;
+  }
+}
