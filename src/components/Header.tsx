@@ -46,6 +46,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
   );
 
   return (
+    <>
     <header
       className={`fixed inset-x-0 top-0 z-[80] transition-all duration-300 ${
         overHero
@@ -148,25 +149,26 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           </button>
         </div>
       </div>
+    </header>
 
       <div
         id="mobile-nav"
-        className={`fixed inset-0 z-[70] bg-[color:var(--nav-dark)] transition lg:hidden ${
+        className={`fixed inset-0 z-[70] bg-[color:var(--maroon)] transition-opacity duration-300 lg:hidden ${
           open ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >
-        <nav className="flex h-full flex-col items-center justify-center gap-6 px-6 pt-16">
+        <nav className="flex h-full flex-col items-center justify-evenly px-6 py-24">
           {links.slice(0, 2).map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="font-display text-2xl font-bold tracking-tight text-white"
+              className="font-display text-3xl font-bold tracking-tight text-white transition hover:text-gold"
             >
               {item.label}
             </Link>
           ))}
-          <p className="text-xs font-bold uppercase tracking-[0.2em] text-gold">
+          <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">
             The Family
           </p>
           {familyLinks.map((item) => (
@@ -174,7 +176,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="font-display text-xl font-bold tracking-tight text-white/90"
+              className="font-display text-2xl font-bold tracking-tight text-white/90 transition hover:text-gold"
             >
               {item.label}
             </Link>
@@ -184,7 +186,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
               key={item.href}
               href={item.href}
               onClick={() => setOpen(false)}
-              className="font-display text-2xl font-bold tracking-tight text-white"
+              className="font-display text-3xl font-bold tracking-tight text-white transition hover:text-gold"
             >
               {item.label}
             </Link>
@@ -192,20 +194,20 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           <Link
             href="/calendar"
             onClick={() => setOpen(false)}
-            className="font-display text-2xl font-bold tracking-tight text-white"
+            className="font-display text-3xl font-bold tracking-tight text-white transition hover:text-gold"
           >
             Calendar
           </Link>
           <Link
             href="/membership#register"
             onClick={() => setOpen(false)}
-            className="btn btn-primary mt-4"
+            className="btn btn-gold mt-4"
           >
             Register for Rush
           </Link>
         </nav>
       </div>
-    </header>
+    </>
   );
 }
 
