@@ -5,7 +5,7 @@ import { content } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Donate",
   description:
-    "Support Mu Epsilon Delta at the University of Tampa — workshops, service, and member support.",
+    "Support Mu Epsilon Delta at the University of Tampa: workshops, service, and member support.",
 };
 
 export default function DonatePage() {
@@ -13,7 +13,7 @@ export default function DonatePage() {
 
   return (
     <div className="lg:flex lg:min-h-screen">
-      {/* Sticky photo stack — AKPsi donate pattern */}
+      {/* Sticky photo stack: AKPsi donate pattern */}
       <aside className="relative hidden min-h-screen w-[42%] flex-col gap-3 bg-maroon-deep p-4 lg:sticky lg:top-0 lg:flex lg:h-screen lg:overflow-hidden">
         {["/images/chapter-1.jpg", "/images/chapter-4.jpg", "/images/chapter-3.jpg"].map(
           (src, i) => (
@@ -108,7 +108,7 @@ export default function DonatePage() {
             “{donate.quote}”
           </p>
           <footer className="mt-3 font-mono text-xs uppercase tracking-[0.12em] text-ink-muted">
-            — {donate.quoteBy}
+            {donate.quoteBy}
           </footer>
         </blockquote>
       </main>

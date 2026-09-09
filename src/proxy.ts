@@ -5,7 +5,7 @@ import { SESSION_COOKIE, isValidSessionToken } from "@/lib/admin/session";
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  if (pathname === "/admin/login") {
+  if (pathname === "/admin/login" || pathname === "/api/admin/session-status") {
     return NextResponse.next();
   }
 

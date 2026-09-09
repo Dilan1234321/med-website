@@ -31,7 +31,7 @@ export type NavItem = { href: string; label: string };
 export const primaryNav: NavItem[] = [
   { href: "/about", label: "About" },
   { href: "/membership", label: "Membership" },
-  { href: "/events", label: "Events" },
+  { href: "/calendar", label: "Events" },
   { href: "/leadership", label: "Board" },
   { href: "/family", label: "Family" },
   { href: "/alumni", label: "Alumni" },
@@ -41,6 +41,13 @@ export const primaryNav: NavItem[] = [
   { href: "/donate", label: "Donate" },
   { href: "/contact", label: "Contact" },
 ];
+
+export function slugify(name: string): string {
+  return name
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
 export function formatDate(iso: string) {
   const d = new Date(`${iso}T12:00:00`);

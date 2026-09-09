@@ -28,8 +28,6 @@ export default function ContactPage() {
 
       <section className="container-page grid gap-12 py-16 md:grid-cols-2 md:py-24">
         <div>
-          <p className="section-label">Chapter details</p>
-          <div className="accent-line-left" />
           <h2 className="heading-display text-3xl text-maroon dark:text-gold">
             Reach the UT chapter
           </h2>

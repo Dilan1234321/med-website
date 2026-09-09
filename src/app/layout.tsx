@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   description: content.site.tagline,
   openGraph: {
-    title: `${content.site.name} — ${content.site.chapter}`,
+    title: `${content.site.name} · ${content.site.chapter}`,
     description: content.site.tagline,
     type: "website",
     locale: "en_US",

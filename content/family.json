@@ -347,5 +347,32 @@
       "Teamwork",
       "Creativity"
     ]
+  },
+  {
+    "name": "Janki Shah",
+    "year": "Class of 2028",
+    "major": "Biology (Therapeutic Art minor)",
+    "pathway": "",
+    "hometown": "",
+    "photo": "/images/family/janki-shah.jpg",
+    "linkedin": "https://www.linkedin.com/in/janki-shah-831327320",
+    "skills": [
+      "Leadership & team coordination",
+      "Cross-cultural communication (multilingual)"
+    ]
+  },
+  {
+    "name": "Alexa Janca",
+    "year": "Class of 2028",
+    "major": "Biology",
+    "pathway": "MD",
+    "hometown": "",
+    "photo": "/images/family/alexa-janca.jpg",
+    "linkedin": "https://www.linkedin.com/in/alexa-janca-601439357",
+    "skills": [
+      "Patient communication and empathy",
+      "Attention to detail",
+      "Ability to work under pressure and multitasking"
+    ]
   }
 ]

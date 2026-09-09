@@ -1,5 +1,5 @@
 {
-  "note": "Replace these placeholders with chapter photography. Prefer service events, workshops, campus landmarks, and member headshots—never stock doctors.",
+  "note": "Replace these placeholders with chapter photography. Prefer service events, workshops, campus landmarks, and member headshots. Never use stock photos of doctors.",
   "albums": [
     {
       "id": "programming",
@@ -7,7 +7,7 @@
       "items": [
         {
           "id": "p1",
-          "caption": "Speaker series — admissions panel",
+          "caption": "Speaker series: admissions panel",
           "src": "",
           "alt": "Placeholder for speaker series photo"
         },

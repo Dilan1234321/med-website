@@ -34,8 +34,6 @@ export default function GalleryPage() {
       {/* AKPsi masonry “life” gallery */}
       <section className="bg-bg py-16 md:py-24">
         <div className="container-page">
-          <p className="section-label text-center">Life as a brother</p>
-          <div className="accent-line" />
           <h2 className="heading-display text-center text-3xl text-maroon dark:text-gold md:text-4xl">
             Moments from the chapter
           </h2>

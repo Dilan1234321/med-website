@@ -37,16 +37,11 @@ export default function CalendarPage() {
         <div className="container-page">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="section-label">Upcoming</p>
-              <div className="accent-line-left" />
               <h2 className="heading-display text-3xl text-maroon dark:text-gold md:text-4xl">
                 On the schedule
               </h2>
             </div>
-            <div className="flex flex-wrap gap-3">
-              <Link href="/events" className="btn btn-ghost">
-                Event types
-              </Link>
+            <div>
               <Link href="/membership#register" className="btn btn-primary">
                 Register for Recruitment
               </Link>
@@ -106,7 +101,7 @@ export default function CalendarPage() {
             to get notified.
           </p>
           <Link href="/membership#register" className="btn btn-gold mt-8">
-            Interest form →
+            Register for Recruitment →
           </Link>
         </div>
       </section>

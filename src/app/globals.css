@@ -350,6 +350,24 @@ body {
   );
 }
 
+@keyframes register-glow-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 10px 20px rgba(0, 0, 0, 0.2),
+      0 0 0 0 color-mix(in srgb, var(--gold) 55%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 10px 20px rgba(0, 0, 0, 0.2),
+      0 0 22px 6px color-mix(in srgb, var(--gold) 65%, transparent);
+  }
+}
+
+.register-glow {
+  animation: register-glow-pulse 2s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -363,6 +381,13 @@ body {
   .btn-primary:hover,
   .btn-gold:hover {
     transform: none;
+  }
+
+  .register-glow {
+    animation: none;
+    box-shadow:
+      0 10px 20px rgba(0, 0, 0, 0.2),
+      0 0 14px 3px color-mix(in srgb, var(--gold) 45%, transparent);
   }
 }
 

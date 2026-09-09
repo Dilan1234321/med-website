@@ -6,7 +6,7 @@ import { content } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Service & Philanthropy",
   description:
-    "Gift of Life Bone Marrow Registry, Tampa Bay partners, and Gamma Chapter service impact.",
+    "Gift of Life Bone Marrow Registry, Tampa Bay partners, and chapter service impact.",
 };
 
 export default function ServicePage() {
@@ -40,8 +40,6 @@ export default function ServicePage() {
       <section className="bg-bg py-16 md:py-24">
         <div className="container-page grid gap-10 md:grid-cols-2 md:items-center">
           <div>
-            <p className="section-label">{national.eyebrow}</p>
-            <div className="accent-line-left" />
             <h2 className="heading-display text-3xl text-maroon dark:text-gold md:text-4xl">
               {national.name}
             </h2>
@@ -80,8 +78,6 @@ export default function ServicePage() {
 
       <section className="border-t border-line bg-bg-muted py-16 md:py-24">
         <div className="container-page">
-          <p className="section-label text-center">Partners</p>
-          <div className="accent-line" />
           <h2 className="heading-display text-center text-3xl text-maroon dark:text-gold md:text-4xl">
             Where we serve
           </h2>

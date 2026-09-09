@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { logout } from "@/app/admin/actions";
 
 const familyLinks = [
   { href: "/leadership", label: "Officers" },
@@ -15,6 +16,22 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [familyOpen, setFamilyOpen] = useState(false);
+  const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch("/api/admin/session-status")
+      .then((r) => r.json())
+      .then((d) => {
+        if (!cancelled) setLoggedIn(Boolean(d?.loggedIn));
+      })
+      .catch(() => {
+        if (!cancelled) setLoggedIn(false);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -46,24 +63,44 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
       }`}
     >
       <div className="mx-auto flex h-[4.5rem] w-full max-w-[1280px] items-center justify-between gap-4 px-5 md:h-[5.25rem] md:px-10">
-        <Link
-          href="/"
-          className="flex items-center gap-3 text-white"
-          onClick={() => setOpen(false)}
-        >
-          <Image
-            src="/images/logo.png"
-            alt="Mu Epsilon Delta crest"
-            width={48}
-            height={48}
-            className="h-11 w-11 md:h-12 md:w-12"
-            priority
-          />
-          <span className="hidden h-8 w-px bg-white/35 sm:block" aria-hidden />
-          <span className="font-display text-base font-semibold tracking-tight text-white sm:text-base">
-            ΜΕΔ
-          </span>
-        </Link>
+        <div className="flex min-w-0 items-center gap-3">
+          <Link
+            href="/"
+            className="flex items-center gap-3 text-white"
+            onClick={() => setOpen(false)}
+          >
+            <Image
+              src="/images/logo.png"
+              alt="Mu Epsilon Delta crest"
+              width={48}
+              height={48}
+              className="h-11 w-11 md:h-12 md:w-12"
+              priority
+            />
+            <span className="hidden h-8 w-px bg-white/35 sm:block" aria-hidden />
+            <span className="font-display text-base font-semibold tracking-tight text-white sm:text-base">
+              ΜΕΔ
+            </span>
+          </Link>
+
+          {loggedIn === true ? (
+            <form action={logout} className="max-[380px]:hidden">
+              <button
+                type="submit"
+                className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-red-700"
+              >
+                Sign out
+              </button>
+            </form>
+          ) : loggedIn === false ? (
+            <Link
+              href="/admin/login"
+              className="rounded-lg border border-white/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white/85 transition hover:border-gold hover:text-gold max-[380px]:hidden"
+            >
+              Log in
+            </Link>
+          ) : null}
+        </div>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
           <Link
@@ -120,9 +157,9 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           </div>
 
           <Link
-            href="/events"
+            href="/calendar"
             className={`text-base font-bold tracking-tight transition hover:text-white ${
-              pathname.startsWith("/events") ? "text-white" : "text-white/85"
+              pathname.startsWith("/calendar") ? "text-white" : "text-white/85"
             }`}
           >
             Events
@@ -132,9 +169,9 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
         <div className="flex items-center gap-3">
           <Link
             href="/membership#register"
-            className="btn btn-gold !min-h-10 !px-4 !text-[0.72rem] max-[380px]:hidden"
+            className="btn btn-gold register-glow !rounded-xl !px-5 !text-base !font-bold !tracking-tight max-[380px]:hidden"
           >
-            Register for Recruitment
+            Register!
           </Link>
           <button
             type="button"
@@ -186,7 +223,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
             </Link>
           ))}
           <Link
-            href="/events"
+            href="/calendar"
             onClick={() => setOpen(false)}
             className="font-display text-3xl font-bold tracking-tight text-white transition hover:text-gold"
           >
@@ -195,9 +232,9 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           <Link
             href="/membership#register"
             onClick={() => setOpen(false)}
-            className="btn btn-gold mt-4"
+            className="btn btn-gold mt-4 !rounded-xl !text-base"
           >
-            Register for Recruitment
+            Register!
           </Link>
         </nav>
       </div>
