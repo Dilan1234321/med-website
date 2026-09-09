@@ -11,14 +11,6 @@ const familyLinks = [
   { href: "/alumni", label: "Alumni" },
 ];
 
-const links = [
-  { href: "/about", label: "About" },
-  { href: "/membership", label: "Recruitment" },
-  { href: "/events", label: "Events" },
-  { href: "/donate", label: "Donate" },
-  { href: "/contact", label: "Contact" },
-];
-
 export function Header({ transparent = false }: { transparent?: boolean }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -67,59 +59,68 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           </span>
         </Link>
 
-        <nav className="hidden lg:block" aria-label="Primary">
-          <div className="nav-glass relative flex items-center rounded-full border border-white/15 bg-white/10 px-2 py-1 shadow-[0_10px_30px_rgba(0,0,0,0.2)] backdrop-blur-xl">
-            {links.slice(0, 2).map((item) => (
-              <NavLink key={item.href} item={item} active={pathname.startsWith(item.href)} />
-            ))}
+        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+          <Link
+            href="/membership"
+            className={`text-base font-bold tracking-tight transition hover:text-white ${
+              pathname.startsWith("/membership") ? "text-white" : "text-white/85"
+            }`}
+          >
+            Recruitment
+          </Link>
 
-            <div
-              className="relative"
-              onMouseEnter={() => setFamilyOpen(true)}
-              onMouseLeave={() => setFamilyOpen(false)}
+          <div
+            className="relative"
+            onMouseEnter={() => setFamilyOpen(true)}
+            onMouseLeave={() => setFamilyOpen(false)}
+          >
+            <button
+              type="button"
+              className={`flex items-center gap-1.5 text-base font-bold tracking-tight transition hover:text-white ${
+                familyActive ? "text-white" : "text-white/85"
+              }`}
+              aria-expanded={familyOpen}
+              aria-haspopup="true"
             >
-              <button
-                type="button"
-                className={`flex items-center gap-2 rounded-full px-5 py-3 text-[0.8rem] font-medium tracking-wide text-white/80 transition hover:text-white ${
-                  familyActive ? "text-white" : ""
-                }`}
-                aria-expanded={familyOpen}
-                aria-haspopup="true"
+              The Family
+              <svg
+                viewBox="0 0 12 8"
+                className={`h-2.5 w-3.5 text-gold transition-transform duration-200 ${familyOpen ? "rotate-180" : ""}`}
+                aria-hidden
               >
-                The Family
-                <span
-                  className={`text-[0.65rem] text-gold transition ${familyOpen ? "rotate-180" : ""}`}
-                  aria-hidden
-                >
-                  ▾
-                </span>
-              </button>
-              <div
-                className={`absolute left-1/2 top-full z-50 min-w-[200px] -translate-x-1/2 pt-3 transition ${
-                  familyOpen
-                    ? "visible translate-y-0 opacity-100"
-                    : "invisible translate-y-2 opacity-0"
-                }`}
-              >
-                <ul className="overflow-hidden rounded-2xl border border-white/10 bg-[color:var(--maroon)]/95 py-2 shadow-xl backdrop-blur-xl">
-                  {familyLinks.map((item) => (
-                    <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className="block px-5 py-3 text-center font-display text-[0.75rem] font-bold tracking-tight text-white/90 transition hover:bg-white/5 hover:text-gold"
-                      >
-                        {item.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+                <path d="M1 1.5L6 6.5L11 1.5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <div
+              className={`absolute left-1/2 top-full z-50 min-w-[200px] -translate-x-1/2 pt-3 transition ${
+                familyOpen
+                  ? "visible translate-y-0 opacity-100"
+                  : "invisible translate-y-2 opacity-0"
+              }`}
+            >
+              <ul className="overflow-hidden rounded-2xl border border-white/10 bg-[color:var(--maroon)]/95 py-2 shadow-xl backdrop-blur-xl">
+                {familyLinks.map((item) => (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      className="block px-5 py-3 text-center font-display text-[0.75rem] font-bold tracking-tight text-white/90 transition hover:bg-white/5 hover:text-gold"
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-
-            {links.slice(2).map((item) => (
-              <NavLink key={item.href} item={item} active={pathname.startsWith(item.href)} />
-            ))}
           </div>
+
+          <Link
+            href="/events"
+            className={`text-base font-bold tracking-tight transition hover:text-white ${
+              pathname.startsWith("/events") ? "text-white" : "text-white/85"
+            }`}
+          >
+            Events
+          </Link>
         </nav>
 
         <div className="flex items-center gap-3">
@@ -158,16 +159,13 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
         }`}
       >
         <nav className="flex h-full flex-col items-center justify-evenly px-6 py-24">
-          {links.slice(0, 2).map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="font-display text-3xl font-bold tracking-tight text-white transition hover:text-gold"
-            >
-              {item.label}
-            </Link>
-          ))}
+          <Link
+            href="/membership"
+            onClick={() => setOpen(false)}
+            className="font-display text-3xl font-bold tracking-tight text-white transition hover:text-gold"
+          >
+            Recruitment
+          </Link>
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-gold">
             The Family
           </p>
@@ -181,22 +179,12 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
               {item.label}
             </Link>
           ))}
-          {links.slice(2).map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="font-display text-3xl font-bold tracking-tight text-white transition hover:text-gold"
-            >
-              {item.label}
-            </Link>
-          ))}
           <Link
-            href="/calendar"
+            href="/events"
             onClick={() => setOpen(false)}
             className="font-display text-3xl font-bold tracking-tight text-white transition hover:text-gold"
           >
-            Calendar
+            Events
           </Link>
           <Link
             href="/membership#register"
@@ -208,24 +196,5 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
         </nav>
       </div>
     </>
-  );
-}
-
-function NavLink({
-  item,
-  active,
-}: {
-  item: { href: string; label: string };
-  active: boolean;
-}) {
-  return (
-    <Link
-      href={item.href}
-      className={`rounded-full px-5 py-3 text-[0.8rem] font-medium tracking-wide transition hover:text-white ${
-        active ? "text-white" : "text-white/80"
-      }`}
-    >
-      {item.label}
-    </Link>
   );
 }

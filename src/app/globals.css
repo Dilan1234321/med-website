@@ -7,6 +7,11 @@
   --maroon-rich: #b01212;
   --gold: #c9a24a;
   --gold-soft: #e4c76b;
+  /* Primary chapter palette, pulled from @muepdelt.ut's own brand posts */
+  --maroon-pattern-base: #2b0913;
+  --maroon-pattern-stripe: #330a16;
+  --folder-cream: #f5ebc4;
+  --folder-cream-shadow: #e0d1a0;
   --ink: #1c0707;
   --ink-muted: #5c4a4a;
   --bg: #fffcec;
@@ -68,7 +73,13 @@ body {
   color: var(--ink);
   font-family: var(--font-sans), system-ui, sans-serif;
   line-height: 1.65;
-  overflow-x: hidden;
+  /* overflow-x: hidden here (rather than clip) implicitly computes
+     overflow-y to auto per the CSS Overflow spec, which — combined with
+     html/body being height-constrained to 100% above — turns body into
+     its own independently scrolling box instead of the normal document/
+     window scroll. That silently breaks any window-scroll-driven effect
+     (see FolderHero/ScrollHero). clip avoids the cross-axis default. */
+  overflow-x: clip;
 }
 
 a {
@@ -361,4 +372,15 @@ a {
   .admin-icon-button-danger {
     @apply border-maroon/30 text-maroon hover:bg-maroon/10;
   }
+}
+
+.pattern-maroon {
+  background-color: var(--maroon-pattern-base);
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--maroon-pattern-stripe) 0px,
+    var(--maroon-pattern-stripe) 2px,
+    transparent 2px,
+    transparent 36px
+  );
 }

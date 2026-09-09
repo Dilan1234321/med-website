@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { PersonCard } from "@/components/PersonCard";
-import { ScrollHero } from "@/components/ScrollHero";
+import { FolderHero } from "@/components/FolderHero";
 import { content, formatDate } from "@/lib/content";
 
 function RushMarquee() {
@@ -41,7 +41,7 @@ export default function HomePage() {
 
   return (
     <>
-      <ScrollHero />
+      <FolderHero />
 
       {/* President's welcome — medumich pattern */}
       <section className="relative bg-bg py-16 md:py-24">
