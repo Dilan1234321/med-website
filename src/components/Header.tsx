@@ -62,7 +62,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           : "border-b border-white/10 bg-[color:var(--nav-dark)] backdrop-blur-xl"
       }`}
     >
-      <div className="mx-auto flex h-[4.5rem] w-full max-w-[1280px] items-center justify-between gap-4 px-5 md:h-[5.25rem] md:px-10">
+      <div className="relative mx-auto flex h-[4.5rem] w-full max-w-[1280px] items-center justify-between gap-4 px-5 md:h-[5.25rem] md:px-10">
         <div className="flex min-w-0 items-center gap-3">
           <Link
             href="/"
@@ -102,7 +102,10 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           ) : null}
         </div>
 
-        <nav className="hidden items-center gap-8 lg:flex" aria-label="Primary">
+        <nav
+          className="hidden items-center gap-8 lg:absolute lg:left-1/2 lg:flex lg:-translate-x-1/2"
+          aria-label="Primary"
+        >
           <Link
             href="/membership"
             className={`text-base font-bold tracking-tight transition hover:text-white ${
@@ -155,21 +158,12 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
               </ul>
             </div>
           </div>
-
-          <Link
-            href="/calendar"
-            className={`text-base font-bold tracking-tight transition hover:text-white ${
-              pathname.startsWith("/calendar") ? "text-white" : "text-white/85"
-            }`}
-          >
-            Events
-          </Link>
         </nav>
 
         <div className="flex items-center gap-3">
           <Link
             href="/membership#register"
-            className="btn btn-gold register-glow !rounded-xl !px-5 !text-base !font-bold !tracking-tight max-[380px]:hidden"
+            className="btn btn-gold register-glow !rounded-xl !px-5 !text-base !font-bold !tracking-tight !text-white max-[380px]:hidden"
           >
             Register!
           </Link>
@@ -223,16 +217,9 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
             </Link>
           ))}
           <Link
-            href="/calendar"
-            onClick={() => setOpen(false)}
-            className="font-display text-3xl font-bold tracking-tight text-white transition hover:text-gold"
-          >
-            Events
-          </Link>
-          <Link
             href="/membership#register"
             onClick={() => setOpen(false)}
-            className="btn btn-gold mt-4 !rounded-xl !text-base"
+            className="btn btn-gold mt-4 !rounded-xl !text-base !text-white"
           >
             Register!
           </Link>

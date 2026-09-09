@@ -83,16 +83,19 @@ export function FolderHero() {
     return () => clearTimeout(timer);
   }, [hasLanded, reducedMotion, typedCount, typingDone]);
 
-  // Once typing is done, cascade ΜΕΔ in, then the button shortly after.
+  // Once typing is done, cascade ΜΕΔ in, then the button shortly after —
+  // paced slowly so the reveal reads as a deliberate, natural beat rather
+  // than everything popping in immediately after the last keystroke.
   useEffect(() => {
     if (!typingDone || reducedMotion) return;
-    const timer = setTimeout(() => setShowMed(true), 200);
+    const timer = setTimeout(() => setShowMed(true), 450);
     return () => clearTimeout(timer);
   }, [typingDone, reducedMotion]);
 
   useEffect(() => {
     if (!showMed || reducedMotion) return;
-    const timer = setTimeout(() => setShowButton(true), 280);
+    // Wait for ΜΕΔ's own fade-up (0.6s) to fully settle before the button follows.
+    const timer = setTimeout(() => setShowButton(true), 650);
     return () => clearTimeout(timer);
   }, [showMed, reducedMotion]);
 
@@ -189,7 +192,7 @@ export function FolderHero() {
         }
 
         .hero-fade-up {
-          animation: hero-fade-up 0.45s ease-out both;
+          animation: hero-fade-up 0.6s ease-out both;
         }
       `}</style>
 
@@ -247,7 +250,7 @@ export function FolderHero() {
           )}
 
           {showButton && (
-            <div className={reducedMotion ? "mt-7 flex justify-center" : "hero-fade-up mt-7 flex justify-center"} style={reducedMotion ? undefined : { animationDelay: "80ms" }}>
+            <div className={reducedMotion ? "mt-7 flex justify-center" : "hero-fade-up mt-7 flex justify-center"}>
               <Link
                 href="/membership#register"
                 className="register-glow inline-flex min-h-12 items-center justify-center rounded-xl bg-[color:var(--maroon)] px-8 text-sm font-bold tracking-wide text-white shadow-[0_10px_24px_rgba(28,7,7,0.3)] transition hover:bg-[color:var(--maroon-rich)]"

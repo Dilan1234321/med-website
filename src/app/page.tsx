@@ -20,12 +20,7 @@ export default function HomePage() {
       {/* President's welcome: medumich pattern */}
       <section className="relative bg-bg py-16 md:py-24">
         <div className="container-page">
-          <article className="card relative mx-auto max-w-4xl overflow-visible p-6 pt-10 md:p-10 md:pt-12">
-            <div className="absolute left-1/2 top-0 z-[1] -translate-x-1/2 -translate-y-1/2">
-              <span className="inline-flex rounded-full bg-maroon px-5 py-2 font-mono text-[0.65rem] uppercase tracking-[0.16em] text-[#f7f5ef]">
-                President&apos;s Welcome
-              </span>
-            </div>
+          <article className="card relative mx-auto max-w-4xl overflow-visible p-6 md:p-10">
             <div className="grid gap-8 md:grid-cols-[200px_1fr] md:items-start">
               <div className="relative mx-auto aspect-[3/4] w-44 overflow-hidden rounded-2xl md:mx-0 md:w-full">
                 {president.photo ? (
@@ -69,7 +64,7 @@ export default function HomePage() {
           <div className="flex flex-col items-start justify-between gap-4 md:flex-row md:items-end">
             <div>
               <h2 className="heading-display text-3xl text-maroon dark:text-gold md:text-4xl">
-                Upcoming at UT
+                Upcoming
               </h2>
             </div>
             <Link href="/membership" className="btn btn-primary">

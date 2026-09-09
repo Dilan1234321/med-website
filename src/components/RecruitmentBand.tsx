@@ -89,8 +89,8 @@ export function RecruitmentBand({ events }: { events: Event[] }) {
                   className="absolute left-0 top-1.5 h-3.5 w-3.5 rounded-full border-2 border-[#d4b96a] bg-[#12203a] md:left-1/2 md:-translate-x-1/2"
                   aria-hidden
                 />
-                <div className="md:mx-auto md:w-fit md:max-w-md md:text-center">
-                  <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-[#d4b96a]">
+                <div className="md:mx-auto md:w-fit md:max-w-md md:pt-6 md:text-center">
+                  <span className="font-mono text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#d4b96a]">
                     {formatDate(event.date)}
                   </span>
                   <p className="mt-1 font-display text-lg font-semibold text-[#f4ecd8]">
