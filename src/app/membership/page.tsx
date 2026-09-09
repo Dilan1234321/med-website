@@ -81,7 +81,7 @@ export default function MembershipPage() {
           </div>
           <div className="relative mx-auto hidden h-64 w-44 rotate-[7deg] md:block">
             <div className="absolute inset-0 rounded-md border-[10px] border-gold bg-cover bg-center shadow-xl"
-              style={{ backgroundImage: "url('/images/chapter-4.jpg')" }}
+              style={{ backgroundImage: "url('/images/chapter-3.jpg')" }}
             />
           </div>
         </div>

@@ -7,7 +7,11 @@
     "hometown": "",
     "photo": "/images/family/aidan-nolan.jpg",
     "linkedin": "",
-    "skills": ["Meeting and talking with new people", "Studying", "Working out"]
+    "skills": [
+      "Meeting and talking with new people",
+      "Studying",
+      "Working out"
+    ]
   },
   {
     "name": "Caitlin Rubin",
@@ -17,7 +21,11 @@
     "hometown": "",
     "photo": "/images/family/caitlin-rubin.jpg",
     "linkedin": "https://www.linkedin.com/in/caitlin-rubin-a932613a5",
-    "skills": ["Teamwork", "Compassionate", "Caring"]
+    "skills": [
+      "Teamwork",
+      "Compassionate",
+      "Caring"
+    ]
   },
   {
     "name": "Makenzie Eakins",
@@ -27,7 +35,11 @@
     "hometown": "",
     "photo": "/images/family/makenzie-eakins.jpg",
     "linkedin": "https://www.linkedin.com/in/makenzie-eakins-2640b5331",
-    "skills": ["Multitasking", "Teamwork (student athlete)", "Attention to detail"]
+    "skills": [
+      "Multitasking",
+      "Teamwork (student athlete)",
+      "Attention to detail"
+    ]
   },
   {
     "name": "Marco Caponi",
@@ -37,7 +49,11 @@
     "hometown": "",
     "photo": "/images/leadership/marco-caponi.jpg",
     "linkedin": "https://www.linkedin.com/in/marco-caponi",
-    "skills": ["Patient advocacy", "Teamwork", "Versatile"]
+    "skills": [
+      "Patient advocacy",
+      "Teamwork",
+      "Versatile"
+    ]
   },
   {
     "name": "Amelia Smith",
@@ -47,7 +63,11 @@
     "hometown": "",
     "photo": "/images/family/amelia-smith.jpg",
     "linkedin": "https://www.linkedin.com/in/amelia-smith-413b603aa",
-    "skills": ["Compassion", "Teamwork", "Critical thinking"]
+    "skills": [
+      "Compassion",
+      "Teamwork",
+      "Critical thinking"
+    ]
   },
   {
     "name": "Andrew Dabbs",
@@ -57,7 +77,11 @@
     "hometown": "",
     "photo": "/images/leadership/andrew-dabbs.jpg",
     "linkedin": "https://www.linkedin.com/in/andrew-dabbs-612801352",
-    "skills": ["Communication", "Committed", "Driven"]
+    "skills": [
+      "Communication",
+      "Committed",
+      "Driven"
+    ]
   },
   {
     "name": "Kayla Haufler",
@@ -67,7 +91,11 @@
     "hometown": "",
     "photo": "/images/leadership/kayla-haufler.jpg",
     "linkedin": "",
-    "skills": ["Tutoring and helping others", "Self-motivation", "Time management"]
+    "skills": [
+      "Tutoring and helping others",
+      "Self-motivation",
+      "Time management"
+    ]
   },
   {
     "name": "Stefani Andrews",
@@ -77,7 +105,11 @@
     "hometown": "",
     "photo": "/images/leadership/stefani-andrews.jpg",
     "linkedin": "https://www.linkedin.com/in/stefani-andrews-332ba8379",
-    "skills": ["Communication", "Leadership", "Organization"]
+    "skills": [
+      "Communication",
+      "Leadership",
+      "Organization"
+    ]
   },
   {
     "name": "Anna Nolan",
@@ -87,7 +119,11 @@
     "hometown": "",
     "photo": "/images/leadership/anna-nolan.jpg",
     "linkedin": "https://www.linkedin.com/in/anna-nolan-b7ab93384",
-    "skills": ["Social media & digital content creation", "Communication", "Organization and time management"]
+    "skills": [
+      "Social media & digital content creation",
+      "Communication",
+      "Organization and time management"
+    ]
   },
   {
     "name": "Ruhi Shah",
@@ -97,7 +133,11 @@
     "hometown": "",
     "photo": "/images/family/ruhi-shah.jpg",
     "linkedin": "https://www.linkedin.com/in/ruhishah1",
-    "skills": ["Disciplined", "Organized", "Communicative"]
+    "skills": [
+      "Disciplined",
+      "Organized",
+      "Communicative"
+    ]
   },
   {
     "name": "Ariana Kumar",
@@ -107,7 +147,11 @@
     "hometown": "",
     "photo": "/images/leadership/ariana-kumar.jpg",
     "linkedin": "https://www.linkedin.com/in/arianakumar",
-    "skills": ["Organization", "Leadership", "Public speaking"]
+    "skills": [
+      "Organization",
+      "Leadership",
+      "Public speaking"
+    ]
   },
   {
     "name": "Chris Mushik",
@@ -117,7 +161,11 @@
     "hometown": "",
     "photo": "/images/family/chris-mushik.jpg",
     "linkedin": "https://www.linkedin.com/in/christophermushik",
-    "skills": ["Communication", "Reliability", "Teamwork"]
+    "skills": [
+      "Communication",
+      "Reliability",
+      "Teamwork"
+    ]
   },
   {
     "name": "Ellana Keaveny",
@@ -127,7 +175,11 @@
     "hometown": "",
     "photo": "/images/family/ellana-keaveny.jpg",
     "linkedin": "https://www.linkedin.com/in/ellana-keaveny-434153298",
-    "skills": ["Leadership", "Organization", "Accountability"]
+    "skills": [
+      "Leadership",
+      "Organization",
+      "Accountability"
+    ]
   },
   {
     "name": "Robert Mansfield",
@@ -137,7 +189,11 @@
     "hometown": "",
     "photo": "/images/leadership/robert-mansfield.jpg",
     "linkedin": "https://www.linkedin.com/in/robertjmansfield",
-    "skills": ["Time management", "Public speaking", "Event planning"]
+    "skills": [
+      "Time management",
+      "Public speaking",
+      "Event planning"
+    ]
   },
   {
     "name": "William Moore",
@@ -147,7 +203,11 @@
     "hometown": "",
     "photo": "/images/family/william-moore.jpg",
     "linkedin": "https://www.linkedin.com/in/will-moore-5870a2356",
-    "skills": ["Empathetic", "Hard-working", "Organized"]
+    "skills": [
+      "Empathetic",
+      "Hard-working",
+      "Organized"
+    ]
   },
   {
     "name": "Zachary Strong",
@@ -155,9 +215,12 @@
     "major": "Biology",
     "pathway": "MD",
     "hometown": "",
-    "photo": "",
+    "photo": "/images/family/zachary-strong.jpg",
     "linkedin": "https://www.linkedin.com/in/zachary-strong-2b8b8a257",
-    "skills": ["Early acceptance program at Lake Erie College of Osteopathic Medicine", "Aspiring dermatologist"]
+    "skills": [
+      "Early acceptance program at Lake Erie College of Osteopathic Medicine",
+      "Aspiring dermatologist"
+    ]
   },
   {
     "name": "Jayden Pedro",
@@ -165,9 +228,13 @@
     "major": "Allied Health, Concentration in Physical Therapy",
     "pathway": "Physical Therapy",
     "hometown": "",
-    "photo": "",
+    "photo": "/images/family/jayden-pedro.jpg",
     "linkedin": "https://www.linkedin.com/in/jayden-pedro-60aaa53b6",
-    "skills": ["Empathy", "Critical thinking", "Strong communication"]
+    "skills": [
+      "Empathy",
+      "Critical thinking",
+      "Strong communication"
+    ]
   },
   {
     "name": "Hailey Santos",
@@ -175,9 +242,13 @@
     "major": "Allied Health, Medical Sciences",
     "pathway": "PA",
     "hometown": "",
-    "photo": "",
+    "photo": "/images/family/hailey-santos.jpg",
     "linkedin": "https://www.linkedin.com/in/hailey-santos",
-    "skills": ["Communication", "Time management", "Efficiency"]
+    "skills": [
+      "Communication",
+      "Time management",
+      "Efficiency"
+    ]
   },
   {
     "name": "Shreya Mehta",
@@ -187,7 +258,11 @@
     "hometown": "",
     "photo": "/images/leadership/shreya-mehta.jpg",
     "linkedin": "https://www.linkedin.com/in/shreya-mehta-563407346",
-    "skills": ["Communication", "Teamwork", "Problem solving"]
+    "skills": [
+      "Communication",
+      "Teamwork",
+      "Problem solving"
+    ]
   },
   {
     "name": "Austin Leibowitz",
@@ -197,7 +272,11 @@
     "hometown": "",
     "photo": "/images/leadership/austin-leibowitz.jpg",
     "linkedin": "https://www.linkedin.com/in/austinleibowitz",
-    "skills": ["Communication", "Organization", "Leadership"]
+    "skills": [
+      "Communication",
+      "Organization",
+      "Leadership"
+    ]
   },
   {
     "name": "Crystal Malithuruthel",
@@ -207,7 +286,11 @@
     "hometown": "",
     "photo": "/images/leadership/crystal-malithuruthel.jpg",
     "linkedin": "http://www.linkedin.com/in/crystalmalithuruthel",
-    "skills": ["Communication", "Research", "Leadership"]
+    "skills": [
+      "Communication",
+      "Research",
+      "Leadership"
+    ]
   },
   {
     "name": "Sydney Nguyen",
@@ -217,7 +300,11 @@
     "hometown": "",
     "photo": "/images/leadership/sydney-nguyen.jpg",
     "linkedin": "",
-    "skills": ["Socializing", "Compassionate", "Communicating"]
+    "skills": [
+      "Socializing",
+      "Compassionate",
+      "Communicating"
+    ]
   },
   {
     "name": "Mara Mass",
@@ -225,9 +312,13 @@
     "major": "Biology, Spanish",
     "pathway": "",
     "hometown": "",
-    "photo": "",
+    "photo": "/images/family/mara-mass.jpg",
     "linkedin": "https://www.linkedin.com/in/mara-mass-7697923b7",
-    "skills": ["Communication", "Empathy", "Hard work"]
+    "skills": [
+      "Communication",
+      "Empathy",
+      "Hard work"
+    ]
   },
   {
     "name": "Ariana Gomes",
@@ -235,9 +326,13 @@
     "major": "Biology",
     "pathway": "Veterinary",
     "hometown": "",
-    "photo": "",
+    "photo": "/images/family/ariana-gomes.jpg",
     "linkedin": "https://www.linkedin.com/in/ariana-gomes-13a409408",
-    "skills": ["Following instruction", "Communicating", "Animal handling"]
+    "skills": [
+      "Following instruction",
+      "Communicating",
+      "Animal handling"
+    ]
   },
   {
     "name": "Alexa von Hohenstein",
@@ -247,6 +342,10 @@
     "hometown": "",
     "photo": "",
     "linkedin": "https://www.linkedin.com/in/alexa-von-912498415",
-    "skills": ["Communication", "Teamwork", "Creativity"]
+    "skills": [
+      "Communication",
+      "Teamwork",
+      "Creativity"
+    ]
   }
 ]
