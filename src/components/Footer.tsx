@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Crest } from "./Crest";
 import { content } from "@/lib/content";
 
 export function Footer() {
@@ -53,7 +53,7 @@ export function Footer() {
 
       <div className="px-5 py-12">
         <div className="mb-5 flex items-center justify-center gap-3">
-          <Crest className="h-8 w-8 text-gold" />
+          <Image src="/images/logo.png" alt="Mu Epsilon Delta crest" width={32} height={32} className="h-8 w-8" />
           <span className="font-display text-base font-semibold tracking-tight">
             Mu Epsilon Delta
           </span>

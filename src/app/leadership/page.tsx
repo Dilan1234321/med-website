@@ -129,9 +129,6 @@ export default function LeadershipPage() {
             Celebrating graduating brothers heading to medical school, PA
             programs, and healthcare careers.
           </p>
-          <Link href="/alumni" className="btn btn-gold mt-8">
-            View alumni outcomes
-          </Link>
         </div>
       </section>
     </>

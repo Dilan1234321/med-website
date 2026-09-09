@@ -34,10 +34,11 @@
     }
   ],
   "president": {
-    "name": "Alex Rivera",
+    "name": "Bridget Klaus",
     "role": "President",
-    "year": "Class of 2027",
-    "email": "president@med.ut.edu",
+    "year": "",
+    "email": "",
+    "photo": "/images/leadership/bridget-klaus.jpg",
     "quote": "Witnessing our brothers flourish at UT—and contribute to a growing Tampa Bay healthcare community—is what MED is for. This chapter celebrates your wins, guides you through the hard semesters, and asks you to lead with service. Whatever stage you’re at on the pre-health path, I hope you find belonging and mentorship here. Reach out anytime."
   }
 }

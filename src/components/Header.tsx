@@ -1,14 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Crest } from "./Crest";
 
 const familyLinks = [
   { href: "/leadership", label: "Officers" },
   { href: "/family", label: "The Brothers" },
-  { href: "/alumni", label: "Alumni" },
 ];
 
 export function Header({ transparent = false }: { transparent?: boolean }) {
@@ -52,7 +51,14 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
           className="flex items-center gap-3 text-white"
           onClick={() => setOpen(false)}
         >
-          <Crest className="h-11 w-11 text-gold md:h-12 md:w-12" title="Mu Epsilon Delta" />
+          <Image
+            src="/images/logo.png"
+            alt="Mu Epsilon Delta crest"
+            width={48}
+            height={48}
+            className="h-11 w-11 md:h-12 md:w-12"
+            priority
+          />
           <span className="hidden h-8 w-px bg-white/35 sm:block" aria-hidden />
           <span className="font-display text-base font-semibold tracking-tight text-white sm:text-base">
             ΜΕΔ
