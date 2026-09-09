@@ -7,6 +7,7 @@ const NAV_ITEMS = [
   { href: "/admin/site", label: "Site Settings" },
   { href: "/admin/leadership", label: "Exec Board" },
   { href: "/admin/events", label: "Events" },
+  { href: "/admin/recruitment", label: "Recruitment" },
 ];
 
 export function AdminShell({ children }: { children: React.ReactNode }) {
