@@ -11,19 +11,19 @@ export const metadata: Metadata = {
 const whyCards = [
   {
     title: "Professional development & service",
-    image: "/images/hero-2.jpg",
+    image: "/images/chapter-2.jpg",
   },
   {
     title: "Academic support",
-    image: "/images/hero-about.jpg",
+    image: "/images/chapter-3.jpg",
   },
   {
     title: "Inclusivity",
-    image: "/images/hero-recruit.jpg",
+    image: "/images/chapter-4.jpg",
   },
   {
     title: "Community",
-    image: "/images/hero-1.jpg",
+    image: "/images/chapter-1.jpg",
   },
 ];
 
@@ -35,7 +35,7 @@ export default function AboutPage() {
       <section className="page-hero min-h-[70vh]">
         <div
           className="page-hero-bg"
-          style={{ backgroundImage: "url('/images/hero-tampa-1.jpg')" }}
+          style={{ backgroundImage: "url('/images/chapter-5.jpg')" }}
         />
         <div className="page-hero-overlay" />
         <div className="relative z-10 container-page flex min-h-[70vh] flex-col items-center justify-center pb-16 pt-36 text-center md:pb-24">
@@ -55,7 +55,7 @@ export default function AboutPage() {
       <section className="relative overflow-hidden py-20 md:py-28">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hero-about.jpg')" }}
+          style={{ backgroundImage: "url('/images/chapter-3.jpg')" }}
         />
         <div className="absolute inset-0 bg-maroon-deep/75" />
         <div className="relative z-10 container-page max-w-4xl text-white">
@@ -186,12 +186,12 @@ export default function AboutPage() {
           </h2>
           <div className="mt-10 columns-2 gap-3 md:columns-3">
             {[
-              { src: "/images/hero-1.jpg", h: "aspect-[3/4]" },
-              { src: "/images/hero-recruit.jpg", h: "aspect-square" },
-              { src: "/images/hero-about.jpg", h: "aspect-[4/5]" },
-              { src: "/images/hero-2.jpg", h: "aspect-[3/4]" },
-              { src: "/images/hero-tampa-1.jpg", h: "aspect-square" },
-              { src: "/images/hero-about.jpg", h: "aspect-[4/3]" },
+              { src: "/images/chapter-1.jpg", h: "aspect-[3/4]" },
+              { src: "/images/chapter-4.jpg", h: "aspect-square" },
+              { src: "/images/chapter-3.jpg", h: "aspect-[4/5]" },
+              { src: "/images/chapter-2.jpg", h: "aspect-[3/4]" },
+              { src: "/images/chapter-5.jpg", h: "aspect-square" },
+              { src: "/images/chapter-3.jpg", h: "aspect-[4/3]" },
             ].map((item, i) => (
               <figure
                 key={`${item.src}-${i}`}

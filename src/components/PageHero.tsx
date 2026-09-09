@@ -2,7 +2,7 @@ export function PageHero({
   eyebrow,
   title,
   description,
-  image = "/images/hero-about.jpg",
+  image = "/images/chapter-3.jpg",
 }: {
   eyebrow?: string;
   title: string;

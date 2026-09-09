@@ -17,7 +17,7 @@ export default function AccomplishmentsPage() {
         eyebrow="Legacy"
         title="Accomplishments"
         description="Awards, milestones, and chapter memory."
-        image="/images/hero-1.jpg"
+        image="/images/chapter-1.jpg"
       />
 
       <section className="container-page py-16 md:py-20">

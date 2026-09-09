@@ -51,7 +51,7 @@ export default function MembershipPage() {
         <div className="relative min-h-[320px] overflow-hidden lg:min-h-full">
           <div
             className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: "url('/images/hero-recruit.jpg')" }}
+            style={{ backgroundImage: "url('/images/chapter-4.jpg')" }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-maroon-deep/70 via-maroon/20 to-transparent" />
           <p className="absolute bottom-8 right-8 font-display text-[clamp(4rem,14vw,9rem)] font-semibold leading-none text-white/25">
@@ -65,7 +65,7 @@ export default function MembershipPage() {
         <div className="container-page grid items-center gap-10 md:grid-cols-[1fr_1.1fr_1fr]">
           <div className="relative mx-auto hidden h-64 w-44 rotate-[-8deg] md:block">
             <div className="absolute inset-0 rounded-md border-[10px] border-gold bg-cover bg-center shadow-xl"
-              style={{ backgroundImage: "url('/images/hero-1.jpg')" }}
+              style={{ backgroundImage: "url('/images/chapter-1.jpg')" }}
             />
           </div>
           <div className="text-center">
@@ -81,7 +81,7 @@ export default function MembershipPage() {
           </div>
           <div className="relative mx-auto hidden h-64 w-44 rotate-[7deg] md:block">
             <div className="absolute inset-0 rounded-md border-[10px] border-gold bg-cover bg-center shadow-xl"
-              style={{ backgroundImage: "url('/images/hero-recruit.jpg')" }}
+              style={{ backgroundImage: "url('/images/chapter-4.jpg')" }}
             />
           </div>
         </div>
@@ -193,7 +193,7 @@ export default function MembershipPage() {
       <section className="relative overflow-hidden py-16 md:py-24">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hero-2.jpg')" }}
+          style={{ backgroundImage: "url('/images/chapter-2.jpg')" }}
         />
         <div className="absolute inset-0 bg-maroon-deep/80" />
         <div className="relative z-10 container-page text-white">
@@ -239,7 +239,7 @@ export default function MembershipPage() {
       <section className="relative overflow-hidden py-16 md:py-24">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hero-about.jpg')" }}
+          style={{ backgroundImage: "url('/images/chapter-3.jpg')" }}
         />
         <div className="absolute inset-0 bg-maroon-deep/70" />
         <div className="relative z-10 container-page text-white">

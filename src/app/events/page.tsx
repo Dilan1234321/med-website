@@ -16,7 +16,7 @@ export default function EventsPage() {
       <section className="page-hero min-h-[55vh]">
         <div
           className="page-hero-bg"
-          style={{ backgroundImage: "url('/images/hero-2.jpg')" }}
+          style={{ backgroundImage: "url('/images/chapter-2.jpg')" }}
         />
         <div className="page-hero-overlay" />
         <div className="relative z-10 container-page flex min-h-[55vh] flex-col justify-end pb-14 pt-36">
@@ -72,7 +72,7 @@ export default function EventsPage() {
       <section className="relative overflow-hidden py-16 md:py-24">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hero-recruit.jpg')" }}
+          style={{ backgroundImage: "url('/images/chapter-4.jpg')" }}
         />
         <div className="absolute inset-0 bg-maroon-deep/80" />
         <div className="relative z-10 container-page text-white">

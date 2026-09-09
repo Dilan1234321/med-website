@@ -218,5 +218,35 @@
     "photo": "/images/leadership/sydney-nguyen.jpg",
     "linkedin": "",
     "skills": ["Socializing", "Compassionate", "Communicating"]
+  },
+  {
+    "name": "Mara Mass",
+    "year": "Class of 2029",
+    "major": "Biology, Spanish",
+    "pathway": "",
+    "hometown": "",
+    "photo": "",
+    "linkedin": "https://www.linkedin.com/in/mara-mass-7697923b7",
+    "skills": ["Communication", "Empathy", "Hard work"]
+  },
+  {
+    "name": "Ariana Gomes",
+    "year": "Class of 2029",
+    "major": "Biology",
+    "pathway": "Veterinary",
+    "hometown": "",
+    "photo": "",
+    "linkedin": "https://www.linkedin.com/in/ariana-gomes-13a409408",
+    "skills": ["Following instruction", "Communicating", "Animal handling"]
+  },
+  {
+    "name": "Alexa von Hohenstein",
+    "year": "Spring 2029",
+    "major": "Biology",
+    "pathway": "MD",
+    "hometown": "",
+    "photo": "",
+    "linkedin": "https://www.linkedin.com/in/alexa-von-912498415",
+    "skills": ["Communication", "Teamwork", "Creativity"]
   }
 ]

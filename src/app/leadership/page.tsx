@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description: "Executive board of Mu Epsilon Delta at the University of Tampa.",
 };
 
-const FALLBACK_PHOTO = "/images/hero-1.jpg";
+const FALLBACK_PHOTO = "/images/chapter-1.jpg";
 
 export default function LeadershipPage() {
   const { leadership, site } = content;
@@ -19,7 +19,7 @@ export default function LeadershipPage() {
       <section className="page-hero min-h-[52vh]">
         <div
           className="page-hero-bg"
-          style={{ backgroundImage: "url('/images/hero-1.jpg')" }}
+          style={{ backgroundImage: "url('/images/chapter-1.jpg')" }}
         />
         <div className="page-hero-overlay" />
         <div className="relative z-10 container-page flex min-h-[52vh] flex-col justify-end pb-14 pt-36">
@@ -121,7 +121,7 @@ export default function LeadershipPage() {
           <div className="relative aspect-[4/3] overflow-hidden rounded-[18px]">
             <div
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: "url('/images/hero-recruit.jpg')" }}
+              style={{ backgroundImage: "url('/images/chapter-4.jpg')" }}
             />
             <div className="absolute inset-0 bg-maroon-deep/35" />
           </div>
@@ -131,7 +131,7 @@ export default function LeadershipPage() {
       <section className="relative overflow-hidden py-24 md:py-32">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hero-tampa-1.jpg')" }}
+          style={{ backgroundImage: "url('/images/chapter-5.jpg')" }}
         />
         <div className="absolute inset-0 bg-maroon-deep/70" />
         <div className="relative z-10 container-page text-center text-white">

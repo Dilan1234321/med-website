@@ -18,7 +18,7 @@ export default function CalendarPage() {
       <section className="page-hero min-h-[48vh]">
         <div
           className="page-hero-bg"
-          style={{ backgroundImage: "url('/images/hero-about.jpg')" }}
+          style={{ backgroundImage: "url('/images/chapter-3.jpg')" }}
         />
         <div className="page-hero-overlay" />
         <div className="relative z-10 container-page flex min-h-[48vh] items-end pb-14 pt-36">
@@ -91,7 +91,7 @@ export default function CalendarPage() {
       <section className="relative overflow-hidden py-20 md:py-28">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hero-2.jpg')" }}
+          style={{ backgroundImage: "url('/images/chapter-2.jpg')" }}
         />
         <div className="absolute inset-0 bg-maroon-deep/75" />
         <div className="relative z-10 container-page text-center text-white">

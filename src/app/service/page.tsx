@@ -19,7 +19,7 @@ export default function ServicePage() {
         eyebrow="Service"
         title="Service & Philanthropy"
         description={service.intro}
-        image="/images/hero-about.jpg"
+        image="/images/chapter-3.jpg"
       />
 
       <section className="border-b border-line">
@@ -68,7 +68,7 @@ export default function ServicePage() {
           <div className="relative aspect-[4/3] overflow-hidden rounded-[18px]">
             <div
               className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: "url('/images/hero-tampa-1.jpg')" }}
+              style={{ backgroundImage: "url('/images/chapter-5.jpg')" }}
             />
             <div className="absolute inset-0 bg-maroon-deep/40" />
             <p className="absolute bottom-6 left-6 right-6 font-display text-2xl font-semibold text-white md:text-3xl">
@@ -110,7 +110,7 @@ export default function ServicePage() {
       <section className="relative overflow-hidden py-20 md:py-28">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hero-2.jpg')" }}
+          style={{ backgroundImage: "url('/images/chapter-2.jpg')" }}
         />
         <div className="absolute inset-0 bg-maroon-deep/75" />
         <div className="relative z-10 container-page text-center text-white">

@@ -16,7 +16,7 @@ export default function FamilyPage() {
       <section className="relative overflow-hidden py-28 md:py-36">
         <div
           className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/hero-2.jpg')" }}
+          style={{ backgroundImage: "url('/images/chapter-2.jpg')" }}
         />
         <div className="absolute inset-0 bg-maroon/75" />
         <div className="relative z-10 container-page text-white">

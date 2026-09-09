@@ -9,14 +9,14 @@ export const metadata: Metadata = {
 };
 
 const lifePhotos = [
-  { src: "/images/hero-1.jpg", caption: "Campus community", aspect: "aspect-[3/4]" },
-  { src: "/images/hero-recruit.jpg", caption: "Recruitment season", aspect: "aspect-square" },
-  { src: "/images/hero-about.jpg", caption: "Chapter gathering", aspect: "aspect-[4/5]" },
-  { src: "/images/hero-2.jpg", caption: "Professional programming", aspect: "aspect-[3/4]" },
-  { src: "/images/hero-tampa-1.jpg", caption: "Tampa Bay service", aspect: "aspect-square" },
-  { src: "/images/hero-about.jpg", caption: "Brotherhood moments", aspect: "aspect-[4/3]" },
-  { src: "/images/hero-1.jpg", caption: "Study cohorts", aspect: "aspect-[3/4]" },
-  { src: "/images/hero-recruit.jpg", caption: "Recruitment events", aspect: "aspect-[4/5]" },
+  { src: "/images/chapter-1.jpg", caption: "Campus community", aspect: "aspect-[3/4]" },
+  { src: "/images/chapter-4.jpg", caption: "Recruitment season", aspect: "aspect-square" },
+  { src: "/images/chapter-3.jpg", caption: "Chapter gathering", aspect: "aspect-[4/5]" },
+  { src: "/images/chapter-2.jpg", caption: "Professional programming", aspect: "aspect-[3/4]" },
+  { src: "/images/chapter-5.jpg", caption: "Tampa Bay service", aspect: "aspect-square" },
+  { src: "/images/chapter-3.jpg", caption: "Brotherhood moments", aspect: "aspect-[4/3]" },
+  { src: "/images/chapter-1.jpg", caption: "Study cohorts", aspect: "aspect-[3/4]" },
+  { src: "/images/chapter-4.jpg", caption: "Recruitment events", aspect: "aspect-[4/5]" },
 ];
 
 export default function GalleryPage() {
@@ -28,7 +28,7 @@ export default function GalleryPage() {
         eyebrow="Gallery"
         title="Chapter Life"
         description={gallery.note}
-        image="/images/hero-recruit.jpg"
+        image="/images/chapter-4.jpg"
       />
 
       {/* AKPsi masonry “life” gallery */}

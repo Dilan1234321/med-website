@@ -16,7 +16,7 @@ export default function ContactPage() {
       <section className="page-hero min-h-[48vh]">
         <div
           className="page-hero-bg"
-          style={{ backgroundImage: "url('/images/hero-about.jpg')" }}
+          style={{ backgroundImage: "url('/images/chapter-3.jpg')" }}
         />
         <div className="page-hero-overlay" />
         <div className="relative z-10 container-page flex min-h-[48vh] items-end pb-14 pt-36">

@@ -15,7 +15,7 @@ export default function DonatePage() {
     <div className="lg:flex lg:min-h-screen">
       {/* Sticky photo stack — AKPsi donate pattern */}
       <aside className="relative hidden min-h-screen w-[42%] flex-col gap-3 bg-maroon-deep p-4 lg:sticky lg:top-0 lg:flex lg:h-screen lg:overflow-hidden">
-        {["/images/hero-1.jpg", "/images/hero-recruit.jpg", "/images/hero-about.jpg"].map(
+        {["/images/chapter-1.jpg", "/images/chapter-4.jpg", "/images/chapter-3.jpg"].map(
           (src, i) => (
             <div
               key={src}
