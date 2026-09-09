@@ -1,66 +1,152 @@
 [
   {
-    "name": "Taylor Brooks",
-    "year": "Class of 2027",
-    "major": "Molecular Biology",
+    "name": "Aidan Nolan",
+    "year": "Class of 2029",
+    "major": "",
+    "pathway": "Physical Therapy",
+    "hometown": "",
+    "photo": "/images/family/aidan-nolan.jpg",
+    "linkedin": "",
+    "skills": ["Meeting and talking with new people", "Studying", "Working out"]
+  },
+  {
+    "name": "Caitlin Rubin",
+    "year": "Class of 2028",
+    "major": "Allied Health, Medical Sciences",
+    "pathway": "PA",
+    "hometown": "",
+    "photo": "/images/family/caitlin-rubin.jpg",
+    "linkedin": "https://www.linkedin.com/in/caitlin-rubin-a932613a5",
+    "skills": ["Teamwork", "Compassionate", "Caring"]
+  },
+  {
+    "name": "Makenzie Eakins",
+    "year": "Class of 2028",
+    "major": "Biology",
     "pathway": "MD",
-    "hometown": "Chicago, IL",
-    "photo": ""
+    "hometown": "",
+    "photo": "/images/family/makenzie-eakins.jpg",
+    "linkedin": "https://www.linkedin.com/in/makenzie-eakins-2640b5331",
+    "skills": ["Multitasking", "Teamwork (student athlete)", "Attention to detail"]
   },
   {
-    "name": "Avery Kim",
-    "year": "Class of 2028",
-    "major": "Biomedical Engineering",
-    "pathway": "MD/PhD",
-    "hometown": "Seattle, WA",
-    "photo": ""
+    "name": "Marco Caponi",
+    "year": "Senior",
+    "major": "Biology",
+    "pathway": "MD",
+    "hometown": "",
+    "photo": "/images/leadership/marco-caponi.jpg",
+    "linkedin": "https://www.linkedin.com/in/marco-caponi",
+    "skills": ["Patient advocacy", "Teamwork", "Versatile"]
   },
   {
-    "name": "Cameron Diaz",
+    "name": "Amelia Smith",
+    "year": "Class of 2027",
+    "major": "Allied Health, Medical Sciences",
+    "pathway": "PA",
+    "hometown": "",
+    "photo": "/images/family/amelia-smith.jpg",
+    "linkedin": "https://www.linkedin.com/in/amelia-smith-413b603aa",
+    "skills": ["Compassion", "Teamwork", "Critical thinking"]
+  },
+  {
+    "name": "Andrew Dabbs",
     "year": "Class of 2028",
+    "major": "Allied Health, Medical Sciences (Chemistry minor)",
+    "pathway": "Dental",
+    "hometown": "",
+    "photo": "/images/leadership/andrew-dabbs.jpg",
+    "linkedin": "https://www.linkedin.com/in/andrew-dabbs-612801352",
+    "skills": ["Communication", "Committed", "Driven"]
+  },
+  {
+    "name": "Kayla Haufler",
+    "year": "Class of 2028",
+    "major": "Biology (Physics minor)",
+    "pathway": "MD",
+    "hometown": "",
+    "photo": "/images/leadership/kayla-haufler.jpg",
+    "linkedin": "",
+    "skills": ["Tutoring and helping others", "Self-motivation", "Time management"]
+  },
+  {
+    "name": "Stefani Andrews",
+    "year": "Sophomore",
+    "major": "Biology",
+    "pathway": "MD",
+    "hometown": "",
+    "photo": "/images/leadership/stefani-andrews.jpg",
+    "linkedin": "https://www.linkedin.com/in/stefani-andrews-332ba8379",
+    "skills": ["Communication", "Leadership", "Organization"]
+  },
+  {
+    "name": "Anna Nolan",
+    "year": "Class of 2029",
+    "major": "Biology",
+    "pathway": "Dental",
+    "hometown": "",
+    "photo": "/images/leadership/anna-nolan.jpg",
+    "linkedin": "https://www.linkedin.com/in/anna-nolan-b7ab93384",
+    "skills": ["Social media & digital content creation", "Communication", "Organization and time management"]
+  },
+  {
+    "name": "Ruhi Shah",
+    "year": "Class of 2029",
+    "major": "Biology",
+    "pathway": "MD",
+    "hometown": "",
+    "photo": "/images/family/ruhi-shah.jpg",
+    "linkedin": "https://www.linkedin.com/in/ruhishah1",
+    "skills": ["Disciplined", "Organized", "Communicative"]
+  },
+  {
+    "name": "Ariana Kumar",
+    "year": "Class of 2028",
+    "major": "Allied Health (Leadership Studies minor)",
+    "pathway": "",
+    "hometown": "",
+    "photo": "/images/leadership/ariana-kumar.jpg",
+    "linkedin": "https://www.linkedin.com/in/arianakumar",
+    "skills": ["Organization", "Leadership", "Public speaking"]
+  },
+  {
+    "name": "Chris Mushik",
+    "year": "Class of 2029",
     "major": "Psychology",
     "pathway": "PA",
-    "hometown": "Austin, TX",
-    "photo": ""
+    "hometown": "",
+    "photo": "/images/family/chris-mushik.jpg",
+    "linkedin": "https://www.linkedin.com/in/christophermushik",
+    "skills": ["Communication", "Reliability", "Teamwork"]
   },
   {
-    "name": "Quinn Hassan",
-    "year": "Class of 2029",
-    "major": "Chemistry",
-    "pathway": "Dental",
-    "hometown": "Detroit, MI",
-    "photo": ""
-  },
-  {
-    "name": "Jamie Ortega",
-    "year": "Class of 2029",
-    "major": "Neuroscience",
-    "pathway": "MD",
-    "hometown": "Miami, FL",
-    "photo": ""
-  },
-  {
-    "name": "Reese Thompson",
+    "name": "Ellana Keaveny",
     "year": "Class of 2027",
-    "major": "Public Health",
-    "pathway": "MD",
-    "hometown": "Atlanta, GA",
-    "photo": ""
+    "major": "Allied Health (Exercise Science & Sports Studies minor)",
+    "pathway": "Physical Therapy",
+    "hometown": "",
+    "photo": "/images/family/ellana-keaveny.jpg",
+    "linkedin": "https://www.linkedin.com/in/ellana-keaveny-434153298",
+    "skills": ["Leadership", "Organization", "Accountability"]
   },
   {
-    "name": "Parker Singh",
-    "year": "Class of 2030",
-    "major": "Biology",
-    "pathway": "Pharmacy",
-    "hometown": "Columbus, OH",
-    "photo": ""
-  },
-  {
-    "name": "Drew Alvarez",
+    "name": "Robert Mansfield",
     "year": "Class of 2028",
-    "major": "Human Biology",
-    "pathway": "DO",
-    "hometown": "Phoenix, AZ",
-    "photo": ""
+    "major": "Biology",
+    "pathway": "",
+    "hometown": "",
+    "photo": "/images/leadership/robert-mansfield.jpg",
+    "linkedin": "https://www.linkedin.com/in/robertjmansfield",
+    "skills": ["Time management", "Public speaking", "Event planning"]
+  },
+  {
+    "name": "William Moore",
+    "year": "Class of 2029",
+    "major": "Biology",
+    "pathway": "MD",
+    "hometown": "",
+    "photo": "/images/family/william-moore.jpg",
+    "linkedin": "https://www.linkedin.com/in/will-moore-5870a2356",
+    "skills": ["Empathetic", "Hard-working", "Organized"]
   }
 ]
