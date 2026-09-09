@@ -148,5 +148,75 @@
     "photo": "/images/family/william-moore.jpg",
     "linkedin": "https://www.linkedin.com/in/will-moore-5870a2356",
     "skills": ["Empathetic", "Hard-working", "Organized"]
+  },
+  {
+    "name": "Zachary Strong",
+    "year": "Class of 2028",
+    "major": "Biology",
+    "pathway": "MD",
+    "hometown": "",
+    "photo": "",
+    "linkedin": "https://www.linkedin.com/in/zachary-strong-2b8b8a257",
+    "skills": ["Early acceptance program at Lake Erie College of Osteopathic Medicine", "Aspiring dermatologist"]
+  },
+  {
+    "name": "Jayden Pedro",
+    "year": "Class of 2029",
+    "major": "Allied Health, Concentration in Physical Therapy",
+    "pathway": "Physical Therapy",
+    "hometown": "",
+    "photo": "",
+    "linkedin": "https://www.linkedin.com/in/jayden-pedro-60aaa53b6",
+    "skills": ["Empathy", "Critical thinking", "Strong communication"]
+  },
+  {
+    "name": "Hailey Santos",
+    "year": "Class of 2028",
+    "major": "Allied Health, Medical Sciences",
+    "pathway": "PA",
+    "hometown": "",
+    "photo": "",
+    "linkedin": "https://www.linkedin.com/in/hailey-santos",
+    "skills": ["Communication", "Time management", "Efficiency"]
+  },
+  {
+    "name": "Shreya Mehta",
+    "year": "Class of 2027",
+    "major": "Biology",
+    "pathway": "",
+    "hometown": "",
+    "photo": "/images/leadership/shreya-mehta.jpg",
+    "linkedin": "https://www.linkedin.com/in/shreya-mehta-563407346",
+    "skills": ["Communication", "Teamwork", "Problem solving"]
+  },
+  {
+    "name": "Austin Leibowitz",
+    "year": "Class of 2027",
+    "major": "Allied Health, Medical Sciences (Exercise Science minor)",
+    "pathway": "PA",
+    "hometown": "",
+    "photo": "/images/leadership/austin-leibowitz.jpg",
+    "linkedin": "https://www.linkedin.com/in/austinleibowitz",
+    "skills": ["Communication", "Organization", "Leadership"]
+  },
+  {
+    "name": "Crystal Malithuruthel",
+    "year": "Class of 2028",
+    "major": "Biology (Chemistry minor)",
+    "pathway": "",
+    "hometown": "",
+    "photo": "/images/leadership/crystal-malithuruthel.jpg",
+    "linkedin": "http://www.linkedin.com/in/crystalmalithuruthel",
+    "skills": ["Communication", "Research", "Leadership"]
+  },
+  {
+    "name": "Sydney Nguyen",
+    "year": "Class of 2028",
+    "major": "Biology (Chemistry minor)",
+    "pathway": "Dental",
+    "hometown": "",
+    "photo": "/images/leadership/sydney-nguyen.jpg",
+    "linkedin": "",
+    "skills": ["Socializing", "Compassionate", "Communicating"]
   }
 ]
