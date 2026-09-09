@@ -134,7 +134,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
             href="/membership#register"
             className="btn btn-gold !min-h-10 !px-4 !text-[0.72rem] max-[380px]:hidden"
           >
-            Register for Rush
+            Register for Recruitment
           </Link>
           <button
             type="button"
@@ -197,7 +197,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
             onClick={() => setOpen(false)}
             className="btn btn-gold mt-4"
           >
-            Register for Rush
+            Register for Recruitment
           </Link>
         </nav>
       </div>

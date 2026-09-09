@@ -28,49 +28,76 @@
   ],
   "upcoming": [
     {
-      "id": "rush-info-1",
-      "title": "Fall Rush Info Session",
+      "id": "info-session-1",
+      "title": "Information Session #1",
       "date": "2026-09-08",
-      "time": "7:00 PM",
-      "location": "Vaughan Center, Room 210",
+      "time": "9:00 \u2013 10:00 PM",
+      "location": "Location TBD",
       "category": "professional",
-      "summary": "Overview of membership expectations, programming, and the application timeline."
+      "summary": "Please attend 1 of the 2 information sessions."
     },
     {
-      "id": "mcat-kickoff",
-      "title": "MCAT Study Cohort Kickoff",
+      "id": "info-session-2",
+      "title": "Information Session #2",
+      "date": "2026-09-09",
+      "time": "9:00 \u2013 10:00 PM",
+      "location": "Location TBD",
+      "category": "professional",
+      "summary": "Please attend 1 of the 2 information sessions."
+    },
+    {
+      "id": "presentation-night",
+      "title": "Presentation Night",
+      "date": "2026-09-14",
+      "time": "9:00 \u2013 11:00 PM",
+      "location": "Location TBD",
+      "category": "professional",
+      "summary": "Explained during sessions. Current members and potential members attend."
+    },
+    {
+      "id": "field-day",
+      "title": "Field Day",
       "date": "2026-09-15",
-      "time": "6:00 PM",
-      "location": "Plant Hall \u00b7 Science Wing",
-      "category": "academic",
-      "summary": "Form study teams, set a 12-week schedule, and review resources."
+      "time": "9:00 \u2013 11:00 PM",
+      "location": "Location TBD",
+      "category": "community",
+      "summary": "Explained during sessions. Current members and potential members attend."
     },
     {
-      "id": "blood-drive",
-      "title": "Campus Blood Drive",
-      "date": "2026-09-22",
-      "time": "10:00 AM \u2013 4:00 PM",
-      "location": "Ferman Center for the Arts",
-      "category": "service",
-      "summary": "Partner drive with the regional blood center; members staff registration and donor support."
+      "id": "er-escape-room",
+      "title": "ER Escape Room",
+      "date": "2026-09-16",
+      "time": "9:00 \u2013 10:30 PM",
+      "location": "Location TBD",
+      "category": "community",
+      "summary": "Explained during sessions. Current members and potential members attend."
     },
     {
-      "id": "speaker-cardio",
-      "title": "Speaker Series: Cardiology Pathways",
-      "date": "2026-10-02",
-      "time": "7:30 PM",
-      "location": "Plant Hall Auditorium",
-      "category": "professional",
-      "summary": "Physician panel on training paths, lifestyle, and early clinical exposure."
-    },
-    {
-      "id": "alumni-hours",
-      "title": "Alumni Mentorship Office Hours",
-      "date": "2026-10-10",
-      "time": "5:00 PM",
-      "location": "Virtual",
+      "id": "speed-dating-1",
+      "title": "Speed Dating 1",
+      "date": "2026-09-17",
+      "time": "6:00 \u2013 9:00 PM",
+      "location": "Location TBD",
       "category": "mentorship",
-      "summary": "Drop-in advising with alumni in MS1\u2013MS4 and residency."
+      "summary": "New members will be given either the 17th or 18th to attend."
+    },
+    {
+      "id": "speed-dating-2",
+      "title": "Speed Dating 2",
+      "date": "2026-09-18",
+      "time": "5:00 \u2013 7:00 PM",
+      "location": "Location TBD",
+      "category": "mentorship",
+      "summary": "New members will be given either the 17th or 18th to attend."
+    },
+    {
+      "id": "closed-event",
+      "title": "Closed Event",
+      "date": "2026-09-19",
+      "time": "5:00 \u2013 7:00 PM",
+      "location": "Invite via email",
+      "category": "community",
+      "summary": "Invited to attend event via email."
     }
   ],
   "past": [

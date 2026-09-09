@@ -257,7 +257,7 @@ export default function AboutPage() {
               Instagram
             </a>
             <Link href="/membership#register" className="btn btn-secondary">
-              Register for Rush
+              Register for Recruitment
             </Link>
             <Link href="/contact" className="btn btn-secondary">
               Contact

@@ -5,7 +5,7 @@ import { RushForm } from "@/components/Forms";
 import { content } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "Rush",
+  title: "Recruitment",
   description:
     "Fall rush at Mu Epsilon Delta — University of Tampa. Timeline, eligibility, FAQ, and interest form.",
 };
@@ -15,7 +15,7 @@ export default function MembershipPage() {
 
   return (
     <>
-      {/* Split rush hero — medumich Rush pattern */}
+      {/* Split recruitment hero — medumich Rush pattern */}
       <section className="grid min-h-[78vh] bg-bg lg:grid-cols-2">
         <div className="flex flex-col justify-center px-6 py-28 md:px-12 lg:px-16 lg:py-32">
           <p className="font-mono text-xs uppercase tracking-[0.2em] text-maroon dark:text-gold">
@@ -25,7 +25,7 @@ export default function MembershipPage() {
             MED Fall
           </p>
           <h1 className="heading-display mt-2 text-[clamp(3.5rem,12vw,7rem)] leading-[0.9] text-maroon dark:text-gold">
-            2026 Rush
+            2026 Recruitment
           </h1>
           <div className="mt-8 max-w-sm border-t border-line pt-6">
             <p className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-maroon dark:text-gold">
@@ -75,7 +75,7 @@ export default function MembershipPage() {
               Excellence is a tradition
             </h2>
             <p className="mx-auto mt-4 max-w-md text-ink-muted">
-              Rush at UT is structured, transparent, and built around fit for
+              Recruitment at UT is structured, transparent, and built around fit for
               healthcare pathways—not parties.
             </p>
           </div>
@@ -189,7 +189,7 @@ export default function MembershipPage() {
         </div>
       </section>
 
-      {/* Rush schedule calendar cards */}
+      {/* Recruitment schedule calendar cards */}
       <section className="relative overflow-hidden py-16 md:py-24">
         <div
           className="absolute inset-0 bg-cover bg-center"
@@ -203,7 +203,7 @@ export default function MembershipPage() {
                 {membership.season}
               </p>
               <h2 className="heading-display mt-2 text-3xl md:text-5xl">
-                Rush schedule
+                Recruitment schedule
               </h2>
             </div>
             <p className="font-mono text-sm uppercase tracking-[0.14em] text-gold">
@@ -322,7 +322,7 @@ export default function MembershipPage() {
             <p className="section-label">Interest form</p>
             <div className="accent-line-left" />
             <h2 className="heading-display text-3xl text-maroon dark:text-gold md:text-4xl">
-              Register for Rush
+              Register for Recruitment
             </h2>
             <p className="mt-4 max-w-md text-ink-muted">
               Get info-session dates and application links for {membership.season}{" "}

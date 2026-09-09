@@ -48,7 +48,7 @@ export default function CalendarPage() {
                 Event types
               </Link>
               <Link href="/membership#register" className="btn btn-primary">
-                Register to Rush
+                Register for Recruitment
               </Link>
             </div>
           </div>

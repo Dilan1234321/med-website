@@ -5,7 +5,7 @@ import { FolderHero } from "@/components/FolderHero";
 import { content, formatDate } from "@/lib/content";
 
 function RushMarquee() {
-  const rush = Array.from({ length: 14 }, () => "RUSH");
+  const rush = Array.from({ length: 14 }, () => "RECRUITMENT");
   const med = Array.from({ length: 12 }, () => "MED");
 
   return (

@@ -126,7 +126,7 @@ export function RushForm() {
         className="btn btn-primary"
         disabled={status === "loading"}
       >
-        {status === "loading" ? "Submitting…" : "Register to Rush"}
+        {status === "loading" ? "Submitting…" : "Register for Recruitment"}
       </button>
       {message ? (
         <p

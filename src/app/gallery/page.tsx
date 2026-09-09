@@ -16,7 +16,7 @@ const lifePhotos = [
   { src: "/images/hero-tampa-1.jpg", caption: "Tampa Bay service", aspect: "aspect-square" },
   { src: "/images/hero-about.jpg", caption: "Brotherhood moments", aspect: "aspect-[4/3]" },
   { src: "/images/hero-1.jpg", caption: "Study cohorts", aspect: "aspect-[3/4]" },
-  { src: "/images/hero-recruit.jpg", caption: "Rush events", aspect: "aspect-[4/5]" },
+  { src: "/images/hero-recruit.jpg", caption: "Recruitment events", aspect: "aspect-[4/5]" },
 ];
 
 export default function GalleryPage() {
@@ -99,7 +99,7 @@ export default function GalleryPage() {
           Be part of the next album
         </h2>
         <Link href="/membership#register" className="btn btn-gold mt-8">
-          Register for Rush
+          Register for Recruitment
         </Link>
       </section>
     </>

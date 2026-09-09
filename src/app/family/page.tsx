@@ -127,7 +127,7 @@ export default function FamilyPage() {
           Ready to join the family?
         </h2>
         <Link href="/membership#register" className="btn btn-gold mt-8">
-          Register for Rush
+          Register for Recruitment
         </Link>
       </section>
     </>
