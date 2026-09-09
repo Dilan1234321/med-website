@@ -7,14 +7,7 @@ export const metadata: Metadata = {
   description: "Executive board of Mu Epsilon Delta at the University of Tampa.",
 };
 
-const officerImages = [
-  "/images/hero-1.jpg",
-  "/images/hero-recruit.jpg",
-  "/images/hero-about.jpg",
-  "/images/hero-2.jpg",
-  "/images/hero-tampa-1.jpg",
-  "/images/hero-1.jpg",
-];
+const FALLBACK_PHOTO = "/images/hero-1.jpg";
 
 export default function LeadershipPage() {
   const { leadership, site } = content;
@@ -52,13 +45,13 @@ export default function LeadershipPage() {
           </h2>
 
           <div className="mt-14 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {leadership.map((person, i) => (
+            {leadership.map((person) => (
               <article key={person.name} className="group text-center">
                 <div className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-[18px] border border-line shadow-[var(--shadow)]">
                   <div
                     className="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-[1.04]"
                     style={{
-                      backgroundImage: `url('${officerImages[i % officerImages.length]}')`,
+                      backgroundImage: `url('${person.photo || FALLBACK_PHOTO}')`,
                     }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-maroon-deep via-maroon-deep/20 to-transparent" />
