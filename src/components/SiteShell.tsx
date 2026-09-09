@@ -3,8 +3,6 @@
 import { usePathname } from "next/navigation";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
-import { ThemeProvider } from "./ThemeProvider";
-import { ThemeToggle } from "./ThemeToggle";
 
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -12,11 +10,11 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
   const isAdmin = pathname?.startsWith("/admin") ?? false;
 
   if (isAdmin) {
-    return <ThemeProvider>{children}</ThemeProvider>;
+    return <>{children}</>;
   }
 
   return (
-    <ThemeProvider>
+    <>
       <a href="#main" className="skip-link">
         Skip to content
       </a>
@@ -25,7 +23,6 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
         {children}
       </main>
       <Footer />
-      <ThemeToggle />
-    </ThemeProvider>
+    </>
   );
 }

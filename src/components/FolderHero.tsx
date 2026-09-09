@@ -37,10 +37,10 @@ export function FolderHero() {
             boxShadow: "0 24px 50px rgba(0,0,0,0.4)",
           }}
         >
-          <p className="font-display text-[clamp(1.9rem,6vw,3.2rem)] italic leading-[1.05] text-[color:var(--maroon-pattern-base)]">
+          <p className="font-display text-[clamp(1.9rem,6vw,3.2rem)] leading-[1.05] text-[color:var(--maroon-pattern-base)]">
             The Future of
           </p>
-          <p className="font-display text-[clamp(1.9rem,6vw,3.2rem)] italic leading-[1.05] text-[color:var(--maroon-pattern-base)]">
+          <p className="font-display text-[clamp(1.9rem,6vw,3.2rem)] leading-[1.05] text-[color:var(--maroon-pattern-base)]">
             Medicine
           </p>
           <p
