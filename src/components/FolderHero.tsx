@@ -70,6 +70,16 @@ export function FolderHero() {
     }
   }
 
+  // Safety net: the CTA is the whole point of this hero, so it must never
+  // be permanently stuck behind a dropped animationend event (backgrounded
+  // tabs, browser throttling, etc. can all cause that). If landing hasn't
+  // fired shortly after the drop animation should have finished, force it.
+  useEffect(() => {
+    if (reducedMotion || hasLanded) return;
+    const timer = setTimeout(() => setHasLanded(true), 1500);
+    return () => clearTimeout(timer);
+  }, [reducedMotion, hasLanded]);
+
   // Typewriter: reveal one more character every tick until the headline is complete.
   useEffect(() => {
     if (!hasLanded || reducedMotion || typingDone) return;
@@ -180,19 +190,23 @@ export function FolderHero() {
           animation: hero-cursor-blink 0.9s step-end infinite;
         }
 
-        @keyframes hero-fade-up {
+        @keyframes hero-pop-in {
           0% {
             opacity: 0;
-            transform: translateY(10px);
+            transform: translateY(10px) scale(0.82);
+          }
+          65% {
+            opacity: 1;
+            transform: translateY(0) scale(1.06);
           }
           100% {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
           }
         }
 
         .hero-fade-up {
-          animation: hero-fade-up 0.6s ease-out both;
+          animation: hero-pop-in 0.55s cubic-bezier(0.22, 0.61, 0.36, 1) both;
         }
       `}</style>
 

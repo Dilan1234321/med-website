@@ -43,7 +43,7 @@ export function FamilyRoster({ family }: { family: FamilyMember[] }) {
             {visible.map((person) => (
               <article
                 key={person.name}
-                className="group relative overflow-hidden rounded-[18px]"
+                className="group relative overflow-hidden rounded-[18px] shadow-[var(--shadow-card)] transition-shadow duration-300 ease-out hover:shadow-[var(--shadow-card-hover)]"
               >
                 <div className="aspect-[3/4] bg-gradient-to-br from-maroon-rich to-maroon-deep">
                   {person.photo ? (

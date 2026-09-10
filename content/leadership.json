@@ -7,7 +7,14 @@
     "focus": "",
     "email": "",
     "photo": "/images/leadership/bridget-klaus.jpg",
-    "linkedin": ""
+    "linkedin": "",
+    "description": "As President, Bridget leads the chapter's overall vision and operations, working alongside the executive board to keep Mu Epsilon Delta focused on scholarship, service, and brotherhood.",
+    "highlights": [
+      "Sets the chapter's strategic direction and goals each semester",
+      "Chairs executive board meetings and keeps every committee aligned",
+      "Represents Mu Epsilon Delta to University of Tampa administration and MED National",
+      "Mentors officers and steps in wherever the chapter needs support"
+    ]
   },
   {
     "name": "Ariana Kumar",
@@ -17,7 +24,14 @@
     "focus": "",
     "email": "",
     "photo": "/images/leadership/ariana-kumar.jpg",
-    "linkedin": "https://www.linkedin.com/in/arianakumar"
+    "linkedin": "https://www.linkedin.com/in/arianakumar",
+    "description": "As Vice President of Chapter Operations, Ariana keeps the day-to-day machinery of the chapter running, from meeting logistics to internal processes.",
+    "highlights": [
+      "Coordinates chapter meeting schedules, agendas, and logistics",
+      "Oversees internal record-keeping and chapter operating procedures",
+      "Works with committee chairs to keep initiatives on track",
+      "Steps in for the President when needed"
+    ]
   },
   {
     "name": "Janki Shah",
@@ -27,7 +41,14 @@
     "focus": "",
     "email": "",
     "photo": "/images/leadership/janki-shah.jpg",
-    "linkedin": ""
+    "linkedin": "",
+    "description": "As Vice President of Membership and Development, Janki leads recruitment efforts and shapes the new-member experience from first interest through initiation.",
+    "highlights": [
+      "Plans and runs formal recruitment events each semester",
+      "Guides new members through onboarding and new-member education",
+      "Tracks membership standing and chapter growth",
+      "Builds programming that develops brothers' leadership skills over time"
+    ]
   },
   {
     "name": "Kayla Haufler",
@@ -37,7 +58,14 @@
     "focus": "",
     "email": "",
     "photo": "/images/leadership/kayla-haufler.jpg",
-    "linkedin": ""
+    "linkedin": "",
+    "description": "As VP of Internal Relations, Kayla focuses on the culture and cohesion of the chapter, making sure brothers stay connected to each other.",
+    "highlights": [
+      "Plans brotherhood events and social programming",
+      "Serves as a point of contact for member concerns and conflict resolution",
+      "Helps new members integrate into chapter culture",
+      "Gathers feedback to strengthen chapter morale"
+    ]
   },
   {
     "name": "Alexa Janca",
@@ -47,7 +75,14 @@
     "focus": "",
     "email": "",
     "photo": "/images/leadership/alexa-janca.jpg",
-    "linkedin": ""
+    "linkedin": "",
+    "description": "As Chair of Event Coordination, Alexa plans and executes the chapter's events, from recruitment nights to service outings.",
+    "highlights": [
+      "Books venues and manages logistics for chapter events",
+      "Builds event timelines and coordinates volunteers",
+      "Works with other chairs to align event calendars",
+      "Handles day-of execution so events run smoothly"
+    ]
   },
   {
     "name": "Marco Caponi",
@@ -57,7 +92,14 @@
     "focus": "",
     "email": "",
     "photo": "/images/leadership/marco-caponi.jpg",
-    "linkedin": "https://www.linkedin.com/in/marco-caponi"
+    "linkedin": "https://www.linkedin.com/in/marco-caponi",
+    "description": "As Chair of Clinical and Shadowing, Marco connects brothers with hands-on healthcare experience through shadowing and clinical opportunities.",
+    "highlights": [
+      "Builds relationships with local providers and clinics for shadowing placements",
+      "Shares clinical and shadowing opportunities with the chapter",
+      "Advises brothers on gaining patient-facing experience for their applications",
+      "Tracks brothers' clinical hours and experiences"
+    ]
   },
   {
     "name": "Crystal Malithuruthel",
@@ -67,7 +109,14 @@
     "focus": "",
     "email": "",
     "photo": "/images/leadership/crystal-malithuruthel.jpg",
-    "linkedin": ""
+    "linkedin": "",
+    "description": "As Chair of Research, Crystal helps brothers find and pursue research opportunities that strengthen their pre-health applications.",
+    "highlights": [
+      "Curates and shares research opportunities across UT and Tampa Bay",
+      "Connects brothers with faculty and lab openings",
+      "Hosts info sessions on getting started in research",
+      "Supports brothers through the research application process"
+    ]
   },
   {
     "name": "Andrew Dabbs",
@@ -77,7 +126,14 @@
     "focus": "",
     "email": "",
     "photo": "/images/leadership/andrew-dabbs.jpg",
-    "linkedin": "https://www.linkedin.com/in/andrew-dabbs-612801352"
+    "linkedin": "https://www.linkedin.com/in/andrew-dabbs-612801352",
+    "description": "As Volunteer Chair, Andrew organizes the chapter's service initiatives and keeps brothers engaged with the Tampa Bay community.",
+    "highlights": [
+      "Plans and staffs regular volunteer events",
+      "Partners with local organizations to source service opportunities",
+      "Tracks chapter service hours",
+      "Encourages consistent, meaningful volunteer engagement"
+    ]
   },
   {
     "name": "Stefani Andrews",
@@ -87,7 +143,14 @@
     "focus": "",
     "email": "",
     "photo": "/images/leadership/stefani-andrews.jpg",
-    "linkedin": "https://www.linkedin.com/in/stefani-andrews-332ba8379"
+    "linkedin": "https://www.linkedin.com/in/stefani-andrews-332ba8379",
+    "description": "As VP of Outreach and External Relations, Stefani builds the chapter's relationships beyond campus, from partner organizations to the broader healthcare community.",
+    "highlights": [
+      "Cultivates partnerships with outside organizations and healthcare professionals",
+      "Represents the chapter at external events and conferences",
+      "Coordinates with MED National on chapter initiatives",
+      "Identifies new outreach and collaboration opportunities"
+    ]
   },
   {
     "name": "Robert Mansfield",
@@ -97,7 +160,14 @@
     "focus": "",
     "email": "",
     "photo": "/images/leadership/robert-mansfield.jpg",
-    "linkedin": "https://www.linkedin.com/in/robertjmansfield"
+    "linkedin": "https://www.linkedin.com/in/robertjmansfield",
+    "description": "As Street Team Project Leader, Robert leads the chapter's on-campus outreach efforts, spreading the word about MED and recruitment.",
+    "highlights": [
+      "Organizes tabling and on-campus promotional events",
+      "Leads a team of brothers in outreach initiatives",
+      "Coordinates flyering and campus visibility campaigns",
+      "Tracks engagement from outreach efforts"
+    ]
   },
   {
     "name": "Anna Nolan",
@@ -107,7 +177,14 @@
     "focus": "",
     "email": "",
     "photo": "/images/leadership/anna-nolan.jpg",
-    "linkedin": "https://www.linkedin.com/in/anna-nolan-b7ab93384"
+    "linkedin": "https://www.linkedin.com/in/anna-nolan-b7ab93384",
+    "description": "As Chair of Brand Relations, Anna manages the chapter's public image and content, from social media to visual identity.",
+    "highlights": [
+      "Runs the chapter's social media presence and content calendar",
+      "Designs graphics and promotional materials for events",
+      "Keeps the chapter's brand consistent across platforms",
+      "Highlights brothers' achievements publicly"
+    ]
   },
   {
     "name": "Austin Leibowitz",
@@ -117,7 +194,14 @@
     "focus": "",
     "email": "",
     "photo": "/images/leadership/austin-leibowitz.jpg",
-    "linkedin": ""
+    "linkedin": "",
+    "description": "As VP of Communications, Austin oversees how information flows across the chapter, from internal updates to outward-facing messaging.",
+    "highlights": [
+      "Sends chapter-wide updates and announcements",
+      "Oversees the Chair of Communications and messaging strategy",
+      "Coordinates communication between committees",
+      "Ensures brothers stay informed on deadlines and events"
+    ]
   },
   {
     "name": "Carla Sales",
@@ -127,7 +211,14 @@
     "focus": "",
     "email": "",
     "photo": "/images/leadership/carla-sales.jpg",
-    "linkedin": ""
+    "linkedin": "",
+    "description": "As Chair of Communications, Carla supports day-to-day messaging and keeps brothers up to date on chapter happenings.",
+    "highlights": [
+      "Drafts and distributes weekly chapter updates",
+      "Manages group communication channels",
+      "Assists with event announcements and reminders",
+      "Works with the VP of Communications on messaging strategy"
+    ]
   },
   {
     "name": "Shreya Mehta",
@@ -137,7 +228,14 @@
     "focus": "",
     "email": "",
     "photo": "/images/leadership/shreya-mehta.jpg",
-    "linkedin": ""
+    "linkedin": "",
+    "description": "As VP of Finance, Shreya manages the chapter's budget and dues, keeping MED financially healthy and transparent.",
+    "highlights": [
+      "Manages the chapter budget and tracks expenses",
+      "Collects and processes member dues",
+      "Handles reimbursements for chapter purchases",
+      "Reports on the chapter's financial standing to the executive board"
+    ]
   },
   {
     "name": "Sydney Nguyen",
@@ -147,7 +245,14 @@
     "focus": "",
     "email": "",
     "photo": "/images/leadership/sydney-nguyen.jpg",
-    "linkedin": ""
+    "linkedin": "",
+    "description": "As Chair of Philanthropy, Sydney leads fundraising and awareness efforts for Gift of Life Bone Marrow Registry, MED's national philanthropy partner.",
+    "highlights": [
+      "Plans fundraising events and donor drives",
+      "Educates the chapter on Gift of Life's mission",
+      "Tracks philanthropy participation and funds raised",
+      "Coordinates with Gift of Life on registry events"
+    ]
   },
   {
     "name": "Dilan Kochhar",
@@ -157,6 +262,13 @@
     "focus": "",
     "email": "",
     "photo": "/images/leadership/dilan-kochhar.jpg",
-    "linkedin": "https://www.linkedin.com/in/dilan-k"
+    "linkedin": "https://www.linkedin.com/in/dilan-k",
+    "description": "As Student Government Representative, Dilan is the chapter's liaison to UT Student Government, keeping MED connected and in good standing on campus.",
+    "highlights": [
+      "Represents MED at Student Government meetings and votes",
+      "Keeps the chapter informed on Student Government policies and funding",
+      "Advocates for the chapter's interests on campus",
+      "Ensures MED stays compliant with Student Government requirements"
+    ]
   }
 ]

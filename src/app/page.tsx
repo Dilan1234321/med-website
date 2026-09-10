@@ -20,6 +20,9 @@ export default function HomePage() {
       {/* President's welcome: medumich pattern */}
       <section className="relative bg-bg py-16 md:py-24">
         <div className="container-page">
+          <h2 className="heading-display mx-auto mb-10 max-w-4xl text-center text-3xl italic text-maroon dark:text-gold md:text-4xl">
+            A Message From Our President
+          </h2>
           <article className="card relative mx-auto max-w-4xl overflow-visible p-6 md:p-10">
             <div className="grid gap-8 md:grid-cols-[200px_1fr] md:items-start">
               <div className="relative mx-auto aspect-[3/4] w-44 overflow-hidden rounded-2xl md:mx-0 md:w-full">

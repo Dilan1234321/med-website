@@ -21,30 +21,13 @@ export default function MembershipPage() {
           <p className="font-display text-2xl font-semibold tracking-tight text-maroon dark:text-gold md:text-3xl">
             MED Fall
           </p>
-          <h1 className="heading-display mt-2 text-[clamp(3.5rem,12vw,7rem)] leading-[0.95] text-maroon dark:text-gold">
+          <h1 className="heading-display mt-2 text-[clamp(3rem,7vw,5.5rem)] leading-[0.95] text-maroon dark:text-gold">
             2026 Recruitment
           </h1>
           <div className="mt-8 max-w-md border-t border-line pt-6">
-            <p className="font-display text-lg font-semibold uppercase tracking-[0.08em] text-maroon dark:text-gold">
-              Dates
-            </p>
-            <ul className="mt-4 space-y-4 font-mono text-base text-ink-muted md:text-lg">
-              {membership.timeline.map((step) => (
-                <li key={step.step}>
-                  <span className="text-lg font-bold text-maroon dark:text-gold md:text-xl">
-                    {step.date}
-                  </span>
-                  {" · "}
-                  {step.title}
-                </li>
-              ))}
-            </ul>
-            <a
-              href="#register"
-              className="mt-6 inline-flex font-mono text-xs uppercase tracking-[0.14em] text-maroon underline-offset-4 hover:underline dark:text-gold"
-            >
-              Register for Recruitment →
-            </a>
+            <Link href="/#recruitment-schedule" className="btn btn-primary">
+              See Recruitment Events
+            </Link>
           </div>
         </div>
         <div className="relative min-h-[320px] overflow-hidden lg:min-h-full">
@@ -61,106 +44,58 @@ export default function MembershipPage() {
 
       {/* Polaroid excellence: AKPsi recruitment */}
       <section className="overflow-hidden bg-bg-muted py-16 md:py-24">
-        <div className="container-page grid items-center gap-10 md:grid-cols-[1fr_1.1fr_1fr]">
-          <div className="relative mx-auto hidden h-64 w-44 rotate-[-8deg] md:block">
-            <div className="absolute inset-0 rounded-md border-[10px] border-gold bg-cover bg-center shadow-xl"
+        <div className="container-page grid items-center gap-10 md:grid-cols-2">
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-lg overflow-hidden rounded-[24px] border-[10px] border-gold shadow-xl">
+            <div
+              className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: "url('/images/chapter-1.jpg')" }}
             />
           </div>
-          <div className="text-center">
-            <h2 className="heading-display text-3xl text-maroon dark:text-gold md:text-4xl">
+          <div className="text-center md:text-left">
+            <h2 className="heading-display text-4xl text-maroon dark:text-gold md:text-6xl">
               Beyond a brotherhood
             </h2>
-            <p className="mx-auto mt-4 max-w-md text-ink-muted">
+            <p className="mx-auto mt-6 max-w-md text-lg text-ink-muted md:mx-0">
               Recruitment at UT is structured, transparent, and built around fit for
               healthcare pathways, not parties.
             </p>
           </div>
-          <div className="relative mx-auto hidden h-64 w-44 rotate-[7deg] md:block">
-            <div className="absolute inset-0 rounded-md border-[10px] border-gold bg-cover bg-center shadow-xl"
+        </div>
+      </section>
+
+      {/* Eligibility */}
+      <section className="bg-bg py-16 md:py-24">
+        <div className="container-page grid gap-12 md:grid-cols-2 md:items-center">
+          <div>
+            <h2 className="heading-display text-4xl text-maroon dark:text-gold md:text-5xl">
+              Eligibility
+            </h2>
+            <div className="mt-10 space-y-8">
+              {membership.eligibility.slice(0, 3).map((item, i) => (
+                <div key={item} className="border-t border-line pt-5">
+                  <p className="font-display text-3xl font-semibold text-gold">
+                    {String(i + 1).padStart(2, "0")}
+                  </p>
+                  <p className="mt-3 text-sm leading-relaxed text-ink-muted md:text-base">
+                    {item}
+                  </p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-10 flex flex-wrap gap-3">
+              <a href="#register" className="btn btn-primary">
+                Register for Recruitment →
+              </a>
+              <Link href="/about" className="btn btn-ghost">
+                About the chapter
+              </Link>
+            </div>
+          </div>
+          <div className="relative mx-auto aspect-[4/5] w-full max-w-md overflow-hidden rounded-[24px] border border-line shadow-xl md:max-w-none">
+            <div
+              className="absolute inset-0 bg-cover bg-center"
               style={{ backgroundImage: "url('/images/chapter-3.jpg')" }}
             />
-          </div>
-        </div>
-      </section>
-
-      {/* Vertical pillars timeline: AKPsi */}
-      <section className="bg-bg py-16 md:py-24">
-        <div className="container-page">
-          <h2 className="heading-display text-center text-3xl text-maroon dark:text-gold md:text-4xl">
-            Three pillars of membership
-          </h2>
-          <div className="relative mx-auto mt-14 max-w-3xl">
-            <div className="absolute top-0 bottom-0 left-4 w-px bg-gold/50 md:left-1/2 md:-translate-x-px" />
-            {[
-              {
-                label: "Pillar I",
-                title: "Scholarship",
-                body: "MCAT cohorts, tutoring, and application clinics that keep brothers competitive.",
-              },
-              {
-                label: "Pillar II",
-                title: "Service & mentorship",
-                body: "Tampa Bay partners and alumni mentors who turn hours into real readiness.",
-              },
-              {
-                label: "Pillar III",
-                title: "Professional development",
-                body: "Speakers, skills clinics, and interview practice for every pre-health path.",
-              },
-            ].map((pillar, i) => (
-              <article
-                key={pillar.label}
-                className={`relative mb-10 grid gap-4 pl-12 md:mb-14 md:grid-cols-2 md:gap-10 md:pl-0 ${
-                  i % 2 === 1 ? "md:text-right" : ""
-                }`}
-              >
-                <div
-                  className={`absolute top-1 left-2.5 h-3 w-3 rounded-full bg-gold md:left-1/2 md:-translate-x-1/2`}
-                />
-                <div className={i % 2 === 1 ? "md:col-start-2" : "md:col-start-1 md:pr-10"}>
-                  <p className="font-mono text-[0.65rem] uppercase tracking-[0.14em] text-gold">
-                    {pillar.label}
-                  </p>
-                  <h3 className="mt-2 font-display text-2xl font-semibold text-maroon dark:text-gold">
-                    {pillar.title}
-                  </h3>
-                  <p className="mt-2 text-ink-muted">{pillar.body}</p>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Eligibility on photo */}
-      <section className="relative overflow-hidden py-16 md:py-24">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('/images/chapter-3.jpg')" }}
-        />
-        <div className="absolute inset-0 bg-maroon-deep/70" />
-        <div className="relative z-10 container-page text-white">
-          <h2 className="heading-display text-4xl md:text-5xl">Eligibility</h2>
-          <div className="mt-10 grid gap-8 md:grid-cols-3">
-            {membership.eligibility.slice(0, 3).map((item, i) => (
-              <div key={item} className="border-t border-white/30 pt-5">
-                <p className="font-display text-3xl font-semibold text-gold">
-                  {String(i + 1).padStart(2, "0")}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-white/88 md:text-base">
-                  {item}
-                </p>
-              </div>
-            ))}
-          </div>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <a href="#register" className="btn btn-gold">
-              Register for Recruitment →
-            </a>
-            <Link href="/about" className="btn btn-secondary">
-              About the chapter
-            </Link>
           </div>
         </div>
       </section>

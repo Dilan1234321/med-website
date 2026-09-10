@@ -12,40 +12,6 @@ function findPerson(slug: string): Person | undefined {
   return content.leadership.find((person) => slugify(person.name) === slug);
 }
 
-function buildSummary(person: Person): string | null {
-  const clauses: string[] = [];
-
-  clauses.push(
-    person.role
-      ? `${person.name} serves as ${person.role} of Mu Epsilon Delta`
-      : `${person.name} is part of the Mu Epsilon Delta executive board`
-  );
-
-  if (person.major) {
-    clauses.push(`studying ${person.major}`);
-  }
-
-  if (person.year) {
-    clauses.push(person.year);
-  }
-
-  if (clauses.length === 0) {
-    return null;
-  }
-
-  return `${clauses.join(", ")}.`;
-}
-
-function buildFacts(person: Person): string[] {
-  const facts: string[] = [];
-  if (person.role) facts.push(`Role: ${person.role}`);
-  if (person.year) facts.push(`Year: ${person.year}`);
-  if (person.major) facts.push(`Major: ${person.major}`);
-  if (person.email) facts.push(`Email: ${person.email}`);
-  if (person.linkedin) facts.push(`LinkedIn: ${person.linkedin}`);
-  return facts;
-}
-
 export async function generateStaticParams() {
   return content.leadership.map((person) => ({ slug: slugify(person.name) }));
 }
@@ -81,9 +47,6 @@ export default async function OfficerPage({
   if (!person) {
     notFound();
   }
-
-  const summary = buildSummary(person);
-  const facts = buildFacts(person);
 
   return (
     <div className="min-h-[100svh] bg-bg pt-[4.5rem] md:pt-[5.25rem]">
@@ -121,22 +84,33 @@ export default async function OfficerPage({
             {person.name}
           </h1>
 
-          {summary ? (
-            <p className="mt-6 max-w-xl text-ink-muted">{summary}</p>
-          ) : null}
-          {person.focus ? (
-            <p className="mt-4 max-w-xl leading-relaxed text-ink-muted">
-              {person.focus}
+          {person.description ? (
+            <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink-muted">
+              {person.description}
             </p>
           ) : null}
 
-          {facts.length > 0 ? (
+          {person.highlights.length > 0 ? (
             <div className="mt-10">
               <p className="font-mono text-xs uppercase tracking-[0.14em] text-maroon dark:text-gold">
-                At a glance
+                Responsibilities
               </p>
-              <OfficerBulletList items={facts} />
+              <OfficerBulletList items={person.highlights} />
             </div>
+          ) : null}
+
+          {person.linkedin ? (
+            <a
+              href={person.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-10 inline-flex w-fit items-center gap-2 rounded-full border border-line bg-bg-elevated px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] text-maroon transition hover:border-gold hover:text-gold dark:text-gold"
+            >
+              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="currentColor">
+                <path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5zM.5 8.24h4V23h-4V8.24zM8.5 8.24h3.83v2.02h.05c.53-1 1.85-2.06 3.8-2.06 4.07 0 4.82 2.68 4.82 6.16V23h-4v-6.7c0-1.6-.03-3.66-2.23-3.66-2.24 0-2.58 1.75-2.58 3.55V23h-4V8.24z" />
+              </svg>
+              Connect on LinkedIn
+            </a>
           ) : null}
         </div>
       </div>

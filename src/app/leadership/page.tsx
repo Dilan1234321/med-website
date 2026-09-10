@@ -18,7 +18,7 @@ export default function LeadershipPage() {
       <section className="page-hero min-h-[52vh]">
         <div
           className="page-hero-bg"
-          style={{ backgroundImage: "url('/images/chapter-1.jpg')" }}
+          style={{ backgroundImage: "url('/images/chapter-1.jpg')", backgroundPosition: "center 75%" }}
         />
         <div className="page-hero-overlay" />
         <div className="relative z-10 container-page flex min-h-[52vh] flex-col justify-end pb-14 pt-36">

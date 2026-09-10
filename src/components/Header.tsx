@@ -163,9 +163,9 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
         <div className="flex items-center gap-3">
           <Link
             href="/membership#register"
-            className="btn btn-gold register-glow !rounded-xl !px-5 !text-base !font-bold !tracking-tight !text-white max-[380px]:hidden"
+            className="btn btn-gold !rounded-xl !px-5 !text-base !font-bold !tracking-tight !text-white max-[380px]:hidden"
           >
-            Register!
+            Register
           </Link>
           <button
             type="button"
@@ -221,7 +221,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
             onClick={() => setOpen(false)}
             className="btn btn-gold mt-4 !rounded-xl !text-base !text-white"
           >
-            Register!
+            Register
           </Link>
         </nav>
       </div>

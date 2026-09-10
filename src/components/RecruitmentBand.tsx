@@ -39,8 +39,9 @@ export function RecruitmentBand({ events }: { events: Event[] }) {
 
   return (
     <section
+      id="recruitment-schedule"
       ref={sectionRef}
-      className="relative flex min-h-screen items-center overflow-hidden bg-[#12203a] py-16 text-[#f4ecd8] md:py-20"
+      className="relative flex min-h-screen scroll-mt-[4.5rem] items-center overflow-hidden bg-[#12203a] py-16 text-[#f4ecd8] md:scroll-mt-[5.25rem] md:py-20"
     >
       <svg
         viewBox="0 0 200 200"

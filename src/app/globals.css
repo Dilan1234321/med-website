@@ -23,6 +23,12 @@
   --nav-dark: rgba(28, 7, 7, 0.94);
   --footer: #1c0707;
   --shadow: 0 12px 32px rgba(28, 7, 7, 0.08);
+  /* Premium elevated-card treatment (officer + roster cards): a soft,
+     diffuse resting shadow that deepens on hover for a tactile lift. */
+  --shadow-card: 0 20px 45px -14px rgba(28, 7, 7, 0.22),
+    0 8px 18px -10px rgba(28, 7, 7, 0.12);
+  --shadow-card-hover: 0 28px 60px -14px rgba(28, 7, 7, 0.3),
+    0 12px 22px -8px rgba(28, 7, 7, 0.18);
   --radius-pill: 999px;
   --radius-card: 18px;
 }
@@ -39,6 +45,10 @@
   --nav-dark: rgba(10, 5, 5, 0.96);
   --footer: #080404;
   --shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 20px 45px -14px rgba(0, 0, 0, 0.55),
+    0 8px 18px -10px rgba(0, 0, 0, 0.35);
+  --shadow-card-hover: 0 28px 60px -14px rgba(0, 0, 0, 0.65),
+    0 12px 22px -8px rgba(0, 0, 0, 0.42);
 }
 
 @theme inline {
