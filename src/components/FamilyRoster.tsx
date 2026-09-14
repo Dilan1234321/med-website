@@ -13,32 +13,63 @@ export function FamilyRoster({ family }: { family: FamilyMember[] }) {
   }, [family]);
 
   const [active, setActive] = useState("All");
+  const [query, setQuery] = useState("");
 
-  const visible = active === "All" ? family : family.filter((m) => (m.pathway || "Other") === active);
+  const visible = family.filter((m) => {
+    const matchesPathway = active === "All" || (m.pathway || "Other") === active;
+    const matchesQuery = m.name.toLowerCase().includes(query.trim().toLowerCase());
+    return matchesPathway && matchesQuery;
+  });
 
   return (
     <>
       <section className="bg-bg py-10">
-        <div className="container-page flex flex-wrap items-center gap-2">
-          {["All", ...pathways].map((label) => (
-            <button
-              key={label}
-              type="button"
-              onClick={() => setActive(label)}
-              className={`rounded-full border px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] transition ${
-                active === label
-                  ? "border-gold bg-gold/15 text-maroon dark:text-gold"
-                  : "border-line bg-bg-elevated text-maroon hover:border-maroon dark:text-gold"
-              }`}
+        <div className="container-page flex flex-wrap items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-2">
+            {["All", ...pathways].map((label) => (
+              <button
+                key={label}
+                type="button"
+                onClick={() => setActive(label)}
+                className={`rounded-full border px-4 py-2 font-mono text-[0.65rem] uppercase tracking-[0.12em] transition ${
+                  active === label
+                    ? "border-gold bg-gold/15 text-maroon dark:text-gold"
+                    : "border-line bg-bg-elevated text-maroon hover:border-maroon dark:text-gold"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          <div className="relative w-full sm:w-64">
+            <svg
+              viewBox="0 0 20 20"
+              fill="none"
+              className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-maroon/50 dark:text-gold/60"
+              aria-hidden="true"
             >
-              {label}
-            </button>
-          ))}
+              <circle cx="9" cy="9" r="6.5" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M14 14L17.5 17.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+            <input
+              type="search"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search by name…"
+              aria-label="Search members by name"
+              className="w-full rounded-full border border-line bg-bg-elevated py-2 pl-9 pr-4 text-sm text-maroon outline-none transition placeholder:text-maroon/40 focus:border-gold focus:ring-2 focus:ring-gold/30 dark:text-gold dark:placeholder:text-gold/40"
+            />
+          </div>
         </div>
       </section>
 
       <section id="roster" className="bg-bg pb-16 md:pb-24">
         <div className="container-page">
+          {visible.length === 0 ? (
+            <p className="rounded-[18px] border border-dashed border-line bg-bg-elevated p-10 text-center text-sm text-ink-muted">
+              No members match that search.
+            </p>
+          ) : (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
             {visible.map((person) => (
               <article
@@ -88,6 +119,7 @@ export function FamilyRoster({ family }: { family: FamilyMember[] }) {
               </article>
             ))}
           </div>
+          )}
         </div>
       </section>
     </>

@@ -25,13 +25,33 @@ function initials(name: string): string {
     .toUpperCase();
 }
 
+type SortOption = "newest" | "oldest" | "name-asc" | "name-desc";
+
+const SORT_OPTIONS: { value: SortOption; label: string }[] = [
+  { value: "newest", label: "Newest first" },
+  { value: "oldest", label: "Oldest first" },
+  { value: "name-asc", label: "Name (A–Z)" },
+  { value: "name-desc", label: "Name (Z–A)" },
+];
+
 export function RecruitmentSignupsViewer({ signups }: { signups: RecruitmentSignup[] }) {
   const [query, setQuery] = useState("");
+  const [sortBy, setSortBy] = useState<SortOption>("newest");
 
-  const sorted = useMemo(
-    () => [...signups].sort((a, b) => b.submittedAt.localeCompare(a.submittedAt)),
-    [signups],
-  );
+  const sorted = useMemo(() => {
+    const list = [...signups];
+    switch (sortBy) {
+      case "oldest":
+        return list.sort((a, b) => a.submittedAt.localeCompare(b.submittedAt));
+      case "name-asc":
+        return list.sort((a, b) => a.name.localeCompare(b.name));
+      case "name-desc":
+        return list.sort((a, b) => b.name.localeCompare(a.name));
+      case "newest":
+      default:
+        return list.sort((a, b) => b.submittedAt.localeCompare(a.submittedAt));
+    }
+  }, [signups, sortBy]);
 
   const visible = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -51,13 +71,27 @@ export function RecruitmentSignupsViewer({ signups }: { signups: RecruitmentSign
           <span className="text-lg font-bold text-maroon">{sorted.length}</span>{" "}
           {sorted.length === 1 ? "person has" : "people have"} signed up
         </p>
-        <input
-          type="text"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search by name, email, or pathway…"
-          className="min-w-[240px] rounded-full border border-line bg-bg px-4 py-2 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/30"
-        />
+        <div className="flex flex-wrap items-center gap-3">
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value as SortOption)}
+            aria-label="Sort signups"
+            className="rounded-full border border-line bg-bg px-4 py-2 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/30"
+          >
+            {SORT_OPTIONS.map((opt) => (
+              <option key={opt.value} value={opt.value}>
+                {opt.label}
+              </option>
+            ))}
+          </select>
+          <input
+            type="text"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="Search by name, email, or pathway…"
+            className="min-w-[240px] rounded-full border border-line bg-bg px-4 py-2 text-sm outline-none focus:border-gold focus:ring-2 focus:ring-gold/30"
+          />
+        </div>
       </div>
 
       {visible.length === 0 ? (
