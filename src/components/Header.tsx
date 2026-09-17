@@ -17,6 +17,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [familyOpen, setFamilyOpen] = useState(false);
   const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
+  const [brotherLoggedIn, setBrotherLoggedIn] = useState<boolean | null>(null);
 
   useEffect(() => {
     let cancelled = false;
@@ -27,6 +28,14 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
       })
       .catch(() => {
         if (!cancelled) setLoggedIn(false);
+      });
+    fetch("/api/brother/session-status")
+      .then((r) => r.json())
+      .then((d) => {
+        if (!cancelled) setBrotherLoggedIn(Boolean(d?.loggedIn));
+      })
+      .catch(() => {
+        if (!cancelled) setBrotherLoggedIn(false);
       });
     return () => {
       cancelled = true;
@@ -82,6 +91,15 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
               ΜΕΔ
             </span>
           </Link>
+
+          {(loggedIn === true || brotherLoggedIn === true) && (
+            <Link
+              href="/speed-dating"
+              className="max-[380px]:hidden rounded-lg border border-white/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white/85 transition hover:border-gold hover:text-gold"
+            >
+              Speed Dating
+            </Link>
+          )}
 
           {loggedIn === true ? (
             <form action={logout} className="max-[380px]:hidden">
@@ -216,6 +234,15 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
               {item.label}
             </Link>
           ))}
+          {(loggedIn === true || brotherLoggedIn === true) && (
+            <Link
+              href="/speed-dating"
+              onClick={() => setOpen(false)}
+              className="font-display text-2xl font-bold tracking-tight text-gold transition hover:text-white"
+            >
+              Speed Dating
+            </Link>
+          )}
           <Link
             href="/membership#register"
             onClick={() => setOpen(false)}
