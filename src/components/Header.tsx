@@ -20,6 +20,11 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
   const [brotherLoggedIn, setBrotherLoggedIn] = useState<boolean | null>(null);
 
   useEffect(() => {
+    // Re-checks on every navigation, not just on mount: Header lives in the
+    // shared layout, so it persists across the client-side transition from
+    // /speed-dating/login or /admin/login to the page after it (both use a
+    // Server Action + redirect(), not a full page load) - an empty deps
+    // array here would leave the nav frozen on the pre-login state forever.
     let cancelled = false;
     fetch("/api/admin/session-status")
       .then((r) => r.json())
@@ -40,7 +45,7 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
