@@ -50,6 +50,10 @@ function loadState(candidates: Candidate[]): PersistedState {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return initialState(candidates);
     const parsed = JSON.parse(raw) as PersistedState;
+    const currentIds = new Set(candidates.map((c) => c.id));
+    const parsedIds = Object.keys(parsed.decisions ?? {});
+    const datasetChanged = parsedIds.length === 0 || !parsedIds.some((id) => currentIds.has(id));
+    if (datasetChanged) return initialState(candidates);
     const decisions: Record<string, DecisionStatus> = {};
     candidates.forEach((c) => {
       decisions[c.id] = parsed.decisions?.[c.id] ?? c.status;
