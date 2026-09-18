@@ -266,9 +266,14 @@ function ConsensusCard({ candidate, onViewNotes }: { candidate: Candidate; onVie
           </section>
 
           {top && (
-            <section className="rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3">
-              <h2 className="text-base font-bold text-emerald-700 sm:text-lg lg:text-xl">Strongest point</h2>
-              <p className="mt-1 text-base text-slate-800 sm:text-lg lg:text-xl">{top.text}</p>
+            <section>
+              <h2 className="text-lg font-bold text-emerald-700 sm:text-xl lg:text-2xl">Strongest point</h2>
+              <ul className="mt-2 flex flex-col gap-2">
+                <li className="flex gap-3 text-base leading-snug text-slate-800 sm:text-lg lg:text-xl">
+                  <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500 sm:mt-2.5 sm:h-2.5 sm:w-2.5" aria-hidden />
+                  {top.text}
+                </li>
+              </ul>
             </section>
           )}
 
