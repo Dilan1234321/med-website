@@ -8,6 +8,10 @@ import { Header } from "./Header";
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const transparent = pathname === "/";
+  // Deliberation Mode is a full-screen, projector-facing tool that must never
+  // scroll - the normal fixed Header and Footer would eat into that budget
+  // and clash with its own minimal chrome, so it renders standalone.
+  const isDeliberation = pathname?.startsWith("/deliberation") ?? false;
 
   // Next.js's client-side router doesn't reliably auto-scroll to a URL
   // fragment on cross-page navigation, especially when the target section
@@ -22,6 +26,10 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     }, 80);
     return () => clearTimeout(timer);
   }, [pathname]);
+
+  if (isDeliberation) {
+    return <>{children}</>;
+  }
 
   return (
     <>
