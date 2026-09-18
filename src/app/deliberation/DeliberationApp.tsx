@@ -86,10 +86,20 @@ const STATUS_STYLES: Record<DecisionStatus, { label: string; dot: string; text: 
   release: { label: "Release", dot: "bg-red-400", text: "text-red-700", bg: "bg-red-100" },
 };
 
-function Avatar({ name, photo, size = 56 }: { name: string; photo: string; size?: number }) {
+function Avatar({
+  name,
+  photo,
+  size = 56,
+  className = "",
+}: {
+  name: string;
+  photo: string;
+  size?: number;
+  className?: string;
+}) {
   return (
     <div
-      className="flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-[color:var(--maroon)] bg-cover bg-center font-display font-semibold text-white"
+      className={`flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-[color:var(--maroon)] bg-cover bg-center font-display font-semibold text-white ${className}`}
       style={{
         width: size,
         height: size,
@@ -128,21 +138,21 @@ function DecisionButtons({ onDecide }: { onDecide: (status: DecisionStatus) => v
 function AttributionTag({ point, colorClass }: { point: ConsensusPoint; colorClass: string }) {
   const [open, setOpen] = useState(false);
   if (point.sourceCount <= 1) {
-    return <span className={`text-lg font-medium ${colorClass}`}>{point.brothers[0]}</span>;
+    return <span className={`text-sm font-medium sm:text-base lg:text-lg ${colorClass}`}>{point.brothers[0]}</span>;
   }
   return (
     <span className="relative inline-block">
       <button
         type="button"
         onClick={() => setOpen((v) => !v)}
-        className={`rounded-full border px-3 py-1 text-base font-bold ${colorClass} border-current/30 hover:bg-current/10`}
+        className={`rounded-full border px-3 py-1 text-sm font-bold sm:text-base ${colorClass} border-current/30 hover:bg-current/10`}
       >
         {point.sourceCount} brothers
       </button>
       {open && (
         <div className="absolute left-0 top-full z-20 mt-2 min-w-[200px] rounded-xl border border-[color:var(--folder-cream-shadow)] bg-white p-3 text-left shadow-xl">
           <p className="mb-1 text-xs font-bold uppercase tracking-wide text-slate-400">Reported by</p>
-          <p className="text-lg text-slate-800">{point.brothers.join(", ")}</p>
+          <p className="text-base text-slate-800 sm:text-lg">{point.brothers.join(", ")}</p>
         </div>
       )}
     </span>
@@ -155,41 +165,41 @@ function ConsensusCard({ candidate, onViewNotes }: { candidate: Candidate; onVie
 
   return (
     <div
-      className="flex h-full flex-col overflow-hidden rounded-2xl border p-8 shadow-sm"
+      className="flex h-full flex-col overflow-hidden rounded-2xl border p-4 shadow-sm sm:p-6 lg:p-8"
       style={{ backgroundColor: "var(--folder-cream)", borderColor: "var(--folder-cream-shadow)" }}
     >
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex items-center gap-5">
-          <Avatar name={candidate.name} photo={candidate.photo} size={96} />
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
+        <div className="flex items-center gap-4 lg:gap-5">
+          <Avatar name={candidate.name} photo={candidate.photo} size={64} className="lg:!h-24 lg:!w-24" />
           <div>
-            <h1 className="font-display text-5xl font-semibold leading-tight text-slate-900">{candidate.name}</h1>
-            <p className="mt-1 text-2xl text-slate-600">
+            <h1 className="font-display text-2xl font-semibold leading-tight text-slate-900 sm:text-3xl lg:text-5xl">{candidate.name}</h1>
+            <p className="mt-1 text-base text-slate-600 sm:text-lg lg:text-2xl">
               {candidate.year}, {candidate.major}, {candidate.careerPath}
             </p>
           </div>
         </div>
-        <span className="whitespace-nowrap rounded-full bg-white px-4 py-2 text-lg font-semibold text-slate-600">
+        <span className="whitespace-nowrap self-start rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-slate-600 sm:px-4 sm:py-2 sm:text-lg">
           Notes from {candidate.sourceCount} {candidate.sourceCount === 1 ? "brother" : "brothers"}
         </span>
       </div>
 
       {lowEvidence && (
-        <div className="mt-4 rounded-lg border border-amber-400 bg-amber-100 px-4 py-3 text-lg font-semibold text-amber-900">
+        <div className="mt-4 rounded-lg border border-amber-400 bg-amber-100 px-4 py-3 text-sm font-semibold text-amber-900 sm:text-lg">
           Limited evidence. Decide with caution or send to Hold for more notes.
         </div>
       )}
 
-      <div className="mt-6 grid flex-1 grid-cols-2 gap-8 overflow-hidden">
-        <div className="flex flex-col gap-6 overflow-y-auto pr-2">
+      <div className="mt-4 grid flex-1 grid-cols-1 gap-6 overflow-y-auto lg:mt-6 lg:grid-cols-2 lg:gap-8 lg:overflow-hidden">
+        <div className="flex flex-col gap-5 lg:gap-6 lg:overflow-y-auto lg:pr-2">
           <section>
-            <h2 className="text-2xl font-bold text-emerald-700">Strengths</h2>
+            <h2 className="text-lg font-bold text-emerald-700 sm:text-xl lg:text-2xl">Strengths</h2>
             {candidate.strengths.length === 0 ? (
-              <p className="mt-2 text-xl text-slate-400">None noted.</p>
+              <p className="mt-2 text-base text-slate-400 sm:text-xl">None noted.</p>
             ) : (
               <ul className="mt-2 flex flex-col gap-3">
                 {candidate.strengths.map((s, i) => (
-                  <li key={i} className="flex gap-3 text-xl leading-snug text-slate-800">
-                    <span className="mt-2.5 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-500" aria-hidden />
+                  <li key={i} className="flex gap-3 text-base leading-snug text-slate-800 sm:text-lg lg:text-xl">
+                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-500 sm:mt-2.5 sm:h-2.5 sm:w-2.5" aria-hidden />
                     <span className="flex flex-wrap items-center gap-2">
                       {s.text}
                       <AttributionTag point={s} colorClass="text-emerald-700" />
@@ -201,14 +211,14 @@ function ConsensusCard({ candidate, onViewNotes }: { candidate: Candidate; onVie
           </section>
 
           <section>
-            <h2 className="text-2xl font-bold text-red-700">Concerns</h2>
+            <h2 className="text-lg font-bold text-red-700 sm:text-xl lg:text-2xl">Concerns</h2>
             {candidate.concerns.length === 0 ? (
-              <p className="mt-2 text-xl text-slate-400">None noted.</p>
+              <p className="mt-2 text-base text-slate-400 sm:text-xl">None noted.</p>
             ) : (
               <ul className="mt-2 flex flex-col gap-3">
                 {candidate.concerns.map((c, i) => (
-                  <li key={i} className="flex gap-3 text-xl leading-snug text-slate-800">
-                    <span className="mt-2.5 h-2.5 w-2.5 shrink-0 rounded-full bg-red-500" aria-hidden />
+                  <li key={i} className="flex gap-3 text-base leading-snug text-slate-800 sm:text-lg lg:text-xl">
+                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-red-500 sm:mt-2.5 sm:h-2.5 sm:w-2.5" aria-hidden />
                     <span className="flex flex-wrap items-center gap-2">
                       {c.text}
                       <AttributionTag point={c} colorClass="text-red-700" />
@@ -221,10 +231,10 @@ function ConsensusCard({ candidate, onViewNotes }: { candidate: Candidate; onVie
 
           {candidate.mixedFeedback.length > 0 && (
             <section>
-              <h2 className="text-2xl font-bold text-slate-700">Mixed feedback</h2>
+              <h2 className="text-lg font-bold text-slate-700 sm:text-xl lg:text-2xl">Mixed feedback</h2>
               <ul className="mt-2 flex flex-col gap-3">
                 {candidate.mixedFeedback.map((m, i) => (
-                  <li key={i} className="text-xl leading-snug text-slate-800">
+                  <li key={i} className="text-base leading-snug text-slate-800 sm:text-lg lg:text-xl">
                     <p className="font-semibold text-slate-600">{m.topic}</p>
                     {m.observations.map((o, j) => (
                       <p key={j} className="mt-1">
@@ -238,16 +248,16 @@ function ConsensusCard({ candidate, onViewNotes }: { candidate: Candidate; onVie
           )}
         </div>
 
-        <div className="flex flex-col gap-6 overflow-y-auto pr-2">
+        <div className="flex flex-col gap-5 lg:gap-6 lg:overflow-y-auto lg:pr-2">
           <section>
-            <h2 className="text-2xl font-bold text-slate-700">Facts and experience</h2>
+            <h2 className="text-lg font-bold text-slate-700 sm:text-xl lg:text-2xl">Facts and experience</h2>
             {candidate.facts.length === 0 ? (
-              <p className="mt-2 text-xl text-slate-400">None noted.</p>
+              <p className="mt-2 text-base text-slate-400 sm:text-xl">None noted.</p>
             ) : (
               <ul className="mt-2 flex flex-col gap-2">
                 {candidate.facts.map((f, i) => (
-                  <li key={i} className="flex gap-3 text-xl leading-snug text-slate-700">
-                    <span className="mt-2.5 h-2.5 w-2.5 shrink-0 rounded-full bg-slate-400" aria-hidden />
+                  <li key={i} className="flex gap-3 text-base leading-snug text-slate-700 sm:text-lg lg:text-xl">
+                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-slate-400 sm:mt-2.5 sm:h-2.5 sm:w-2.5" aria-hidden />
                     {f}
                   </li>
                 ))}
@@ -257,15 +267,15 @@ function ConsensusCard({ candidate, onViewNotes }: { candidate: Candidate; onVie
 
           {top && (
             <section className="rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3">
-              <h2 className="text-xl font-bold text-emerald-700">Strongest point</h2>
-              <p className="mt-1 text-xl text-slate-800">{top.text}</p>
+              <h2 className="text-base font-bold text-emerald-700 sm:text-lg lg:text-xl">Strongest point</h2>
+              <p className="mt-1 text-base text-slate-800 sm:text-lg lg:text-xl">{top.text}</p>
             </section>
           )}
 
           <button
             type="button"
             onClick={onViewNotes}
-            className="mt-auto self-start rounded-lg border border-slate-400 bg-white px-5 py-2.5 text-lg font-semibold text-slate-700 transition hover:border-slate-600 hover:text-slate-900"
+            className="mt-auto self-start rounded-lg border border-slate-400 bg-white px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-600 hover:text-slate-900 sm:px-5 sm:py-2.5 sm:text-lg"
           >
             View all raw notes ({candidate.notes.length})
           </button>
@@ -277,7 +287,7 @@ function ConsensusCard({ candidate, onViewNotes }: { candidate: Candidate; onVie
 
 function NotesModal({ candidate, onClose }: { candidate: Candidate; onClose: () => void }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-8" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 sm:p-8" onClick={onClose}>
       <div
         className="flex max-h-[80vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-xl"
         onClick={(e) => e.stopPropagation()}
@@ -324,13 +334,13 @@ function PathwayBar({
   }, [candidates]);
 
   return (
-    <div className="flex flex-wrap items-center gap-2">
+    <div className="flex items-center gap-2 overflow-x-auto lg:flex-wrap lg:overflow-visible">
       {counts.map(([pathway, count]) => (
         <button
           key={pathway}
           type="button"
           onClick={() => onSelectPathway(pathway)}
-          className="rounded-full border border-white/25 px-3 py-1 text-sm font-semibold text-white/85 transition hover:border-white hover:bg-white/10 hover:text-white"
+          className="shrink-0 whitespace-nowrap rounded-full border border-white/25 px-3 py-1 text-sm font-semibold text-white/85 transition hover:border-white hover:bg-white/10 hover:text-white"
         >
           {pathway} <span className="text-white">{count}</span>
         </button>
@@ -351,7 +361,7 @@ function PathwayBrowseModal({
   onOpenCandidate: (id: string) => void;
 }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-8" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 sm:p-8" onClick={onClose}>
       <div
         className="flex max-h-[80vh] w-full max-w-xl flex-col overflow-hidden rounded-2xl bg-white shadow-xl"
         onClick={(e) => e.stopPropagation()}
@@ -395,7 +405,7 @@ function PathwayBrowseModal({
 
 function CandidateDetailModal({ candidate, onClose }: { candidate: Candidate; onClose: () => void }) {
   return (
-    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-8" onClick={onClose}>
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-4 sm:p-8" onClick={onClose}>
       <div className="max-h-[85vh] w-full max-w-4xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
         <div className="mb-3 flex justify-end">
           <button type="button" onClick={onClose} className="rounded-lg bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-100">
@@ -608,19 +618,29 @@ export function DeliberationApp({ initialCandidates }: { initialCandidates: Cand
     state.stage === "rapid" ? (currentRapidId ? byId.get(currentRapidId) : undefined) : state.stage === "discussion" ? (currentDiscussId ? byId.get(currentDiscussId) : undefined) : undefined;
 
   return (
-    <div className="pattern-maroon flex h-screen flex-col text-white">
-      <div className="flex items-center justify-between gap-4 border-b border-white/10 px-6 py-3">
-        <div className="flex items-center gap-4">
-          <span className="font-display text-xl font-semibold">Deliberation</span>
-          <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white/70">
-            {state.stage === "rapid" && "Rapid Review"}
-            {state.stage === "rapid-done" && "Rapid Review Complete"}
-            {state.stage === "discussion" && "Discussion Queue"}
-            {state.stage === "final" && "Final Selection"}
-          </span>
+    <div className="pattern-maroon flex min-h-screen flex-col text-white lg:h-screen">
+      <div className="flex flex-col gap-3 border-b border-white/10 px-4 py-3 sm:px-6 lg:flex-row lg:items-center lg:justify-between">
+        <div className="flex items-center justify-between gap-4 lg:justify-start">
+          <div className="flex items-center gap-3">
+            <span className="font-display text-lg font-semibold sm:text-xl">Deliberation</span>
+            <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white/70">
+              {state.stage === "rapid" && "Rapid Review"}
+              {state.stage === "rapid-done" && "Rapid Review Complete"}
+              {state.stage === "discussion" && "Discussion Queue"}
+              {state.stage === "final" && "Final Selection"}
+            </span>
+          </div>
+          <div className="flex items-center gap-2 lg:hidden">
+            <button type="button" onClick={undo} disabled={state.history.length === 0} className="rounded-lg border border-white/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white/80 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-30">
+              Undo
+            </button>
+            <button type="button" onClick={resetAll} className="rounded-lg border border-white/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white/60 hover:border-red-300 hover:text-red-300">
+              Reset
+            </button>
+          </div>
         </div>
         <PathwayBar candidates={candidatesWithLiveStatus} onSelectPathway={setBrowsePathway} />
-        <div className="flex items-center gap-2">
+        <div className="hidden items-center gap-2 lg:flex">
           <button type="button" onClick={undo} disabled={state.history.length === 0} className="rounded-lg border border-white/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white/80 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-30">
             Undo
           </button>
@@ -752,9 +772,9 @@ function RapidOrDiscussionStage({
   discussionSecondsLeft: number | null;
 }) {
   return (
-    <div className="grid flex-1 grid-cols-[260px_1fr_300px] gap-4 overflow-hidden p-4">
+    <div className="grid flex-1 grid-cols-1 gap-4 overflow-y-auto p-4 lg:grid-cols-[260px_1fr_300px] lg:overflow-hidden">
       <div
-        className="flex flex-col overflow-hidden rounded-2xl border"
+        className="order-3 flex max-h-48 flex-col overflow-hidden rounded-2xl border lg:order-1 lg:max-h-none"
         style={{ backgroundColor: "var(--folder-cream)", borderColor: "var(--folder-cream-shadow)" }}
       >
         <div className="border-b px-4 py-3" style={{ borderColor: "var(--folder-cream-shadow)" }}>
@@ -780,9 +800,11 @@ function RapidOrDiscussionStage({
         </div>
       </div>
 
-      <ConsensusCard candidate={candidate} onViewNotes={onViewNotes} />
+      <div className="order-1 lg:order-2 lg:min-h-0">
+        <ConsensusCard candidate={candidate} onViewNotes={onViewNotes} />
+      </div>
 
-      <div className="flex flex-col gap-4">
+      <div className="order-2 flex flex-col gap-4 lg:order-3">
         {discussionSecondsLeft != null && (
           <div
             className="rounded-2xl border p-4 text-center"
@@ -845,11 +867,11 @@ function BottomProgressBar({
   const total = reviewedCount + remainingCount;
   const pct = total > 0 ? Math.round((reviewedCount / total) * 100) : 0;
   return (
-    <div className="border-t border-white/10 px-6 py-3">
+    <div className="border-t border-white/10 px-4 py-3 sm:px-6">
       <div className="mb-2 h-2 w-full overflow-hidden rounded-full bg-white/10">
         <div className="h-full rounded-full bg-emerald-400 transition-all" style={{ width: `${pct}%` }} />
       </div>
-      <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-white/70">
+      <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-2 text-xs text-white/70 sm:text-sm">
         <span>
           <strong className="text-white">{reviewedCount}</strong> reviewed, <strong className="text-white">{remainingCount}</strong> remaining
         </span>
@@ -905,9 +927,9 @@ function FinalSelectionScreen({
   }
 
   return (
-    <div className="flex flex-1 flex-col overflow-hidden p-6">
-      <div className="mb-4 flex items-center justify-between">
-        <h1 className="font-display text-3xl font-semibold">Final Selection</h1>
+    <div className="flex flex-1 flex-col overflow-y-auto p-4 sm:p-6">
+      <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <h1 className="font-display text-2xl font-semibold sm:text-3xl">Final Selection</h1>
         <div className="flex items-center gap-3">
           <span className={`rounded-full px-4 py-2 text-sm font-bold ${finalists.length === MAX_FINALISTS ? "bg-emerald-400 text-emerald-950" : "bg-white/15 text-white"}`}>
             {finalists.length} of {MAX_FINALISTS} selected
@@ -921,7 +943,7 @@ function FinalSelectionScreen({
       {candidates.length === 0 ? (
         <p className="text-white/60">No candidates were marked Advance.</p>
       ) : (
-        <div className="flex-1 overflow-y-auto">
+        <div className="flex-1">
           <div className="flex flex-col gap-2">
             {candidates.map((c) => {
               const top = strongestPoint(c.strengths);
@@ -931,18 +953,20 @@ function FinalSelectionScreen({
               return (
                 <div
                   key={c.id}
-                  className="flex items-center gap-4 rounded-xl border p-4"
+                  className="flex flex-col gap-3 rounded-xl border p-4 sm:flex-row sm:items-center sm:gap-4"
                   style={{
                     backgroundColor: selected ? "#d1fae5" : "var(--folder-cream)",
                     borderColor: selected ? "#6ee7b7" : "var(--folder-cream-shadow)",
                   }}
                 >
-                  <Avatar name={c.name} photo={c.photo} size={52} />
-                  <div className="w-48 shrink-0">
-                    <p className="font-display text-lg font-semibold text-slate-900">{c.name}</p>
-                    <p className="text-xs text-slate-500">
-                      {c.year}, {c.careerPath}
-                    </p>
+                  <div className="flex items-center gap-3 sm:contents">
+                    <Avatar name={c.name} photo={c.photo} size={52} />
+                    <div className="w-full sm:w-48 sm:shrink-0">
+                      <p className="font-display text-lg font-semibold text-slate-900">{c.name}</p>
+                      <p className="text-xs text-slate-500">
+                        {c.year}, {c.careerPath}
+                      </p>
+                    </div>
                   </div>
                   <div className="flex-1 text-sm text-slate-700">
                     <p>
@@ -952,19 +976,21 @@ function FinalSelectionScreen({
                       <span className="font-semibold text-red-600">Concern:</span> {concern ? concern.text : "None noted"}
                     </p>
                   </div>
-                  <span className="w-28 shrink-0 text-center text-xs font-semibold text-slate-500">
-                    {c.sourceCount} {c.sourceCount === 1 ? "source" : "sources"}
-                  </span>
-                  <button
-                    type="button"
-                    onClick={() => onToggle(c.id)}
-                    disabled={disableSelect}
-                    className={`w-28 shrink-0 rounded-lg py-2 text-sm font-bold uppercase tracking-wide disabled:cursor-not-allowed disabled:opacity-40 ${
-                      selected ? "bg-red-100 text-red-600 hover:bg-red-200" : "bg-emerald-600 text-white hover:bg-emerald-700"
-                    }`}
-                  >
-                    {selected ? "Remove" : "Select"}
-                  </button>
+                  <div className="flex items-center justify-between gap-3 sm:contents">
+                    <span className="text-center text-xs font-semibold text-slate-500 sm:w-28 sm:shrink-0">
+                      {c.sourceCount} {c.sourceCount === 1 ? "source" : "sources"}
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => onToggle(c.id)}
+                      disabled={disableSelect}
+                      className={`rounded-lg px-6 py-2 text-sm font-bold uppercase tracking-wide disabled:cursor-not-allowed disabled:opacity-40 sm:w-28 sm:shrink-0 ${
+                        selected ? "bg-red-100 text-red-600 hover:bg-red-200" : "bg-emerald-600 text-white hover:bg-emerald-700"
+                      }`}
+                    >
+                      {selected ? "Remove" : "Select"}
+                    </button>
+                  </div>
                 </div>
               );
             })}
