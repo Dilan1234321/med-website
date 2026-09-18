@@ -8,7 +8,6 @@ import { Header } from "./Header";
 export function SiteShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const transparent = pathname === "/";
-  const isAdmin = pathname?.startsWith("/admin") ?? false;
 
   // Next.js's client-side router doesn't reliably auto-scroll to a URL
   // fragment on cross-page navigation, especially when the target section
@@ -23,10 +22,6 @@ export function SiteShell({ children }: { children: React.ReactNode }) {
     }, 80);
     return () => clearTimeout(timer);
   }, [pathname]);
-
-  if (isAdmin) {
-    return <>{children}</>;
-  }
 
   return (
     <>

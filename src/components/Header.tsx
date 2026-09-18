@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { logout } from "@/app/admin/actions";
 
 const familyLinks = [
   { href: "/leadership", label: "Officers" },
@@ -16,36 +15,6 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [familyOpen, setFamilyOpen] = useState(false);
-  const [loggedIn, setLoggedIn] = useState<boolean | null>(null);
-  const [brotherLoggedIn, setBrotherLoggedIn] = useState<boolean | null>(null);
-
-  useEffect(() => {
-    // Re-checks on every navigation, not just on mount: Header lives in the
-    // shared layout, so it persists across the client-side transition from
-    // /speed-dating/login or /admin/login to the page after it (both use a
-    // Server Action + redirect(), not a full page load) - an empty deps
-    // array here would leave the nav frozen on the pre-login state forever.
-    let cancelled = false;
-    fetch("/api/admin/session-status")
-      .then((r) => r.json())
-      .then((d) => {
-        if (!cancelled) setLoggedIn(Boolean(d?.loggedIn));
-      })
-      .catch(() => {
-        if (!cancelled) setLoggedIn(false);
-      });
-    fetch("/api/brother/session-status")
-      .then((r) => r.json())
-      .then((d) => {
-        if (!cancelled) setBrotherLoggedIn(Boolean(d?.loggedIn));
-      })
-      .catch(() => {
-        if (!cancelled) setBrotherLoggedIn(false);
-      });
-    return () => {
-      cancelled = true;
-    };
-  }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -97,32 +66,6 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
             </span>
           </Link>
 
-          {(loggedIn === true || brotherLoggedIn === true) && (
-            <Link
-              href="/speed-dating"
-              className="max-[380px]:hidden rounded-lg border border-white/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white/85 transition hover:border-gold hover:text-gold"
-            >
-              Speed Dating
-            </Link>
-          )}
-
-          {loggedIn === true ? (
-            <form action={logout} className="max-[380px]:hidden">
-              <button
-                type="submit"
-                className="rounded-lg bg-red-600 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white transition hover:bg-red-700"
-              >
-                Sign out
-              </button>
-            </form>
-          ) : loggedIn === false ? (
-            <Link
-              href="/admin/login"
-              className="rounded-lg border border-white/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white/85 transition hover:border-gold hover:text-gold max-[380px]:hidden"
-            >
-              Log in
-            </Link>
-          ) : null}
         </div>
 
         <nav
@@ -239,15 +182,6 @@ export function Header({ transparent = false }: { transparent?: boolean }) {
               {item.label}
             </Link>
           ))}
-          {(loggedIn === true || brotherLoggedIn === true) && (
-            <Link
-              href="/speed-dating"
-              onClick={() => setOpen(false)}
-              className="font-display text-2xl font-bold tracking-tight text-gold transition hover:text-white"
-            >
-              Speed Dating
-            </Link>
-          )}
           <Link
             href="/membership#register"
             onClick={() => setOpen(false)}
