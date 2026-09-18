@@ -24,6 +24,7 @@ export type RawNote = {
 export type Candidate = {
   id: string;
   name: string;
+  photo: string;
   year: string;
   major: string;
   careerPath: string;

@@ -50,8 +50,6 @@ function loadState(candidates: Candidate[]): PersistedState {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return initialState(candidates);
     const parsed = JSON.parse(raw) as PersistedState;
-    // Merge decisions so newly-added candidates (dataset swapped out between
-    // sessions) still get a valid default instead of undefined.
     const decisions: Record<string, DecisionStatus> = {};
     candidates.forEach((c) => {
       decisions[c.id] = parsed.decisions?.[c.id] ?? c.status;
@@ -81,26 +79,33 @@ function formatWallClock(date: Date): string {
 }
 
 const STATUS_STYLES: Record<DecisionStatus, { label: string; dot: string; text: string; bg: string }> = {
-  unreviewed: { label: "Unreviewed", dot: "bg-slate-300", text: "text-slate-500", bg: "bg-slate-100" },
-  advance: { label: "Advance", dot: "bg-emerald-500", text: "text-emerald-700", bg: "bg-emerald-50" },
-  discuss: { label: "Discuss", dot: "bg-amber-500", text: "text-amber-700", bg: "bg-amber-50" },
-  hold: { label: "Hold", dot: "bg-amber-400", text: "text-amber-700", bg: "bg-amber-50" },
-  release: { label: "Release", dot: "bg-red-400", text: "text-red-600", bg: "bg-red-50" },
+  unreviewed: { label: "Unreviewed", dot: "bg-white/30", text: "text-white/70", bg: "bg-white/10" },
+  advance: { label: "Advance", dot: "bg-emerald-400", text: "text-emerald-700", bg: "bg-emerald-100" },
+  discuss: { label: "Discuss", dot: "bg-amber-400", text: "text-amber-700", bg: "bg-amber-100" },
+  hold: { label: "Hold", dot: "bg-amber-300", text: "text-amber-700", bg: "bg-amber-100" },
+  release: { label: "Release", dot: "bg-red-400", text: "text-red-700", bg: "bg-red-100" },
 };
 
-function DecisionButtons({
-  onDecide,
-  size = "lg",
-}: {
-  onDecide: (status: DecisionStatus) => void;
-  size?: "lg" | "sm";
-}) {
-  const base =
-    size === "lg"
-      ? "flex-1 rounded-xl py-5 text-lg font-bold uppercase tracking-wide transition active:scale-[0.98]"
-      : "rounded-lg px-4 py-2 text-sm font-bold uppercase tracking-wide transition";
+function Avatar({ name, photo, size = 56 }: { name: string; photo: string; size?: number }) {
   return (
-    <div className={size === "lg" ? "grid grid-cols-2 gap-3" : "flex gap-2"}>
+    <div
+      className="flex shrink-0 items-center justify-center overflow-hidden rounded-full bg-[color:var(--maroon)] bg-cover bg-center font-display font-semibold text-white"
+      style={{
+        width: size,
+        height: size,
+        backgroundImage: photo ? `url('${photo}')` : undefined,
+        fontSize: Math.round(size * 0.4),
+      }}
+    >
+      {!photo && name.charAt(0).toUpperCase()}
+    </div>
+  );
+}
+
+function DecisionButtons({ onDecide }: { onDecide: (status: DecisionStatus) => void }) {
+  const base = "flex-1 rounded-xl py-5 text-lg font-bold uppercase tracking-wide transition active:scale-[0.98]";
+  return (
+    <div className="grid grid-cols-2 gap-3">
       <button type="button" onClick={() => onDecide("advance")} className={`${base} bg-emerald-600 text-white hover:bg-emerald-700`}>
         Advance <span className="ml-1 opacity-70">A</span>
       </button>
@@ -117,43 +122,77 @@ function DecisionButtons({
   );
 }
 
+/** A consensus point's attribution: a plain name when only one brother said
+ *  it, or a clickable count that reveals who when more than one did. Never
+ *  says "X only" - that reads as singling someone out for a lone opinion. */
+function AttributionTag({ point, colorClass }: { point: ConsensusPoint; colorClass: string }) {
+  const [open, setOpen] = useState(false);
+  if (point.sourceCount <= 1) {
+    return <span className={`text-lg font-medium ${colorClass}`}>{point.brothers[0]}</span>;
+  }
+  return (
+    <span className="relative inline-block">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        className={`rounded-full border px-3 py-1 text-base font-bold ${colorClass} border-current/30 hover:bg-current/10`}
+      >
+        {point.sourceCount} brothers
+      </button>
+      {open && (
+        <div className="absolute left-0 top-full z-20 mt-2 min-w-[200px] rounded-xl border border-[color:var(--folder-cream-shadow)] bg-white p-3 text-left shadow-xl">
+          <p className="mb-1 text-xs font-bold uppercase tracking-wide text-slate-400">Reported by</p>
+          <p className="text-lg text-slate-800">{point.brothers.join(", ")}</p>
+        </div>
+      )}
+    </span>
+  );
+}
+
 function ConsensusCard({ candidate, onViewNotes }: { candidate: Candidate; onViewNotes: () => void }) {
   const top = strongestPoint(candidate.strengths);
   const lowEvidence = candidate.sourceCount <= 1;
 
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
+    <div
+      className="flex h-full flex-col overflow-hidden rounded-2xl border p-8 shadow-sm"
+      style={{ backgroundColor: "var(--folder-cream)", borderColor: "var(--folder-cream-shadow)" }}
+    >
       <div className="flex items-start justify-between gap-4">
-        <div>
-          <h1 className="font-display text-4xl font-semibold text-slate-900">{candidate.name}</h1>
-          <p className="mt-1 text-lg text-slate-500">
-            {candidate.year} · {candidate.major} · {candidate.careerPath}
-          </p>
+        <div className="flex items-center gap-5">
+          <Avatar name={candidate.name} photo={candidate.photo} size={96} />
+          <div>
+            <h1 className="font-display text-5xl font-semibold leading-tight text-slate-900">{candidate.name}</h1>
+            <p className="mt-1 text-2xl text-slate-600">
+              {candidate.year}, {candidate.major}, {candidate.careerPath}
+            </p>
+          </div>
         </div>
-        <span className="whitespace-nowrap rounded-full bg-slate-100 px-3 py-1.5 text-sm font-semibold text-slate-600">
+        <span className="whitespace-nowrap rounded-full bg-white px-4 py-2 text-lg font-semibold text-slate-600">
           Notes from {candidate.sourceCount} {candidate.sourceCount === 1 ? "brother" : "brothers"}
         </span>
       </div>
 
       {lowEvidence && (
-        <div className="mt-4 rounded-lg border border-amber-300 bg-amber-50 px-4 py-2 text-sm font-semibold text-amber-800">
-          ⚠ Limited evidence — decide with caution or send to Hold for more notes.
+        <div className="mt-4 rounded-lg border border-amber-400 bg-amber-100 px-4 py-3 text-lg font-semibold text-amber-900">
+          Limited evidence. Decide with caution or send to Hold for more notes.
         </div>
       )}
 
-      <div className="mt-6 grid flex-1 grid-cols-2 gap-6 overflow-hidden">
-        <div className="flex flex-col gap-4 overflow-y-auto pr-2">
+      <div className="mt-6 grid flex-1 grid-cols-2 gap-8 overflow-hidden">
+        <div className="flex flex-col gap-6 overflow-y-auto pr-2">
           <section>
-            <h2 className="text-xs font-bold uppercase tracking-wider text-emerald-700">Consensus strengths</h2>
+            <h2 className="text-2xl font-bold text-emerald-700">Strengths</h2>
             {candidate.strengths.length === 0 ? (
-              <p className="mt-2 text-sm text-slate-400">None noted.</p>
+              <p className="mt-2 text-xl text-slate-400">None noted.</p>
             ) : (
-              <ul className="mt-2 flex flex-col gap-2">
+              <ul className="mt-2 flex flex-col gap-3">
                 {candidate.strengths.map((s, i) => (
-                  <li key={i} className="rounded-lg bg-emerald-50 px-3 py-2 text-sm text-slate-800">
-                    {s.text}
-                    <span className="ml-2 text-xs font-semibold text-emerald-700">
-                      {s.sourceCount > 1 ? `— ${s.sourceCount} brothers` : `— ${s.brothers[0]} only`}
+                  <li key={i} className="flex gap-3 text-xl leading-snug text-slate-800">
+                    <span className="mt-2.5 h-2.5 w-2.5 shrink-0 rounded-full bg-emerald-500" aria-hidden />
+                    <span className="flex flex-wrap items-center gap-2">
+                      {s.text}
+                      <AttributionTag point={s} colorClass="text-emerald-700" />
                     </span>
                   </li>
                 ))}
@@ -162,16 +201,17 @@ function ConsensusCard({ candidate, onViewNotes }: { candidate: Candidate; onVie
           </section>
 
           <section>
-            <h2 className="text-xs font-bold uppercase tracking-wider text-red-600">Consensus concerns</h2>
+            <h2 className="text-2xl font-bold text-red-700">Concerns</h2>
             {candidate.concerns.length === 0 ? (
-              <p className="mt-2 text-sm text-slate-400">None noted.</p>
+              <p className="mt-2 text-xl text-slate-400">None noted.</p>
             ) : (
-              <ul className="mt-2 flex flex-col gap-2">
+              <ul className="mt-2 flex flex-col gap-3">
                 {candidate.concerns.map((c, i) => (
-                  <li key={i} className="rounded-lg bg-red-50 px-3 py-2 text-sm text-slate-800">
-                    {c.text}
-                    <span className="ml-2 text-xs font-semibold text-red-600">
-                      {c.sourceCount > 1 ? `— ${c.sourceCount} brothers` : `— ${c.brothers[0]} only`}
+                  <li key={i} className="flex gap-3 text-xl leading-snug text-slate-800">
+                    <span className="mt-2.5 h-2.5 w-2.5 shrink-0 rounded-full bg-red-500" aria-hidden />
+                    <span className="flex flex-wrap items-center gap-2">
+                      {c.text}
+                      <AttributionTag point={c} colorClass="text-red-700" />
                     </span>
                   </li>
                 ))}
@@ -181,10 +221,10 @@ function ConsensusCard({ candidate, onViewNotes }: { candidate: Candidate; onVie
 
           {candidate.mixedFeedback.length > 0 && (
             <section>
-              <h2 className="text-xs font-bold uppercase tracking-wider text-slate-600">Mixed / conflicting feedback</h2>
-              <ul className="mt-2 flex flex-col gap-2">
+              <h2 className="text-2xl font-bold text-slate-700">Mixed feedback</h2>
+              <ul className="mt-2 flex flex-col gap-3">
                 {candidate.mixedFeedback.map((m, i) => (
-                  <li key={i} className="rounded-lg bg-slate-100 px-3 py-2 text-sm text-slate-800">
+                  <li key={i} className="text-xl leading-snug text-slate-800">
                     <p className="font-semibold text-slate-600">{m.topic}</p>
                     {m.observations.map((o, j) => (
                       <p key={j} className="mt-1">
@@ -198,31 +238,34 @@ function ConsensusCard({ candidate, onViewNotes }: { candidate: Candidate; onVie
           )}
         </div>
 
-        <div className="flex flex-col gap-4 overflow-y-auto pr-2">
+        <div className="flex flex-col gap-6 overflow-y-auto pr-2">
           <section>
-            <h2 className="text-xs font-bold uppercase tracking-wider text-slate-600">Facts &amp; experience</h2>
+            <h2 className="text-2xl font-bold text-slate-700">Facts and experience</h2>
             {candidate.facts.length === 0 ? (
-              <p className="mt-2 text-sm text-slate-400">None noted.</p>
+              <p className="mt-2 text-xl text-slate-400">None noted.</p>
             ) : (
-              <ul className="mt-2 list-disc space-y-1 pl-5 text-sm text-slate-700">
+              <ul className="mt-2 flex flex-col gap-2">
                 {candidate.facts.map((f, i) => (
-                  <li key={i}>{f}</li>
+                  <li key={i} className="flex gap-3 text-xl leading-snug text-slate-700">
+                    <span className="mt-2.5 h-2.5 w-2.5 shrink-0 rounded-full bg-slate-400" aria-hidden />
+                    {f}
+                  </li>
                 ))}
               </ul>
             )}
           </section>
 
           {top && (
-            <section className="rounded-lg border border-emerald-200 bg-emerald-50/60 px-3 py-2">
-              <h2 className="text-xs font-bold uppercase tracking-wider text-emerald-700">Strongest point</h2>
-              <p className="mt-1 text-sm text-slate-800">{top.text}</p>
+            <section className="rounded-xl border border-emerald-300 bg-emerald-50 px-4 py-3">
+              <h2 className="text-xl font-bold text-emerald-700">Strongest point</h2>
+              <p className="mt-1 text-xl text-slate-800">{top.text}</p>
             </section>
           )}
 
           <button
             type="button"
             onClick={onViewNotes}
-            className="mt-auto self-start rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-600 transition hover:border-slate-400 hover:text-slate-900"
+            className="mt-auto self-start rounded-lg border border-slate-400 bg-white px-5 py-2.5 text-lg font-semibold text-slate-700 transition hover:border-slate-600 hover:text-slate-900"
           >
             View all raw notes ({candidate.notes.length})
           </button>
@@ -234,13 +277,13 @@ function ConsensusCard({ candidate, onViewNotes }: { candidate: Candidate; onVie
 
 function NotesModal({ candidate, onClose }: { candidate: Candidate; onClose: () => void }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-8" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-8" onClick={onClose}>
       <div
         className="flex max-h-[80vh] w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-xl"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between border-b border-slate-200 px-6 py-4">
-          <h2 className="font-display text-xl font-semibold text-slate-900">Raw notes — {candidate.name}</h2>
+          <h2 className="font-display text-xl font-semibold text-slate-900">Raw notes for {candidate.name}</h2>
           <button type="button" onClick={onClose} className="rounded-lg px-3 py-1.5 text-sm font-semibold text-slate-500 hover:bg-slate-100">
             Close (Esc)
           </button>
@@ -264,6 +307,109 @@ function NotesModal({ candidate, onClose }: { candidate: Candidate; onClose: () 
   );
 }
 
+function PathwayBar({
+  candidates,
+  onSelectPathway,
+}: {
+  candidates: Candidate[];
+  onSelectPathway: (pathway: string) => void;
+}) {
+  const counts = useMemo(() => {
+    const map = new Map<string, number>();
+    candidates.forEach((c) => {
+      const key = c.careerPath || "Unspecified";
+      map.set(key, (map.get(key) ?? 0) + 1);
+    });
+    return Array.from(map.entries()).sort((a, b) => b[1] - a[1]);
+  }, [candidates]);
+
+  return (
+    <div className="flex flex-wrap items-center gap-2">
+      {counts.map(([pathway, count]) => (
+        <button
+          key={pathway}
+          type="button"
+          onClick={() => onSelectPathway(pathway)}
+          className="rounded-full border border-white/25 px-3 py-1 text-sm font-semibold text-white/85 transition hover:border-white hover:bg-white/10 hover:text-white"
+        >
+          {pathway} <span className="text-white">{count}</span>
+        </button>
+      ))}
+    </div>
+  );
+}
+
+function PathwayBrowseModal({
+  pathway,
+  candidates,
+  onClose,
+  onOpenCandidate,
+}: {
+  pathway: string;
+  candidates: Candidate[];
+  onClose: () => void;
+  onOpenCandidate: (id: string) => void;
+}) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-8" onClick={onClose}>
+      <div
+        className="flex max-h-[80vh] w-full max-w-xl flex-col overflow-hidden rounded-2xl bg-white shadow-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between border-b border-slate-200 px-6 py-4">
+          <h2 className="font-display text-xl font-semibold text-slate-900">
+            {pathway} <span className="text-slate-400">({candidates.length})</span>
+          </h2>
+          <button type="button" onClick={onClose} className="rounded-lg px-3 py-1.5 text-sm font-semibold text-slate-500 hover:bg-slate-100">
+            Close (Esc)
+          </button>
+        </div>
+        <div className="flex-1 overflow-y-auto p-4">
+          <div className="flex flex-col gap-2">
+            {candidates.map((c) => {
+              const style = STATUS_STYLES[c.status];
+              return (
+                <button
+                  key={c.id}
+                  type="button"
+                  onClick={() => onOpenCandidate(c.id)}
+                  className="flex items-center gap-3 rounded-xl border border-slate-200 p-3 text-left hover:border-slate-400"
+                >
+                  <Avatar name={c.name} photo={c.photo} size={44} />
+                  <div className="flex-1">
+                    <p className="font-semibold text-slate-900">{c.name}</p>
+                    <p className="text-sm text-slate-500">
+                      {c.year}, {c.major}
+                    </p>
+                  </div>
+                  <span className={`rounded-full px-3 py-1 text-xs font-bold ${style.bg} ${style.text}`}>{style.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function CandidateDetailModal({ candidate, onClose }: { candidate: Candidate; onClose: () => void }) {
+  return (
+    <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-8" onClick={onClose}>
+      <div className="max-h-[85vh] w-full max-w-4xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
+        <div className="mb-3 flex justify-end">
+          <button type="button" onClick={onClose} className="rounded-lg bg-white px-4 py-2 text-sm font-bold text-slate-700 hover:bg-slate-100">
+            Close (Esc)
+          </button>
+        </div>
+        <div className="h-[75vh]">
+          <ConsensusCard candidate={candidate} onViewNotes={() => {}} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export function DeliberationApp({ initialCandidates }: { initialCandidates: Candidate[] }) {
   const candidates = initialCandidates;
   const byId = useMemo(() => new Map(candidates.map((c) => [c.id, c])), [candidates]);
@@ -271,16 +417,11 @@ export function DeliberationApp({ initialCandidates }: { initialCandidates: Cand
   const [state, setState] = useState<PersistedState>(() => initialState(candidates));
   const [hydrated, setHydrated] = useState(false);
   const [notesOpen, setNotesOpen] = useState(false);
-  // Wall-clock "now", refreshed once per timer tick rather than read directly
-  // via Date.now() during render - components must stay pure, so the impure
-  // clock read lives in the effect/interval below and only its result flows
-  // into a render-safe piece of state.
+  const [browsePathway, setBrowsePathway] = useState<string | null>(null);
+  const [browseCandidateId, setBrowseCandidateId] = useState<string | null>(null);
   const [nowMs, setNowMs] = useState<number | null>(null);
 
   useEffect(() => {
-    // localStorage isn't available during server render, so state hydrates
-    // one tick after mount - the `!hydrated` placeholder below covers that
-    // gap instead of risking a hydration mismatch.
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setState(loadState(candidates));
     setHydrated(true);
@@ -293,7 +434,6 @@ export function DeliberationApp({ initialCandidates }: { initialCandidates: Cand
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }, [state, hydrated]);
 
-  // Global elapsed timer, ticks once per second while running.
   useEffect(() => {
     if (!state.timerRunning) return;
     const id = setInterval(() => {
@@ -313,6 +453,11 @@ export function DeliberationApp({ initialCandidates }: { initialCandidates: Cand
   const rapidOrder = useMemo(() => candidates.map((c) => c.id), [candidates]);
   const currentRapidId = rapidOrder[state.rapidIndex];
   const currentDiscussId = state.discussionQueue[state.discussIndex];
+
+  const candidatesWithLiveStatus = useMemo(
+    () => candidates.map((c) => ({ ...c, status: state.decisions[c.id] ?? c.status })),
+    [candidates, state.decisions],
+  );
 
   const reviewedCount = candidates.filter((c) => state.decisions[c.id] !== "unreviewed").length;
   const remainingCount = candidates.length - reviewedCount;
@@ -358,10 +503,7 @@ export function DeliberationApp({ initialCandidates }: { initialCandidates: Cand
   }
 
   function advanceDiscussion() {
-    setState((prev) => {
-      const nextIndex = prev.discussIndex + 1;
-      return { ...prev, discussIndex: nextIndex, discussionSecondsLeft: DISCUSSION_TIMER_SECONDS };
-    });
+    setState((prev) => ({ ...prev, discussIndex: prev.discussIndex + 1, discussionSecondsLeft: DISCUSSION_TIMER_SECONDS }));
   }
 
   function decideDiscussion(status: DecisionStatus) {
@@ -419,11 +561,14 @@ export function DeliberationApp({ initialCandidates }: { initialCandidates: Cand
     setState(initialState(candidates));
   }
 
-  // Keyboard shortcuts
   useEffect(() => {
     function onKeyDown(e: KeyboardEvent) {
-      if (notesOpen) {
-        if (e.key === "Escape") setNotesOpen(false);
+      if (notesOpen || browsePathway || browseCandidateId) {
+        if (e.key === "Escape") {
+          setNotesOpen(false);
+          setBrowsePathway(null);
+          setBrowseCandidateId(null);
+        }
         return;
       }
       const tag = (document.activeElement?.tagName || "").toLowerCase();
@@ -453,33 +598,33 @@ export function DeliberationApp({ initialCandidates }: { initialCandidates: Cand
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state.stage, state.rapidIndex, state.discussIndex, state.discussionQueue, notesOpen]);
+  }, [state.stage, state.rapidIndex, state.discussIndex, state.discussionQueue, notesOpen, browsePathway, browseCandidateId]);
 
   if (!hydrated) {
-    return <div className="min-h-screen bg-white" />;
+    return <div className="min-h-screen" style={{ backgroundColor: "var(--maroon-pattern-base)" }} />;
   }
 
   const currentCandidate =
     state.stage === "rapid" ? (currentRapidId ? byId.get(currentRapidId) : undefined) : state.stage === "discussion" ? (currentDiscussId ? byId.get(currentDiscussId) : undefined) : undefined;
 
   return (
-    <div className="flex h-screen flex-col bg-slate-50 text-slate-900">
-      {/* Top strip */}
-      <div className="flex items-center justify-between border-b border-slate-200 bg-white px-6 py-2">
-        <div className="flex items-center gap-3">
-          <span className="font-display text-lg font-semibold">Deliberation</span>
-          <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-bold uppercase tracking-wide text-slate-500">
+    <div className="pattern-maroon flex h-screen flex-col text-white">
+      <div className="flex items-center justify-between gap-4 border-b border-white/10 px-6 py-3">
+        <div className="flex items-center gap-4">
+          <span className="font-display text-xl font-semibold">Deliberation</span>
+          <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white/70">
             {state.stage === "rapid" && "Rapid Review"}
             {state.stage === "rapid-done" && "Rapid Review Complete"}
             {state.stage === "discussion" && "Discussion Queue"}
             {state.stage === "final" && "Final Selection"}
           </span>
         </div>
+        <PathwayBar candidates={candidatesWithLiveStatus} onSelectPathway={setBrowsePathway} />
         <div className="flex items-center gap-2">
-          <button type="button" onClick={undo} disabled={state.history.length === 0} className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-slate-600 hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40">
+          <button type="button" onClick={undo} disabled={state.history.length === 0} className="rounded-lg border border-white/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white/80 hover:bg-white/10 disabled:cursor-not-allowed disabled:opacity-30">
             Undo
           </button>
-          <button type="button" onClick={resetAll} className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-slate-500 hover:border-red-300 hover:text-red-600">
+          <button type="button" onClick={resetAll} className="rounded-lg border border-white/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white/60 hover:border-red-300 hover:text-red-300">
             Reset
           </button>
         </div>
@@ -502,8 +647,8 @@ export function DeliberationApp({ initialCandidates }: { initialCandidates: Cand
 
       {state.stage === "rapid-done" && (
         <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
-          <h1 className="font-display text-4xl font-semibold text-slate-900">Rapid review complete</h1>
-          <p className="max-w-md text-slate-500">
+          <h1 className="font-display text-4xl font-semibold">Rapid review complete</h1>
+          <p className="max-w-md text-white/70">
             {candidates.filter((c) => state.decisions[c.id] === "discuss" || state.decisions[c.id] === "hold").length} candidate(s) flagged for
             discussion. Everyone else has a preliminary decision.
           </p>
@@ -530,17 +675,17 @@ export function DeliberationApp({ initialCandidates }: { initialCandidates: Cand
             />
           ) : (
             <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
-              <h1 className="font-display text-4xl font-semibold text-slate-900">Discussion queue resolved</h1>
-              <p className="max-w-md text-slate-500">Every flagged candidate has a decision. Ready to compare finalists.</p>
+              <h1 className="font-display text-4xl font-semibold">Discussion queue resolved</h1>
+              <p className="max-w-md text-white/70">Every flagged candidate has a decision. Ready to compare finalists.</p>
               <button type="button" onClick={goToFinal} className="rounded-xl bg-emerald-600 px-8 py-4 text-lg font-bold text-white hover:bg-emerald-700">
                 Go to Final Selection
               </button>
             </div>
           )}
           {state.discussionQueue.length > 0 && (
-            <div className="border-t border-slate-200 bg-white px-6 py-2 text-center">
-              <button type="button" onClick={goToFinal} className="text-xs font-bold uppercase tracking-wide text-slate-400 hover:text-slate-700">
-                Skip to Final Selection →
+            <div className="border-t border-white/10 px-6 py-2 text-center">
+              <button type="button" onClick={goToFinal} className="text-xs font-bold uppercase tracking-wide text-white/40 hover:text-white">
+                Skip to Final Selection
               </button>
             </div>
           )}
@@ -568,6 +713,17 @@ export function DeliberationApp({ initialCandidates }: { initialCandidates: Cand
       )}
 
       {notesOpen && currentCandidate && <NotesModal candidate={currentCandidate} onClose={() => setNotesOpen(false)} />}
+      {browsePathway && (
+        <PathwayBrowseModal
+          pathway={browsePathway}
+          candidates={candidatesWithLiveStatus.filter((c) => (c.careerPath || "Unspecified") === browsePathway)}
+          onClose={() => setBrowsePathway(null)}
+          onOpenCandidate={(id) => setBrowseCandidateId(id)}
+        />
+      )}
+      {browseCandidateId && byId.get(browseCandidateId) && (
+        <CandidateDetailModal candidate={byId.get(browseCandidateId)!} onClose={() => setBrowseCandidateId(null)} />
+      )}
     </div>
   );
 }
@@ -597,10 +753,12 @@ function RapidOrDiscussionStage({
 }) {
   return (
     <div className="grid flex-1 grid-cols-[260px_1fr_300px] gap-4 overflow-hidden p-4">
-      {/* Left: queue */}
-      <div className="flex flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white">
-        <div className="border-b border-slate-200 px-4 py-3">
-          <p className="text-xs font-bold uppercase tracking-wide text-slate-400">
+      <div
+        className="flex flex-col overflow-hidden rounded-2xl border"
+        style={{ backgroundColor: "var(--folder-cream)", borderColor: "var(--folder-cream-shadow)" }}
+      >
+        <div className="border-b px-4 py-3" style={{ borderColor: "var(--folder-cream-shadow)" }}>
+          <p className="text-xs font-bold uppercase tracking-wide text-slate-500">
             Candidate {index + 1} of {total}
           </p>
         </div>
@@ -611,7 +769,8 @@ function RapidOrDiscussionStage({
             return (
               <div
                 key={item.id}
-                className={`flex items-center gap-2 border-b border-slate-100 px-4 py-2.5 text-sm ${active ? "bg-slate-900 text-white" : "text-slate-700"}`}
+                className={`flex items-center gap-2 border-b px-4 py-2.5 text-sm ${active ? "bg-[color:var(--maroon)] text-white" : "text-slate-700"}`}
+                style={{ borderColor: "var(--folder-cream-shadow)" }}
               >
                 <span className={`h-2 w-2 shrink-0 rounded-full ${active ? "bg-white" : style.dot}`} />
                 <span className="truncate">{item.name}</span>
@@ -621,49 +780,49 @@ function RapidOrDiscussionStage({
         </div>
       </div>
 
-      {/* Center: consensus card */}
-      <ConsensusCardWithNav candidate={candidate} onViewNotes={onViewNotes} onNav={onNav} />
+      <ConsensusCard candidate={candidate} onViewNotes={onViewNotes} />
 
-      {/* Right: controls */}
       <div className="flex flex-col gap-4">
         {discussionSecondsLeft != null && (
-          <div className={`rounded-2xl border p-4 text-center ${discussionSecondsLeft <= 30 ? "border-red-300 bg-red-50" : "border-slate-200 bg-white"}`}>
-            <p className="text-xs font-bold uppercase tracking-wide text-slate-400">Discussion time</p>
+          <div
+            className="rounded-2xl border p-4 text-center"
+            style={{
+              backgroundColor: discussionSecondsLeft <= 30 ? "#fee2e2" : "var(--folder-cream)",
+              borderColor: discussionSecondsLeft <= 30 ? "#fca5a5" : "var(--folder-cream-shadow)",
+            }}
+          >
+            <p className="text-xs font-bold uppercase tracking-wide text-slate-500">Discussion time</p>
             <p className={`mt-1 font-display text-4xl font-semibold ${discussionSecondsLeft <= 30 ? "text-red-600" : "text-slate-900"}`}>
               {formatClock(discussionSecondsLeft)}
             </p>
-            {discussionSecondsLeft === 0 && <p className="mt-1 text-xs font-bold text-red-600">Time&apos;s up — decide now</p>}
+            {discussionSecondsLeft === 0 && <p className="mt-1 text-xs font-bold text-red-600">Time&apos;s up. Decide now.</p>}
           </div>
         )}
 
-        <div className="rounded-2xl border border-slate-200 bg-white p-4">
-          <p className="text-xs font-bold uppercase tracking-wide text-slate-400">Current status</p>
+        <div className="rounded-2xl border p-4" style={{ backgroundColor: "var(--folder-cream)", borderColor: "var(--folder-cream-shadow)" }}>
+          <p className="text-xs font-bold uppercase tracking-wide text-slate-500">Current status</p>
           <div className={`mt-2 inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-bold ${STATUS_STYLES[status].bg} ${STATUS_STYLES[status].text}`}>
             <span className={`h-2 w-2 rounded-full ${STATUS_STYLES[status].dot}`} />
             {STATUS_STYLES[status].label}
           </div>
         </div>
 
-        <div className="flex-1 rounded-2xl border border-slate-200 bg-white p-4">
-          <p className="mb-3 text-xs font-bold uppercase tracking-wide text-slate-400">Decision</p>
+        <div className="flex-1 rounded-2xl border p-4" style={{ backgroundColor: "var(--folder-cream)", borderColor: "var(--folder-cream-shadow)" }}>
+          <p className="mb-3 text-xs font-bold uppercase tracking-wide text-slate-500">Decision</p>
           <DecisionButtons onDecide={onDecide} />
         </div>
 
         <div className="flex gap-2">
-          <button type="button" onClick={() => onNav(-1)} className="flex-1 rounded-lg border border-slate-300 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100">
-            ← Prev
+          <button type="button" onClick={() => onNav(-1)} className="flex-1 rounded-lg border border-white/25 py-2 text-sm font-semibold text-white/80 hover:bg-white/10">
+            Prev
           </button>
-          <button type="button" onClick={() => onNav(1)} className="flex-1 rounded-lg border border-slate-300 py-2 text-sm font-semibold text-slate-600 hover:bg-slate-100">
-            Next →
+          <button type="button" onClick={() => onNav(1)} className="flex-1 rounded-lg border border-white/25 py-2 text-sm font-semibold text-white/80 hover:bg-white/10">
+            Next
           </button>
         </div>
       </div>
     </div>
   );
-}
-
-function ConsensusCardWithNav({ candidate, onViewNotes }: { candidate: Candidate; onViewNotes: () => void; onNav: (delta: number) => void }) {
-  return <ConsensusCard candidate={candidate} onViewNotes={onViewNotes} />;
 }
 
 function BottomProgressBar({
@@ -686,25 +845,25 @@ function BottomProgressBar({
   const total = reviewedCount + remainingCount;
   const pct = total > 0 ? Math.round((reviewedCount / total) * 100) : 0;
   return (
-    <div className="border-t border-slate-200 bg-white px-6 py-3">
-      <div className="mb-2 h-2 w-full overflow-hidden rounded-full bg-slate-100">
-        <div className="h-full rounded-full bg-emerald-500 transition-all" style={{ width: `${pct}%` }} />
+    <div className="border-t border-white/10 px-6 py-3">
+      <div className="mb-2 h-2 w-full overflow-hidden rounded-full bg-white/10">
+        <div className="h-full rounded-full bg-emerald-400 transition-all" style={{ width: `${pct}%` }} />
       </div>
-      <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-slate-600">
+      <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-white/70">
         <span>
-          <strong className="text-slate-900">{reviewedCount}</strong> reviewed · <strong className="text-slate-900">{remainingCount}</strong> remaining
+          <strong className="text-white">{reviewedCount}</strong> reviewed, <strong className="text-white">{remainingCount}</strong> remaining
         </span>
         <span>
-          Elapsed <strong className="text-slate-900">{formatClock(elapsedSeconds)}</strong>
+          Elapsed <strong className="text-white">{formatClock(elapsedSeconds)}</strong>
         </span>
         <span>
-          Projected finish <strong className={onPace ? "text-emerald-700" : "text-red-600"}>{projectedFinishClock}</strong>{" "}
-          {onPace ? "· on pace" : "· behind pace"}
+          Projected finish <strong className={onPace ? "text-emerald-300" : "text-red-300"}>{projectedFinishClock}</strong>{" "}
+          {onPace ? "(on pace)" : "(behind pace)"}
         </span>
         <button
           type="button"
           onClick={onToggleTimer}
-          className={`rounded-lg px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-white ${timerRunning ? "bg-slate-700 hover:bg-slate-800" : "bg-emerald-600 hover:bg-emerald-700"}`}
+          className={`rounded-lg px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-white ${timerRunning ? "bg-white/15 hover:bg-white/25" : "bg-emerald-600 hover:bg-emerald-700"}`}
         >
           {timerRunning ? "Pause (Space)" : "Start (Space)"}
         </button>
@@ -726,12 +885,12 @@ function FinalSelectionScreen({
 
   async function exportDecisions() {
     const lines = [
-      `Final Selection — ${new Date().toLocaleDateString()}`,
+      `Final Selection (${new Date().toLocaleDateString()})`,
       `${finalists.length} of ${Math.min(candidates.length, 12)} selected`,
       "",
       ...candidates
         .filter((c) => finalists.includes(c.id))
-        .map((c) => `✓ ${c.name} — ${c.year}, ${c.major} (${c.careerPath})`),
+        .map((c) => `Selected: ${c.name} (${c.year}, ${c.major}, ${c.careerPath})`),
       "",
       "Advanced but not selected:",
       ...candidates.filter((c) => !finalists.includes(c.id)).map((c) => `  ${c.name}`),
@@ -741,26 +900,26 @@ function FinalSelectionScreen({
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
     } catch {
-      // clipboard API unavailable — silently no-op, the list is still on screen
+      // clipboard API unavailable; the list is still on screen
     }
   }
 
   return (
     <div className="flex flex-1 flex-col overflow-hidden p-6">
       <div className="mb-4 flex items-center justify-between">
-        <h1 className="font-display text-3xl font-semibold text-slate-900">Final Selection</h1>
+        <h1 className="font-display text-3xl font-semibold">Final Selection</h1>
         <div className="flex items-center gap-3">
-          <span className={`rounded-full px-4 py-2 text-sm font-bold ${finalists.length === MAX_FINALISTS ? "bg-emerald-100 text-emerald-700" : "bg-slate-100 text-slate-600"}`}>
+          <span className={`rounded-full px-4 py-2 text-sm font-bold ${finalists.length === MAX_FINALISTS ? "bg-emerald-400 text-emerald-950" : "bg-white/15 text-white"}`}>
             {finalists.length} of {MAX_FINALISTS} selected
           </span>
-          <button type="button" onClick={exportDecisions} className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-bold text-white hover:bg-slate-700">
-            {copied ? "Copied ✓" : "Export decisions"}
+          <button type="button" onClick={exportDecisions} className="rounded-lg bg-white px-4 py-2 text-sm font-bold text-slate-900 hover:bg-white/90">
+            {copied ? "Copied" : "Export decisions"}
           </button>
         </div>
       </div>
 
       {candidates.length === 0 ? (
-        <p className="text-slate-400">No candidates were marked Advance.</p>
+        <p className="text-white/60">No candidates were marked Advance.</p>
       ) : (
         <div className="flex-1 overflow-y-auto">
           <div className="flex flex-col gap-2">
@@ -770,16 +929,24 @@ function FinalSelectionScreen({
               const selected = finalists.includes(c.id);
               const disableSelect = !selected && finalists.length >= MAX_FINALISTS;
               return (
-                <div key={c.id} className={`flex items-center gap-4 rounded-xl border p-4 ${selected ? "border-emerald-300 bg-emerald-50" : "border-slate-200 bg-white"}`}>
+                <div
+                  key={c.id}
+                  className="flex items-center gap-4 rounded-xl border p-4"
+                  style={{
+                    backgroundColor: selected ? "#d1fae5" : "var(--folder-cream)",
+                    borderColor: selected ? "#6ee7b7" : "var(--folder-cream-shadow)",
+                  }}
+                >
+                  <Avatar name={c.name} photo={c.photo} size={52} />
                   <div className="w-48 shrink-0">
                     <p className="font-display text-lg font-semibold text-slate-900">{c.name}</p>
                     <p className="text-xs text-slate-500">
-                      {c.year} · {c.careerPath}
+                      {c.year}, {c.careerPath}
                     </p>
                   </div>
                   <div className="flex-1 text-sm text-slate-700">
                     <p>
-                      <span className="font-semibold text-emerald-700">Strongest:</span> {top ? top.text : "—"}
+                      <span className="font-semibold text-emerald-700">Strongest:</span> {top ? top.text : "None noted"}
                     </p>
                     <p className="mt-0.5">
                       <span className="font-semibold text-red-600">Concern:</span> {concern ? concern.text : "None noted"}

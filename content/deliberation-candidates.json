@@ -3,13 +3,30 @@
     {
       "id": "pnm-001",
       "name": "Maya Fitzgerald",
+      "photo": "",
       "year": "Sophomore",
       "major": "Biology",
       "careerPath": "Pre-Med",
       "sourceCount": 5,
       "strengths": [
-        { "text": "Genuinely curious in every conversation, asked follow-up questions", "sourceCount": 4, "brothers": ["Alex", "Priya", "Jordan", "Sam"] },
-        { "text": "Already volunteering at Tampa General on weekends", "sourceCount": 2, "brothers": ["Priya", "Casey"] }
+        {
+          "text": "Genuinely curious in every conversation, asked follow-up questions",
+          "sourceCount": 4,
+          "brothers": [
+            "Alex",
+            "Priya",
+            "Jordan",
+            "Sam"
+          ]
+        },
+        {
+          "text": "Already volunteering at Tampa General on weekends",
+          "sourceCount": 2,
+          "brothers": [
+            "Priya",
+            "Casey"
+          ]
+        }
       ],
       "concerns": [],
       "mixedFeedback": [],
@@ -19,26 +36,55 @@
         "Former high school EMT cadet program"
       ],
       "notes": [
-        { "brother": "Alex", "text": "Asked me three follow-up questions about how I balance shadowing with classes. Genuinely engaged, not just being polite." },
-        { "brother": "Priya", "text": "She's already doing ED volunteer hours at TGH. Talked about a specific patient interaction that stuck with her." },
-        { "brother": "Jordan", "text": "Comfortable talking to everyone at the table, not just me. Good energy." },
-        { "brother": "Sam", "text": "Asked good questions about our service events specifically, seemed like she'd looked us up beforehand." },
-        { "brother": "Casey", "text": "Mentioned the EMT cadet thing unprompted when I asked about her interest in EM." }
+        {
+          "brother": "Alex",
+          "text": "Asked me three follow-up questions about how I balance shadowing with classes. Genuinely engaged, not just being polite."
+        },
+        {
+          "brother": "Priya",
+          "text": "She's already doing ED volunteer hours at TGH. Talked about a specific patient interaction that stuck with her."
+        },
+        {
+          "brother": "Jordan",
+          "text": "Comfortable talking to everyone at the table, not just me. Good energy."
+        },
+        {
+          "brother": "Sam",
+          "text": "Asked good questions about our service events specifically, seemed like she'd looked us up beforehand."
+        },
+        {
+          "brother": "Casey",
+          "text": "Mentioned the EMT cadet thing unprompted when I asked about her interest in EM."
+        }
       ],
       "status": "unreviewed"
     },
     {
       "id": "pnm-002",
       "name": "Derek Osei",
+      "photo": "",
       "year": "Freshman",
       "major": "Undeclared",
       "careerPath": "Pre-Dental",
       "sourceCount": 2,
       "strengths": [
-        { "text": "Friendly, easy to talk to", "sourceCount": 1, "brothers": ["Marco"] }
+        {
+          "text": "Friendly, easy to talk to",
+          "sourceCount": 1,
+          "brothers": [
+            "Marco"
+          ]
+        }
       ],
       "concerns": [
-        { "text": "Still very unsure about even applying to dental school", "sourceCount": 2, "brothers": ["Marco", "Devon"] }
+        {
+          "text": "Still very unsure about even applying to dental school",
+          "sourceCount": 2,
+          "brothers": [
+            "Marco",
+            "Devon"
+          ]
+        }
       ],
       "mixedFeedback": [],
       "facts": [
@@ -46,30 +92,58 @@
         "Interested in dentistry but hasn't shadowed yet"
       ],
       "notes": [
-        { "brother": "Marco", "text": "Nice guy, easy conversation, but when I asked what drew him to dental he said 'my dentist growing up was cool.' Very early stage." },
-        { "brother": "Devon", "text": "Admitted he hasn't shadowed anyone yet and isn't sure if he wants dental or PA. Fine for a freshman, just early." }
+        {
+          "brother": "Marco",
+          "text": "Nice guy, easy conversation, but when I asked what drew him to dental he said 'my dentist growing up was cool.' Very early stage."
+        },
+        {
+          "brother": "Devon",
+          "text": "Admitted he hasn't shadowed anyone yet and isn't sure if he wants dental or PA. Fine for a freshman, just early."
+        }
       ],
       "status": "unreviewed"
     },
     {
       "id": "pnm-003",
       "name": "Isabella Cruz",
+      "photo": "",
       "year": "Junior",
       "major": "Health Sciences",
       "careerPath": "Pre-PA",
       "sourceCount": 4,
       "strengths": [
-        { "text": "Strong clinical background — works as a CNA on weekends", "sourceCount": 3, "brothers": ["Priya", "Alex", "Jordan"] }
+        {
+          "text": "Strong clinical background, works as a CNA on weekends",
+          "sourceCount": 3,
+          "brothers": [
+            "Priya",
+            "Alex",
+            "Jordan"
+          ]
+        }
       ],
       "concerns": [
-        { "text": "Came across as reciting a resume rather than having a real conversation", "sourceCount": 2, "brothers": ["Jordan", "Sam"] }
+        {
+          "text": "Came across as reciting a resume rather than having a real conversation",
+          "sourceCount": 2,
+          "brothers": [
+            "Jordan",
+            "Sam"
+          ]
+        }
       ],
       "mixedFeedback": [
         {
           "topic": "Warmth in conversation",
           "observations": [
-            { "brother": "Priya", "text": "Warmed up a lot once we talked about her actual patients, really personable underneath the nerves." },
-            { "brother": "Sam", "text": "Felt stiff and rehearsed the whole time, like she was interviewing for a job." }
+            {
+              "brother": "Priya",
+              "text": "Warmed up a lot once we talked about her actual patients, really personable underneath the nerves."
+            },
+            {
+              "brother": "Sam",
+              "text": "Felt stiff and rehearsed the whole time, like she was interviewing for a job."
+            }
           ]
         }
       ],
@@ -79,16 +153,29 @@
         "Applying to PA programs next cycle"
       ],
       "notes": [
-        { "brother": "Priya", "text": "CNA experience is real and substantial — she talked about specific patients with a lot of care. Nervous at first but opened up." },
-        { "brother": "Alex", "text": "Very qualified on paper. Conversation felt a little transactional but her experience speaks for itself." },
-        { "brother": "Jordan", "text": "Felt like she was running through talking points. Didn't feel like a natural conversation." },
-        { "brother": "Sam", "text": "Same read as Jordan — very polished but stiff. Hard to get a sense of who she actually is." }
+        {
+          "brother": "Priya",
+          "text": "CNA experience is real and substantial, she talked about specific patients with a lot of care. Nervous at first but opened up."
+        },
+        {
+          "brother": "Alex",
+          "text": "Very qualified on paper. Conversation felt a little transactional but her experience speaks for itself."
+        },
+        {
+          "brother": "Jordan",
+          "text": "Felt like she was running through talking points. Didn't feel like a natural conversation."
+        },
+        {
+          "brother": "Sam",
+          "text": "Same read as Jordan, very polished but stiff. Hard to get a sense of who she actually is."
+        }
       ],
       "status": "unreviewed"
     },
     {
       "id": "pnm-004",
       "name": "Tyler Brandt",
+      "photo": "",
       "year": "Sophomore",
       "major": "Biochemistry",
       "careerPath": "Pre-Vet",
@@ -101,22 +188,39 @@
         "Pre-Vet track"
       ],
       "notes": [
-        { "brother": "Casey", "text": "Only got a few minutes with him before rotation ended. Seemed polite, mentioned he wants to do large-animal vet work eventually. Need more notes on him." }
+        {
+          "brother": "Casey",
+          "text": "Only got a few minutes with him before rotation ended. Seemed polite, mentioned he wants to do large-animal vet work eventually. Need more notes on him."
+        }
       ],
       "status": "unreviewed"
     },
     {
       "id": "pnm-005",
       "name": "Grace Whitfield",
+      "photo": "",
       "year": "Sophomore",
       "major": "Public Health",
       "careerPath": "Pre-PA",
       "sourceCount": 3,
       "strengths": [
-        { "text": "Excellent listener, made the conversation feel two-way", "sourceCount": 2, "brothers": ["Marco", "Priya"] }
+        {
+          "text": "Excellent listener, made the conversation feel two-way",
+          "sourceCount": 2,
+          "brothers": [
+            "Marco",
+            "Priya"
+          ]
+        }
       ],
       "concerns": [
-        { "text": "Referral source unclear — didn't know much about the chapter going in", "sourceCount": 1, "brothers": ["Devon"] }
+        {
+          "text": "Referral source unclear, didn't know much about the chapter going in",
+          "sourceCount": 1,
+          "brothers": [
+            "Devon"
+          ]
+        }
       ],
       "mixedFeedback": [],
       "facts": [
@@ -124,23 +228,48 @@
         "Involved in campus mental health advocacy group"
       ],
       "notes": [
-        { "brother": "Marco", "text": "Really easy to talk to, asked about my actual experience in the chapter rather than generic questions." },
-        { "brother": "Priya", "text": "Good listener, remembered details from earlier in the conversation and circled back to them." },
-        { "brother": "Devon", "text": "Didn't seem to know much about us coming in, but engaged well once we started talking. Not a red flag, just early awareness." }
+        {
+          "brother": "Marco",
+          "text": "Really easy to talk to, asked about my actual experience in the chapter rather than generic questions."
+        },
+        {
+          "brother": "Priya",
+          "text": "Good listener, remembered details from earlier in the conversation and circled back to them."
+        },
+        {
+          "brother": "Devon",
+          "text": "Didn't seem to know much about us coming in, but engaged well once we started talking. Not a red flag, just early awareness."
+        }
       ],
       "status": "unreviewed"
     },
     {
       "id": "pnm-006",
       "name": "Nathaniel Osborn",
+      "photo": "",
       "year": "Junior",
       "major": "Exercise Science",
       "careerPath": "Pre-PT",
       "sourceCount": 4,
       "strengths": [],
       "concerns": [
-        { "text": "Dismissive tone when talking to brothers who weren't in leadership positions", "sourceCount": 3, "brothers": ["Casey", "Devon", "Sam"] },
-        { "text": "Name-dropped connections rather than talking about himself", "sourceCount": 2, "brothers": ["Casey", "Alex"] }
+        {
+          "text": "Dismissive tone when talking to brothers who weren't in leadership positions",
+          "sourceCount": 3,
+          "brothers": [
+            "Casey",
+            "Devon",
+            "Sam"
+          ]
+        },
+        {
+          "text": "Name-dropped connections rather than talking about himself",
+          "sourceCount": 2,
+          "brothers": [
+            "Casey",
+            "Alex"
+          ]
+        }
       ],
       "mixedFeedback": [],
       "facts": [
@@ -148,23 +277,49 @@
         "Interned at a sports medicine clinic last summer"
       ],
       "notes": [
-        { "brother": "Casey", "text": "Barely looked at me while talking, kept scanning the room for who else was there. Spent most of the conversation name-dropping people he knows in the chapter already." },
-        { "brother": "Devon", "text": "Similar experience — noticeably more engaged once he found out I was on exec." },
-        { "brother": "Sam", "text": "Same pattern I've heard from others. Not rude exactly, just clearly sorting people by perceived importance." },
-        { "brother": "Alex", "text": "Good internship experience but the conversation was mostly him telling me who he knows." }
+        {
+          "brother": "Casey",
+          "text": "Barely looked at me while talking, kept scanning the room for who else was there. Spent most of the conversation name-dropping people he knows in the chapter already."
+        },
+        {
+          "brother": "Devon",
+          "text": "Similar experience, noticeably more engaged once he found out I was on exec."
+        },
+        {
+          "brother": "Sam",
+          "text": "Same pattern I've heard from others. Not rude exactly, just clearly sorting people by perceived importance."
+        },
+        {
+          "brother": "Alex",
+          "text": "Good internship experience but the conversation was mostly him telling me who he knows."
+        }
       ],
       "status": "unreviewed"
     },
     {
       "id": "pnm-007",
       "name": "Priya Ramaswamy",
+      "photo": "",
       "year": "Freshman",
       "major": "Biology",
       "careerPath": "Pre-Med",
       "sourceCount": 3,
       "strengths": [
-        { "text": "Thoughtful about why professional fraternity vs. social", "sourceCount": 2, "brothers": ["Alex", "Jordan"] },
-        { "text": "Already researching MCAT prep timeline as a freshman", "sourceCount": 1, "brothers": ["Marco"] }
+        {
+          "text": "Thoughtful about why professional fraternity vs. social",
+          "sourceCount": 2,
+          "brothers": [
+            "Alex",
+            "Jordan"
+          ]
+        },
+        {
+          "text": "Already researching MCAT prep timeline as a freshman",
+          "sourceCount": 1,
+          "brothers": [
+            "Marco"
+          ]
+        }
       ],
       "concerns": [],
       "mixedFeedback": [],
@@ -174,24 +329,47 @@
         "Planning to shadow a family friend who's an IM physician this summer"
       ],
       "notes": [
-        { "brother": "Alex", "text": "Explained clearly why she wanted a professional org specifically over a social sorority. Mature perspective for a freshman." },
-        { "brother": "Jordan", "text": "Same — she'd clearly thought about what she wanted out of this before coming tonight." },
-        { "brother": "Marco", "text": "Already has an MCAT prep timeline sketched out. Ambitious but not showing off about it." }
+        {
+          "brother": "Alex",
+          "text": "Explained clearly why she wanted a professional org specifically over a social sorority. Mature perspective for a freshman."
+        },
+        {
+          "brother": "Jordan",
+          "text": "Same, she'd clearly thought about what she wanted out of this before coming tonight."
+        },
+        {
+          "brother": "Marco",
+          "text": "Already has an MCAT prep timeline sketched out. Ambitious but not showing off about it."
+        }
       ],
       "status": "unreviewed"
     },
     {
       "id": "pnm-008",
       "name": "Connor Delacroix",
+      "photo": "",
       "year": "Sophomore",
       "major": "Chemistry",
       "careerPath": "Pre-PA",
       "sourceCount": 2,
       "strengths": [
-        { "text": "Direct and honest about still exploring options", "sourceCount": 1, "brothers": ["Devon"] }
+        {
+          "text": "Direct and honest about still exploring options",
+          "sourceCount": 1,
+          "brothers": [
+            "Devon"
+          ]
+        }
       ],
       "concerns": [
-        { "text": "Very quiet, hard to draw into conversation", "sourceCount": 2, "brothers": ["Devon", "Casey"] }
+        {
+          "text": "Very quiet, hard to draw into conversation",
+          "sourceCount": 2,
+          "brothers": [
+            "Devon",
+            "Casey"
+          ]
+        }
       ],
       "mixedFeedback": [],
       "facts": [
@@ -199,8 +377,14 @@
         "Transferred from a community college this year"
       ],
       "notes": [
-        { "brother": "Devon", "text": "Had to pull most answers out of him, but when he did talk he was honest — said he's still deciding between PA and pharmacy." },
-        { "brother": "Casey", "text": "Very reserved. Could be nerves, could be genuine disinterest. Hard to tell from one conversation." }
+        {
+          "brother": "Devon",
+          "text": "Had to pull most answers out of him, but when he did talk he was honest, said he's still deciding between PA and pharmacy."
+        },
+        {
+          "brother": "Casey",
+          "text": "Very reserved. Could be nerves, could be genuine disinterest. Hard to tell from one conversation."
+        }
       ],
       "status": "unreviewed"
     }
