@@ -227,6 +227,7 @@ function DetailSheet({ candidate, onClose }: { candidate: Candidate; onClose: ()
               <ul className="mt-3 flex flex-col gap-4">
                 {candidate.notes.map((n, i) => {
                   const member = matchFamilyMember(n.brother);
+                  const isBulletedNote = n.text.includes("\n• ");
                   return (
                     <li key={i} className="flex gap-3 text-sm text-slate-700">
                       {member ? (
@@ -234,7 +235,18 @@ function DetailSheet({ candidate, onClose }: { candidate: Candidate; onClose: ()
                       ) : null}
                       <div className="min-w-0 flex-1">
                         <p className="mb-1 font-semibold text-slate-900">{member ? member.name : n.brother}</p>
-                        <p className="whitespace-pre-line">{n.text}</p>
+                        {isBulletedNote ? (
+                          <ul className="flex flex-col gap-1.5">
+                            {n.text.split("\n").map((line, j) => (
+                              <li key={j} className="flex gap-2 leading-snug">
+                                <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-400" aria-hidden />
+                                {line.replace(/^•\s*/, "")}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="whitespace-pre-line">{n.text}</p>
+                        )}
                       </div>
                     </li>
                   );
@@ -412,9 +424,9 @@ function StarIcon({ className, style }: { className?: string; style?: React.CSSP
   );
 }
 
-type FloatingHeart = { id: number; left: number; delay: number; duration: number; size: number; drift: number };
+type FloatingIcon = { id: number; left: number; delay: number; duration: number; size: number; drift: number };
 
-function randomHearts(count: number): FloatingHeart[] {
+function randomFloatingIcons(count: number): FloatingIcon[] {
   return Array.from({ length: count }, (_, i) => ({
     id: i,
     left: 4 + Math.random() * 92,
@@ -425,37 +437,47 @@ function randomHearts(count: number): FloatingHeart[] {
   }));
 }
 
-function HeartBurst({ hearts }: { hearts: FloatingHeart[] }) {
+type BurstTone = "advance" | "release";
+
+const BURST_STYLES: Record<BurstTone, { glow: string; iconColor: string; keyframePrefix: string }> = {
+  advance: { glow: "16,185,129", iconColor: "text-emerald-400", keyframePrefix: "advanceBurst" },
+  release: { glow: "239,68,68", iconColor: "text-red-400", keyframePrefix: "releaseBurst" },
+};
+
+function IconBurst({ tone, icons, Icon }: { tone: BurstTone; icons: FloatingIcon[]; Icon: (p: { className?: string; style?: React.CSSProperties }) => React.ReactElement }) {
+  const style = BURST_STYLES[tone];
+  const glowName = `${style.keyframePrefix}Glow`;
+  const floatName = `${style.keyframePrefix}Float`;
   return (
     <div className="pointer-events-none fixed inset-0 z-[60] overflow-hidden">
       <div
         className="absolute inset-x-0 bottom-0 h-2/3"
         style={{
-          background: "linear-gradient(to top, rgba(16,185,129,0.65), rgba(16,185,129,0.18) 45%, transparent 85%)",
-          animation: "heartglow 1.4s ease-out forwards",
+          background: `linear-gradient(to top, rgba(${style.glow},0.65), rgba(${style.glow},0.18) 45%, transparent 85%)`,
+          animation: `${glowName} 1.4s ease-out forwards`,
         }}
       />
-      {hearts.map((h) => (
+      {icons.map((h) => (
         <span
           key={h.id}
-          className="absolute bottom-0 text-emerald-400"
+          className={`absolute bottom-0 ${style.iconColor}`}
           style={
             {
               left: `${h.left}%`,
               "--drift": `${h.drift}px`,
-              animation: `heartfloat ${h.duration}s ease-out ${h.delay}s forwards`,
+              animation: `${floatName} ${h.duration}s ease-out ${h.delay}s forwards`,
             } as React.CSSProperties
           }
         >
-          <HeartIcon style={{ width: h.size, height: h.size }} />
+          <Icon style={{ width: h.size, height: h.size }} />
         </span>
       ))}
       <style>{`
-        @keyframes heartglow {
+        @keyframes ${glowName} {
           0% { opacity: 1; }
           100% { opacity: 0; }
         }
-        @keyframes heartfloat {
+        @keyframes ${floatName} {
           0% { transform: translate(0, 0) scale(0.8); opacity: 0; }
           15% { opacity: 1; }
           100% { transform: translate(var(--drift), -75vh) scale(1.15); opacity: 0; }
@@ -472,7 +494,10 @@ function AutoBidCelebration({ onClose }: { onClose: () => void }) {
   }, [onClose]);
 
   return (
-    <div className="fixed inset-0 z-[70] flex items-center px-8 sm:px-16" style={{ backgroundColor: "var(--gold)" }}>
+    <div
+      className="fixed inset-0 z-[70] flex items-center justify-between px-8 sm:px-20"
+      style={{ backgroundColor: "var(--gold)", animation: "autoBidFadeIn 0.5s ease-out both" }}
+    >
       <button
         type="button"
         onClick={onClose}
@@ -481,10 +506,14 @@ function AutoBidCelebration({ onClose }: { onClose: () => void }) {
       >
         &times;
       </button>
-      <div className="flex items-center gap-5 sm:gap-8">
-        <StarIcon className="h-20 w-20 shrink-0 text-white sm:h-32 sm:w-32" />
-        <p className="font-display text-4xl font-bold text-white sm:text-6xl">Auto-Bid!</p>
-      </div>
+      <StarIcon className="h-40 w-40 shrink-0 text-white sm:h-64 sm:w-64" />
+      <p className="text-right font-display text-6xl font-bold leading-none text-white sm:text-8xl">Auto-Bid!</p>
+      <style>{`
+        @keyframes autoBidFadeIn {
+          0% { opacity: 0; }
+          100% { opacity: 1; }
+        }
+      `}</style>
     </div>
   );
 }
@@ -670,7 +699,7 @@ function TallyPanel({
         className={`fixed inset-y-0 right-0 z-40 flex w-80 max-w-[85vw] transform flex-col overflow-y-auto px-5 py-6 transition-transform duration-300 lg:static lg:z-0 lg:w-72 lg:shrink-0 lg:translate-x-0 lg:bg-transparent lg:px-6 lg:py-10 lg:transition-none ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ background: "linear-gradient(180deg, #ffd6e8, #ffb3d1)" }}
+        style={{ background: "radial-gradient(ellipse at 50% 0%, #ffe6f1 0%, #ffc2de 55%, #ff9fcb 100%)" }}
       >
         <div className="mb-4 flex items-center justify-between lg:hidden">
           <h2 className="font-display text-lg font-semibold text-rose-950">Lists</h2>
@@ -701,7 +730,7 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
   const [detailId, setDetailId] = useState<string | null>(null);
   const [externalExit, setExternalExit] = useState<{ verdict: Verdict; favorite: boolean } | null>(null);
   const [listsOpen, setListsOpen] = useState(false);
-  const [burst, setBurst] = useState<{ id: number; hearts: FloatingHeart[] } | null>(null);
+  const [burst, setBurst] = useState<{ id: number; tone: BurstTone; icons: FloatingIcon[] } | null>(null);
   const [showAutoBid, setShowAutoBid] = useState(false);
 
   useEffect(() => {
@@ -844,18 +873,18 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
       className="flex min-h-screen text-rose-950 lg:flex-row"
       style={{ background: "radial-gradient(ellipse at 50% 0%, #ffe6f1 0%, #ffc2de 55%, #ff9fcb 100%)" }}
     >
-      <div className="hidden shrink-0 flex-col items-start gap-4 p-8 lg:flex lg:w-56">
-        <span className="font-display text-xl font-semibold">Final Decisions</span>
-        <span className="rounded-full bg-black/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-rose-900/80">{stageLabel}</span>
+      <div className="hidden shrink-0 flex-col items-center justify-center gap-6 p-8 text-center lg:flex lg:w-64">
+        <span className="font-display text-3xl font-semibold">Final Decisions</span>
+        <span className="rounded-full bg-black/10 px-5 py-2 text-lg font-bold uppercase tracking-wide text-rose-900/80">{stageLabel}</span>
         {state.stage !== "results" && (
-          <span className="text-sm text-rose-900/70">
+          <span className="text-2xl font-semibold text-rose-900/70">
             {Math.min(currentIndex + 1, stageTotal)} / {stageTotal}
           </span>
         )}
         <button
           type="button"
           onClick={resetAll}
-          className="rounded-lg border border-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-rose-900/70 hover:border-red-500 hover:text-red-600"
+          className="rounded-lg border border-black/20 px-5 py-2.5 text-base font-bold uppercase tracking-wide text-rose-900/70 hover:border-red-500 hover:text-red-600"
         >
           Reset
         </button>
@@ -930,9 +959,12 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
               canUndo={canUndo}
               onUndo={undo}
               disabled={!!externalExit}
-              onRelease={() => setExternalExit((prev) => prev ?? { verdict: "release", favorite: false })}
+              onRelease={() => {
+                setBurst((prev) => ({ id: (prev?.id ?? 0) + 1, tone: "release", icons: randomFloatingIcons(14) }));
+                setExternalExit((prev) => prev ?? { verdict: "release", favorite: false });
+              }}
               onAdvance={() => {
-                setBurst((prev) => ({ id: (prev?.id ?? 0) + 1, hearts: randomHearts(14) }));
+                setBurst((prev) => ({ id: (prev?.id ?? 0) + 1, tone: "advance", icons: randomFloatingIcons(14) }));
                 setExternalExit((prev) => prev ?? { verdict: "advance", favorite: false });
               }}
               onFavorite={() => {
@@ -956,7 +988,9 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
       />
 
       {detailId && byId.get(detailId) && <DetailSheet candidate={byId.get(detailId)!} onClose={() => setDetailId(null)} />}
-      {burst && <HeartBurst key={burst.id} hearts={burst.hearts} />}
+      {burst && (
+        <IconBurst key={burst.id} tone={burst.tone} icons={burst.icons} Icon={burst.tone === "advance" ? HeartIcon : HeartbreakIcon} />
+      )}
       {showAutoBid && <AutoBidCelebration onClose={() => setShowAutoBid(false)} />}
     </div>
   );
