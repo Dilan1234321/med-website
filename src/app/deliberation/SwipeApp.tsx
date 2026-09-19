@@ -94,13 +94,24 @@ function loadState(candidateIds: string[]): PersistedState {
   }
 }
 
-function Avatar({ name, photo, className = "" }: { name: string; photo: string; className?: string }) {
+function Avatar({
+  name,
+  photo,
+  className = "",
+  position = "center",
+}: {
+  name: string;
+  photo: string;
+  className?: string;
+  position?: string;
+}) {
   return (
     <div
-      className={`flex items-center justify-center bg-cover bg-center font-display font-semibold text-white ${className}`}
+      className={`flex items-center justify-center bg-cover font-display font-semibold text-white ${className}`}
       style={{
         backgroundColor: "var(--maroon)",
         backgroundImage: photo ? `url('${photo}')` : undefined,
+        backgroundPosition: position,
       }}
     >
       {!photo && <span className="text-6xl">{name.charAt(0).toUpperCase()}</span>}
@@ -119,11 +130,16 @@ function DetailSheet({ candidate, onClose }: { candidate: Candidate; onClose: ()
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
-  const sourceNames = useMemo(() => {
-    const names = candidate.notes
-      .filter((n) => !n.brother.startsWith("From their application:"))
-      .map((n) => matchFamilyMember(n.brother)?.name ?? n.brother);
-    return Array.from(new Set(names));
+  const [expandedSource, setExpandedSource] = useState<string | null>(null);
+
+  const sourceEntries = useMemo(() => {
+    const map = new Map<string, string[]>();
+    for (const n of candidate.notes) {
+      if (n.brother.startsWith("From their application:")) continue;
+      const displayName = matchFamilyMember(n.brother)?.name ?? n.brother;
+      map.set(displayName, [...(map.get(displayName) ?? []), n.text]);
+    }
+    return Array.from(map.entries()).map(([name, texts]) => ({ name, text: texts.join(" ") }));
   }, [candidate]);
 
   return (
@@ -134,7 +150,7 @@ function DetailSheet({ candidate, onClose }: { candidate: Candidate; onClose: ()
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative shrink-0">
-          <Avatar name={candidate.name} photo={candidate.photo} className="h-56 w-full" />
+          <Avatar name={candidate.name} photo={candidate.photo} className="h-80 w-full sm:h-96" position="center 20%" />
           <button
             type="button"
             onClick={onClose}
@@ -161,15 +177,30 @@ function DetailSheet({ candidate, onClose }: { candidate: Candidate; onClose: ()
               {candidate.sourceCount} {candidate.sourceCount === 1 ? "source" : "sources"}
             </button>
             {sourcesOpen && (
-              <div className="flex flex-wrap justify-center gap-2">
-                {sourceNames.length === 0 ? (
-                  <span className="text-xs text-slate-400">No named sources yet.</span>
-                ) : (
-                  sourceNames.map((n, i) => (
-                    <span key={i} className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-600">
-                      {n}
-                    </span>
-                  ))
+              <div className="flex w-full flex-col items-center gap-2">
+                <div className="flex flex-wrap justify-center gap-2">
+                  {sourceEntries.length === 0 ? (
+                    <span className="text-xs text-slate-400">No named sources yet.</span>
+                  ) : (
+                    sourceEntries.map(({ name }) => (
+                      <button
+                        key={name}
+                        type="button"
+                        onClick={() => setExpandedSource((prev) => (prev === name ? null : name))}
+                        className={`rounded-full px-3 py-1 text-xs font-semibold transition ${
+                          expandedSource === name ? "bg-slate-700 text-white" : "bg-slate-100 text-slate-600 hover:bg-slate-200"
+                        }`}
+                      >
+                        {name}
+                      </button>
+                    ))
+                  )}
+                </div>
+                {expandedSource && (
+                  <div className="w-full max-w-sm rounded-lg bg-slate-50 p-3 text-sm text-slate-700">
+                    <p className="mb-1 font-semibold text-slate-900">{expandedSource}</p>
+                    <p className="whitespace-pre-line">{sourceEntries.find((s) => s.name === expandedSource)?.text}</p>
+                  </div>
                 )}
               </div>
             )}
@@ -922,7 +953,7 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
         {state.stage !== "results" ? (
           <div className="mx-auto flex w-full max-w-lg flex-1 flex-col px-4 pb-4 sm:px-0">
             {currentCandidate ? (
-              <div className="relative mx-auto w-full max-w-sm flex-1" style={{ minHeight: 420 }}>
+              <div className="relative mx-auto mt-6 w-full max-w-sm flex-1 sm:mt-10" style={{ minHeight: 420 }}>
                 {nextIds
                   .map((id) => byId.get(id))
                   .filter(Boolean)
