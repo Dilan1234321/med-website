@@ -178,17 +178,19 @@ function SwipeCard({
   candidate,
   isTop,
   depth,
+  externalExit,
   onDecide,
   onOpenDetail,
 }: {
   candidate: Candidate;
   isTop: boolean;
   depth: number;
-  onDecide: (verdict: Verdict) => void;
+  externalExit: { verdict: Verdict; favorite: boolean } | null;
+  onDecide: (verdict: Verdict, favorite: boolean) => void;
   onOpenDetail: () => void;
 }) {
   const [drag, setDrag] = useState<{ x: number; y: number; startX: number; startY: number } | null>(null);
-  const [exiting, setExiting] = useState<Verdict | null>(null);
+  const [exiting, setExiting] = useState<{ verdict: Verdict; favorite: boolean } | null>(null);
 
   const dx = drag ? drag.x - drag.startX : 0;
   const dy = drag ? drag.y - drag.startY : 0;
@@ -214,31 +216,40 @@ function SwipeCard({
       return;
     }
     if (dx > SWIPE_THRESHOLD) {
-      setExiting("advance");
+      setExiting({ verdict: "advance", favorite: false });
     } else if (dx < -SWIPE_THRESHOLD) {
-      setExiting("release");
+      setExiting({ verdict: "release", favorite: false });
     } else {
       setDrag(null);
     }
   }
 
   useEffect(() => {
+    if (externalExit && !exiting) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setDrag(null);
+      setExiting(externalExit);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [externalExit]);
+
+  useEffect(() => {
     if (!exiting) return;
-    const t = setTimeout(() => onDecide(exiting), 220);
+    const t = setTimeout(() => onDecide(exiting.verdict, exiting.favorite), 220);
     return () => clearTimeout(t);
   }, [exiting, onDecide]);
 
   const exitTransform =
-    exiting === "advance"
+    exiting?.verdict === "advance"
       ? "translate(140%, -20px) rotate(24deg)"
-      : exiting === "release"
+      : exiting?.verdict === "release"
         ? "translate(-140%, -20px) rotate(-24deg)"
         : undefined;
 
   const transform = exitTransform ?? (drag ? `translate(${dx}px, ${dy}px) rotate(${rotation}deg)` : undefined);
 
-  const likeOpacity = Math.max(0, Math.min(1, dx / SWIPE_THRESHOLD));
-  const nopeOpacity = Math.max(0, Math.min(1, -dx / SWIPE_THRESHOLD));
+  const likeOpacity = exiting?.verdict === "advance" ? 1 : Math.max(0, Math.min(1, dx / SWIPE_THRESHOLD));
+  const nopeOpacity = exiting?.verdict === "release" ? 1 : Math.max(0, Math.min(1, -dx / SWIPE_THRESHOLD));
 
   return (
     <div
@@ -290,19 +301,21 @@ function ActionBar({
   onRelease,
   onAdvance,
   onFavorite,
+  disabled,
 }: {
   onUndo: () => void;
   canUndo: boolean;
   onRelease: () => void;
   onAdvance: () => void;
   onFavorite: () => void;
+  disabled: boolean;
 }) {
   return (
     <div className="flex items-center justify-center gap-4 py-6 sm:gap-6">
       <button
         type="button"
         onClick={onUndo}
-        disabled={!canUndo}
+        disabled={!canUndo || disabled}
         aria-label="Undo"
         className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-xl text-amber-500 shadow-lg transition active:scale-90 disabled:cursor-not-allowed disabled:opacity-30"
       >
@@ -311,24 +324,27 @@ function ActionBar({
       <button
         type="button"
         onClick={onRelease}
+        disabled={disabled}
         aria-label="Release"
-        className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-3xl text-red-500 shadow-lg transition active:scale-90 sm:h-[4.5rem] sm:w-[4.5rem]"
+        className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-3xl text-red-500 shadow-lg transition active:scale-90 disabled:cursor-not-allowed disabled:opacity-30 sm:h-[4.5rem] sm:w-[4.5rem]"
       >
         &times;
       </button>
       <button
         type="button"
         onClick={onAdvance}
+        disabled={disabled}
         aria-label="Advance"
-        className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-3xl text-emerald-500 shadow-lg transition active:scale-90 sm:h-[4.5rem] sm:w-[4.5rem]"
+        className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-3xl text-emerald-500 shadow-lg transition active:scale-90 disabled:cursor-not-allowed disabled:opacity-30 sm:h-[4.5rem] sm:w-[4.5rem]"
       >
         ♥
       </button>
       <button
         type="button"
         onClick={onFavorite}
+        disabled={disabled}
         aria-label="Favorite"
-        className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-xl text-[color:var(--gold)] shadow-lg transition active:scale-90"
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-xl text-[color:var(--gold)] shadow-lg transition active:scale-90 disabled:cursor-not-allowed disabled:opacity-30"
       >
         ★
       </button>
@@ -405,6 +421,7 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
   const [state, setState] = useState<PersistedState>(() => initialState());
   const [hydrated, setHydrated] = useState(false);
   const [detailId, setDetailId] = useState<string | null>(null);
+  const [externalExit, setExternalExit] = useState<{ verdict: Verdict; favorite: boolean } | null>(null);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -550,6 +567,7 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
                     candidate={c!}
                     isTop={false}
                     depth={nextIds.length - i}
+                    externalExit={null}
                     onDecide={() => {}}
                     onOpenDetail={() => {}}
                   />
@@ -559,7 +577,11 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
                 candidate={currentCandidate}
                 isTop
                 depth={0}
-                onDecide={(v) => decide(v, false)}
+                externalExit={externalExit}
+                onDecide={(verdict, favorite) => {
+                  decide(verdict, favorite);
+                  setExternalExit(null);
+                }}
                 onOpenDetail={() => setDetailId(currentCandidate.id)}
               />
             </div>
@@ -570,9 +592,10 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
           <ActionBar
             canUndo={canUndo}
             onUndo={undo}
-            onRelease={() => decide("release", false)}
-            onAdvance={() => decide("advance", false)}
-            onFavorite={() => decide("advance", true)}
+            disabled={!!externalExit}
+            onRelease={() => setExternalExit((prev) => prev ?? { verdict: "release", favorite: false })}
+            onAdvance={() => setExternalExit((prev) => prev ?? { verdict: "advance", favorite: false })}
+            onFavorite={() => setExternalExit((prev) => prev ?? { verdict: "advance", favorite: true })}
           />
         </div>
       ) : (
