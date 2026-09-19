@@ -413,6 +413,88 @@ function ResultsScreen({
   );
 }
 
+function TallySection({
+  title,
+  color,
+  items,
+  emptyText,
+  onOpenDetail,
+}: {
+  title: string;
+  color: string;
+  items: Candidate[];
+  emptyText: string;
+  onOpenDetail: (id: string) => void;
+}) {
+  return (
+    <div className="mb-6">
+      <h3 className={`mb-2 text-xs font-bold uppercase tracking-wide ${color}`}>
+        {title} ({items.length})
+      </h3>
+      {items.length === 0 ? (
+        <p className="text-sm text-white/40">{emptyText}</p>
+      ) : (
+        <ul className="flex flex-col gap-1">
+          {items.map((c) => (
+            <li key={c.id}>
+              <button
+                type="button"
+                onClick={() => onOpenDetail(c.id)}
+                className="flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-sm text-white/85 transition hover:bg-white/10"
+              >
+                <Avatar name={c.name} photo={c.photo} className="h-7 w-7 shrink-0 rounded-full" />
+                <span className="truncate">{c.name}</span>
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
+function TallyPanel({
+  open,
+  onClose,
+  accepted,
+  rejected,
+  favorited,
+  onOpenDetail,
+}: {
+  open: boolean;
+  onClose: () => void;
+  accepted: Candidate[];
+  rejected: Candidate[];
+  favorited: Candidate[];
+  onOpenDetail: (id: string) => void;
+}) {
+  return (
+    <>
+      {open && <div className="fixed inset-0 z-30 bg-black/50 lg:hidden" onClick={onClose} />}
+      <div
+        className={`fixed inset-y-0 right-0 z-40 flex w-80 max-w-[85vw] transform flex-col overflow-y-auto border-l border-white/10 bg-[color:var(--maroon-deep)] px-5 py-5 transition-transform duration-300 lg:static lg:z-0 lg:w-72 lg:shrink-0 lg:translate-x-0 lg:border-l lg:transition-none ${
+          open ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="font-display text-lg font-semibold text-white">Lists</h2>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Close lists"
+            className="rounded-lg px-2 py-1 text-xl text-white/60 hover:bg-white/10 lg:hidden"
+          >
+            &times;
+          </button>
+        </div>
+        <TallySection title="Favorited" color="text-[color:var(--gold)]" items={favorited} emptyText="No favorites yet." onOpenDetail={onOpenDetail} />
+        <TallySection title="Accepted" color="text-emerald-400" items={accepted} emptyText="No one accepted yet." onOpenDetail={onOpenDetail} />
+        <TallySection title="Rejected" color="text-red-400" items={rejected} emptyText="No one rejected yet." onOpenDetail={onOpenDetail} />
+      </div>
+    </>
+  );
+}
+
 export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[] }) {
   const candidates = initialCandidates;
   const byId = useMemo(() => new Map(candidates.map((c) => [c.id, c])), [candidates]);
@@ -422,6 +504,7 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
   const [hydrated, setHydrated] = useState(false);
   const [detailId, setDetailId] = useState<string | null>(null);
   const [externalExit, setExternalExit] = useState<{ verdict: Verdict; favorite: boolean } | null>(null);
+  const [listsOpen, setListsOpen] = useState(false);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -530,77 +613,116 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
     [state.round2Queue, state.round2, byId],
   );
 
+  // A round-2 decision (once made) is the final word on someone who already
+  // advanced through round 1; otherwise their round-1 decision stands.
+  const { accepted, rejected } = useMemo(() => {
+    const accepted: Candidate[] = [];
+    const rejected: Candidate[] = [];
+    for (const id of candidateIds) {
+      const status = state.round2[id] ?? state.round1[id];
+      if (!status) continue;
+      const candidate = byId.get(id);
+      if (!candidate) continue;
+      if (status === "advance") accepted.push(candidate);
+      else rejected.push(candidate);
+    }
+    return { accepted, rejected };
+  }, [candidateIds, state.round1, state.round2, byId]);
+
+  const favorited = useMemo(
+    () => candidateIds.map((id) => (state.favorites[id] ? byId.get(id) : undefined)).filter(Boolean) as Candidate[],
+    [candidateIds, state.favorites, byId],
+  );
+
   return (
-    <div className="pattern-maroon flex min-h-screen flex-col text-white">
-      <div className="mx-auto flex w-full max-w-lg items-center justify-between px-4 py-4 sm:px-0">
-        <div className="flex items-center gap-3">
-          <span className="font-display text-lg font-semibold">Final Decisions</span>
-          <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white/70">{stageLabel}</span>
+    <div className="pattern-maroon flex min-h-screen text-white lg:flex-row">
+      <div className="flex min-w-0 flex-1 flex-col">
+        <div className="mx-auto flex w-full max-w-lg items-center justify-between px-4 py-4 sm:px-0">
+          <div className="flex items-center gap-3">
+            <span className="font-display text-lg font-semibold">Final Decisions</span>
+            <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white/70">{stageLabel}</span>
+          </div>
+          <div className="flex items-center gap-2">
+            {state.stage !== "results" && (
+              <span className="text-sm text-white/60">
+                {Math.min(currentIndex + 1, stageTotal)} / {stageTotal}
+              </span>
+            )}
+            <button
+              type="button"
+              onClick={() => setListsOpen(true)}
+              className="rounded-lg border border-white/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white/70 hover:bg-white/10 lg:hidden"
+            >
+              Lists
+            </button>
+            <button
+              type="button"
+              onClick={resetAll}
+              className="rounded-lg border border-white/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white/60 hover:border-red-300 hover:text-red-300"
+            >
+              Reset
+            </button>
+          </div>
         </div>
-        <div className="flex items-center gap-2">
-          {state.stage !== "results" && (
-            <span className="text-sm text-white/60">
-              {Math.min(currentIndex + 1, stageTotal)} / {stageTotal}
-            </span>
-          )}
-          <button
-            type="button"
-            onClick={resetAll}
-            className="rounded-lg border border-white/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white/60 hover:border-red-300 hover:text-red-300"
-          >
-            Reset
-          </button>
-        </div>
+
+        {state.stage !== "results" ? (
+          <div className="mx-auto flex w-full max-w-lg flex-1 flex-col px-4 pb-4 sm:px-0">
+            {currentCandidate ? (
+              <div className="relative mx-auto w-full max-w-sm flex-1" style={{ minHeight: 420 }}>
+                {nextIds
+                  .map((id) => byId.get(id))
+                  .filter(Boolean)
+                  .reverse()
+                  .map((c, i) => (
+                    <SwipeCard
+                      key={c!.id}
+                      candidate={c!}
+                      isTop={false}
+                      depth={nextIds.length - i}
+                      externalExit={null}
+                      onDecide={() => {}}
+                      onOpenDetail={() => {}}
+                    />
+                  ))}
+                <SwipeCard
+                  key={currentCandidate.id}
+                  candidate={currentCandidate}
+                  isTop
+                  depth={0}
+                  externalExit={externalExit}
+                  onDecide={(verdict, favorite) => {
+                    decide(verdict, favorite);
+                    setExternalExit(null);
+                  }}
+                  onOpenDetail={() => setDetailId(currentCandidate.id)}
+                />
+              </div>
+            ) : (
+              <div className="flex flex-1 items-center justify-center text-white/60">All caught up.</div>
+            )}
+
+            <ActionBar
+              canUndo={canUndo}
+              onUndo={undo}
+              disabled={!!externalExit}
+              onRelease={() => setExternalExit((prev) => prev ?? { verdict: "release", favorite: false })}
+              onAdvance={() => setExternalExit((prev) => prev ?? { verdict: "advance", favorite: false })}
+              onFavorite={() => setExternalExit((prev) => prev ?? { verdict: "advance", favorite: true })}
+            />
+          </div>
+        ) : (
+          <ResultsScreen candidates={finalists} favorites={state.favorites} onOpenDetail={(id) => setDetailId(id)} />
+        )}
       </div>
 
-      {state.stage !== "results" ? (
-        <div className="mx-auto flex w-full max-w-lg flex-1 flex-col px-4 pb-4 sm:px-0">
-          {currentCandidate ? (
-            <div className="relative mx-auto w-full max-w-sm flex-1" style={{ minHeight: 420 }}>
-              {nextIds
-                .map((id) => byId.get(id))
-                .filter(Boolean)
-                .reverse()
-                .map((c, i) => (
-                  <SwipeCard
-                    key={c!.id}
-                    candidate={c!}
-                    isTop={false}
-                    depth={nextIds.length - i}
-                    externalExit={null}
-                    onDecide={() => {}}
-                    onOpenDetail={() => {}}
-                  />
-                ))}
-              <SwipeCard
-                key={currentCandidate.id}
-                candidate={currentCandidate}
-                isTop
-                depth={0}
-                externalExit={externalExit}
-                onDecide={(verdict, favorite) => {
-                  decide(verdict, favorite);
-                  setExternalExit(null);
-                }}
-                onOpenDetail={() => setDetailId(currentCandidate.id)}
-              />
-            </div>
-          ) : (
-            <div className="flex flex-1 items-center justify-center text-white/60">All caught up.</div>
-          )}
-
-          <ActionBar
-            canUndo={canUndo}
-            onUndo={undo}
-            disabled={!!externalExit}
-            onRelease={() => setExternalExit((prev) => prev ?? { verdict: "release", favorite: false })}
-            onAdvance={() => setExternalExit((prev) => prev ?? { verdict: "advance", favorite: false })}
-            onFavorite={() => setExternalExit((prev) => prev ?? { verdict: "advance", favorite: true })}
-          />
-        </div>
-      ) : (
-        <ResultsScreen candidates={finalists} favorites={state.favorites} onOpenDetail={(id) => setDetailId(id)} />
-      )}
+      <TallyPanel
+        open={listsOpen}
+        onClose={() => setListsOpen(false)}
+        accepted={accepted}
+        rejected={rejected}
+        favorited={favorited}
+        onOpenDetail={(id) => setDetailId(id)}
+      />
 
       {detailId && byId.get(detailId) && <DetailSheet candidate={byId.get(detailId)!} onClose={() => setDetailId(null)} />}
     </div>
