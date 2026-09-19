@@ -116,6 +116,42 @@ function Avatar({
   );
 }
 
+function PhotoLightbox({ name, photo, onClose }: { name: string; photo: string; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-6" onClick={onClose}>
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close"
+        className="absolute right-6 top-6 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 text-2xl font-bold text-white hover:bg-white/20"
+      >
+        &times;
+      </button>
+      <div className="flex max-h-[85vh] max-w-[85vw] flex-col items-center gap-4" onClick={(e) => e.stopPropagation()}>
+        {photo ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={photo} alt={name} className="max-h-[75vh] max-w-full rounded-2xl object-contain shadow-2xl" />
+        ) : (
+          <div
+            className="flex h-64 w-64 items-center justify-center rounded-full bg-[color:var(--maroon)] font-display text-8xl font-semibold text-white sm:h-80 sm:w-80"
+          >
+            {name.charAt(0).toUpperCase()}
+          </div>
+        )}
+        <p className="font-display text-2xl font-semibold text-white">{name}</p>
+      </div>
+    </div>
+  );
+}
+
 function DecisionButtons({ onDecide }: { onDecide: (status: DecisionStatus) => void }) {
   const base = "flex-1 rounded-xl py-5 text-lg font-bold uppercase tracking-wide transition active:scale-[0.98]";
   return (
@@ -166,6 +202,7 @@ function AttributionTag({ point, colorClass }: { point: ConsensusPoint; colorCla
 function ConsensusCard({ candidate, onViewNotes }: { candidate: Candidate; onViewNotes: () => void }) {
   const top = strongestPoint(candidate.strengths);
   const lowEvidence = candidate.sourceCount <= 1;
+  const [photoOpen, setPhotoOpen] = useState(false);
 
   return (
     <div
@@ -174,7 +211,14 @@ function ConsensusCard({ candidate, onViewNotes }: { candidate: Candidate; onVie
     >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
         <div className="flex items-center gap-4 lg:gap-5">
-          <Avatar name={candidate.name} photo={candidate.photo} size={64} className="lg:!h-24 lg:!w-24" />
+          <button
+            type="button"
+            onClick={() => setPhotoOpen(true)}
+            aria-label={`View larger photo of ${candidate.name}`}
+            className="shrink-0 rounded-full transition hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--maroon)]"
+          >
+            <Avatar name={candidate.name} photo={candidate.photo} size={64} className="lg:!h-24 lg:!w-24" />
+          </button>
           <div>
             <h1 className="font-display text-2xl font-semibold leading-tight text-slate-900 sm:text-3xl lg:text-5xl">{candidate.name}</h1>
             <p className="mt-1 text-base text-slate-600 sm:text-lg lg:text-2xl">
@@ -290,6 +334,10 @@ function ConsensusCard({ candidate, onViewNotes }: { candidate: Candidate; onVie
           </button>
         </div>
       </div>
+
+      {photoOpen && (
+        <PhotoLightbox name={candidate.name} photo={candidate.photo} onClose={() => setPhotoOpen(false)} />
+      )}
     </div>
   );
 }
