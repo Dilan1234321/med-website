@@ -299,6 +299,116 @@ function SwipeCard({
   );
 }
 
+function UndoIcon({ className, style }: { className?: string; style?: React.CSSProperties }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} style={style} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="m11.87 2a10.164 10.164 0 0 0 -5.7 1.752l-1.463-1.458a1 1 0 0 0 -1.707.706v5a1 1 0 0 0 1 1h5a1 1 0 0 0 .707-1.707l-.621-.621a6.126 6.126 0 0 1 8.914 5.328 6.145 6.145 0 0 1 -12.065 1.5 2 2 0 0 0 -3.87 1.01 10.144 10.144 0 0 0 19.935-2.51 10.077 10.077 0 0 0 -10.13-10z" />
+    </svg>
+  );
+}
+
+function HeartbreakIcon({ className, style }: { className?: string; style?: React.CSSProperties }) {
+  return (
+    <svg viewBox="0 -38 512 512" className={className} style={style} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="m204.789062 285 49.394532-49.394531c5.859375-5.859375 5.859375-15.351563 0-21.210938l-45.789063-45.792969 39.140625-97.851562c1.890625-4.746094 1.242188-10.136719-1.730468-14.296875-25.328126-35.34375-66.371094-56.453125-109.804688-56.453125-79.308594 0-136 61.964844-136 150.6875 0 110.628906 92.28125 166.726562 219.699219 277.164062 6.933593 6.011719 11.535156 11.234376 20.640625 8.4375 4.980468-1.582031 8.773437-5.609374 10.035156-10.679687l16.949219-67.777344c1.289062-5.109375-.222657-10.515625-3.941407-14.238281zm0 0" />
+      <path d="m376 0c-26.234375 0-51.695312 7.542969-73.621094 21.824219-2.59375 1.6875-4.585937 4.132812-5.742187 7.003906l-49.367188 123.382813c-2.226562 5.566406-.921875 11.925781 3.324219 16.171874l56.617188 56.617188-49.394532 49.394531c-5.859375 5.859375-5.859375 15.351563 0 21.210938l44.792969 44.796875-15.175781 60.761718c-1.59375 6.34375 1.128906 12.992188 6.710937 16.421876 8.34375 5.105468 14.519531 1.261718 20.992188-4.351563 43.503906-37.632813 77.871093-67.355469 108.25-96.417969 45.351562-43.402344 88.613281-93.574218 88.613281-166.128906 0-88.722656-56.691406-150.6875-136-150.6875zm0 0" />
+    </svg>
+  );
+}
+
+function HeartIcon({ className, style }: { className?: string; style?: React.CSSProperties }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} style={style} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.5,1.917a6.4,6.4,0,0,0-5.5,3.3,6.4,6.4,0,0,0-5.5-3.3A6.8,6.8,0,0,0,0,8.967c0,4.547,4.786,9.513,8.8,12.88a4.974,4.974,0,0,0,6.4,0C19.214,18.48,24,13.514,24,8.967A6.8,6.8,0,0,0,17.5,1.917Z" />
+    </svg>
+  );
+}
+
+function StarIcon({ className, style }: { className?: string; style?: React.CSSProperties }) {
+  return (
+    <svg viewBox="0 0 512 512" className={className} style={style} fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="m497.697 242.93c12.975-12.641 17.554-31.194 11.954-48.41-5.59-17.223-20.199-29.54-38.126-32.145l-110.687-16.083c-5.619-.82-10.474-4.347-12.986-9.435l-49.501-100.308c-8.015-16.235-24.244-26.32-42.352-26.32s-34.337 10.085-42.352 26.32c0 .001-49.501 100.307-49.501 100.307-2.512 5.09-7.367 8.617-12.977 9.435l-110.694 16.083c-17.928 2.606-32.537 14.923-38.124 32.137-5.603 17.225-1.024 35.779 11.947 48.416l80.098 78.084c4.063 3.959 5.917 9.662 4.96 15.249l-18.912 110.254c-3.056 17.85 4.143 35.548 18.788 46.186 14.648 10.643 33.708 12.022 49.744 3.599l99.002-52.052c5.022-2.639 11.019-2.638 16.036-.003l99.01 52.055c16.036 8.424 35.096 7.044 49.744-3.599 14.644-10.639 21.844-28.336 18.788-46.186l-18.913-110.249c-.957-5.592.896-11.295 4.962-15.257z" />
+    </svg>
+  );
+}
+
+type FloatingHeart = { id: number; left: number; delay: number; duration: number; size: number; drift: number };
+
+function randomHearts(count: number): FloatingHeart[] {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    left: 4 + Math.random() * 92,
+    delay: Math.random() * 0.35,
+    duration: 1.5 + Math.random() * 0.9,
+    size: 18 + Math.random() * 22,
+    drift: (Math.random() - 0.5) * 80,
+  }));
+}
+
+function HeartBurst({ hearts }: { hearts: FloatingHeart[] }) {
+  return (
+    <div className="pointer-events-none fixed inset-0 z-[60] overflow-hidden">
+      <div
+        className="absolute inset-x-0 bottom-0 h-2/3"
+        style={{
+          background: "linear-gradient(to top, rgba(16,185,129,0.65), rgba(16,185,129,0.18) 45%, transparent 85%)",
+          animation: "heartglow 1.4s ease-out forwards",
+        }}
+      />
+      {hearts.map((h) => (
+        <span
+          key={h.id}
+          className="absolute bottom-0 text-emerald-400"
+          style={
+            {
+              left: `${h.left}%`,
+              "--drift": `${h.drift}px`,
+              animation: `heartfloat ${h.duration}s ease-out ${h.delay}s forwards`,
+            } as React.CSSProperties
+          }
+        >
+          <HeartIcon style={{ width: h.size, height: h.size }} />
+        </span>
+      ))}
+      <style>{`
+        @keyframes heartglow {
+          0% { opacity: 1; }
+          100% { opacity: 0; }
+        }
+        @keyframes heartfloat {
+          0% { transform: translate(0, 0) scale(0.8); opacity: 0; }
+          15% { opacity: 1; }
+          100% { transform: translate(var(--drift), -75vh) scale(1.15); opacity: 0; }
+        }
+      `}</style>
+    </div>
+  );
+}
+
+function AutoBidCelebration({ onClose }: { onClose: () => void }) {
+  useEffect(() => {
+    const t = setTimeout(onClose, 2500);
+    return () => clearTimeout(t);
+  }, [onClose]);
+
+  return (
+    <div className="fixed inset-0 z-[70] flex items-center px-8 sm:px-16" style={{ backgroundColor: "var(--gold)" }}>
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close"
+        className="absolute right-6 top-6 flex h-11 w-11 items-center justify-center rounded-full bg-black/10 text-2xl font-bold text-white hover:bg-black/20"
+      >
+        &times;
+      </button>
+      <div className="flex items-center gap-5 sm:gap-8">
+        <StarIcon className="h-20 w-20 shrink-0 text-white sm:h-32 sm:w-32" />
+        <p className="font-display text-4xl font-bold text-white sm:text-6xl">Auto-Bid!</p>
+      </div>
+    </div>
+  );
+}
+
 function ActionBar({
   onUndo,
   canUndo,
@@ -321,36 +431,37 @@ function ActionBar({
         onClick={onUndo}
         disabled={!canUndo || disabled}
         aria-label="Undo"
-        className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-xl text-amber-500 shadow-lg transition active:scale-90 disabled:cursor-not-allowed disabled:opacity-30"
+        className="flex h-12 w-12 items-center justify-center rounded-full bg-amber-500 text-white shadow-lg transition active:scale-90 disabled:cursor-not-allowed disabled:opacity-30"
       >
-        ↺
+        <UndoIcon className="h-5 w-5" />
       </button>
       <button
         type="button"
         onClick={onRelease}
         disabled={disabled}
         aria-label="Release"
-        className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-3xl text-red-500 shadow-lg transition active:scale-90 disabled:cursor-not-allowed disabled:opacity-30 sm:h-[4.5rem] sm:w-[4.5rem]"
+        className="flex h-16 w-16 items-center justify-center rounded-full bg-red-500 text-white shadow-lg transition active:scale-90 disabled:cursor-not-allowed disabled:opacity-30 sm:h-[4.5rem] sm:w-[4.5rem]"
       >
-        &times;
+        <HeartbreakIcon className="h-7 w-7 sm:h-8 sm:w-8" />
       </button>
       <button
         type="button"
         onClick={onAdvance}
         disabled={disabled}
         aria-label="Advance"
-        className="flex h-16 w-16 items-center justify-center rounded-full bg-white text-3xl text-emerald-500 shadow-lg transition active:scale-90 disabled:cursor-not-allowed disabled:opacity-30 sm:h-[4.5rem] sm:w-[4.5rem]"
+        className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500 text-white shadow-lg transition active:scale-90 disabled:cursor-not-allowed disabled:opacity-30 sm:h-[4.5rem] sm:w-[4.5rem]"
       >
-        ♥
+        <HeartIcon className="h-7 w-7 sm:h-8 sm:w-8" />
       </button>
       <button
         type="button"
         onClick={onFavorite}
         disabled={disabled}
         aria-label="Favorite"
-        className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-xl text-[color:var(--gold)] shadow-lg transition active:scale-90 disabled:cursor-not-allowed disabled:opacity-30"
+        className="flex h-12 w-12 items-center justify-center rounded-full text-white shadow-lg transition active:scale-90 disabled:cursor-not-allowed disabled:opacity-30"
+        style={{ backgroundColor: "var(--gold)" }}
       >
-        ★
+        <StarIcon className="h-5 w-5" />
       </button>
     </div>
   );
@@ -377,20 +488,20 @@ function ResultsScreen({
 
   return (
     <div className="mx-auto flex w-full max-w-lg flex-1 flex-col px-4 py-6 sm:px-0">
-      <h1 className="font-display text-3xl font-bold text-white">Final list</h1>
-      <p className="mt-1 text-white/70">
+      <h1 className="font-display text-3xl font-bold text-rose-950">Final list</h1>
+      <p className="mt-1 text-rose-900/70">
         {sorted.length} candidate{sorted.length === 1 ? "" : "s"} made it through. Starred names are favorites.
       </p>
       <button
         type="button"
         onClick={copySummary}
-        className="mt-4 self-start rounded-lg border border-white/25 px-4 py-2 text-sm font-bold uppercase tracking-wide text-white/85 transition hover:bg-white/10"
+        className="mt-4 self-start rounded-lg border border-black/20 px-4 py-2 text-sm font-bold uppercase tracking-wide text-rose-900/85 transition hover:bg-black/10"
       >
         Copy list
       </button>
 
       {sorted.length === 0 ? (
-        <p className="mt-8 text-white/60">Nobody advanced through both rounds.</p>
+        <p className="mt-8 text-rose-900/60">Nobody advanced through both rounds.</p>
       ) : (
         <div className="mt-6 flex flex-col gap-2">
           {sorted.map((c) => (
@@ -432,7 +543,7 @@ function TallySection({
 }) {
   return (
     <div className="mb-6">
-      <h3 className={`mb-2 text-xs font-bold uppercase tracking-wide ${color}`}>
+      <h3 className={`mb-3 text-center text-2xl font-bold ${color}`}>
         {title} ({items.length})
       </h3>
       {items.length === 0 ? (
@@ -491,7 +602,7 @@ function TallyPanel({
             &times;
           </button>
         </div>
-        <TallySection title="Favorited" color="text-[color:var(--gold)]" items={favorited} emptyText="No favorites yet." onOpenDetail={onOpenDetail} />
+        <TallySection title="Auto-Bid" color="text-[color:var(--gold)]" items={favorited} emptyText="No favorites yet." onOpenDetail={onOpenDetail} />
         <TallySection title="Accepted" color="text-emerald-400" items={accepted} emptyText="No one accepted yet." onOpenDetail={onOpenDetail} />
         <TallySection title="Rejected" color="text-red-400" items={rejected} emptyText="No one rejected yet." onOpenDetail={onOpenDetail} />
       </div>
@@ -509,6 +620,8 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
   const [detailId, setDetailId] = useState<string | null>(null);
   const [externalExit, setExternalExit] = useState<{ verdict: Verdict; favorite: boolean } | null>(null);
   const [listsOpen, setListsOpen] = useState(false);
+  const [burst, setBurst] = useState<{ id: number; hearts: FloatingHeart[] } | null>(null);
+  const [showAutoBid, setShowAutoBid] = useState(false);
 
   useEffect(() => {
     // eslint-disable-next-line react-hooks/set-state-in-effect
@@ -543,7 +656,10 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
       if (stage === "round1") {
         const round1 = nextMap;
         if (nextIndex >= round1Queue.length) {
-          const round2Queue = round1Queue.filter((id) => round1[id] === "advance");
+          // A starred (auto-bid) candidate is already final - they never
+          // enter round 2, since starring means "they're in," not "give
+          // them one more look."
+          const round2Queue = round1Queue.filter((id) => round1[id] === "advance" && !favorites[id]);
           return {
             ...prev,
             round1,
@@ -612,10 +728,14 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
   const stageLabel = state.stage === "round1" ? "Round 1" : state.stage === "round2" ? "Round 2" : "Results";
   const stageTotal = currentQueue.length;
 
-  const finalists = useMemo(
-    () => state.round2Queue.filter((id) => state.round2[id] === "advance").map((id) => byId.get(id)).filter(Boolean) as Candidate[],
-    [state.round2Queue, state.round2, byId],
-  );
+  const finalists = useMemo(() => {
+    const round2Advances = state.round2Queue.filter((id) => state.round2[id] === "advance");
+    // A starred round-1 candidate skipped round 2 entirely (see decide()) -
+    // they're final the moment they're starred, so they need adding back in
+    // here rather than only coming from the round-2 queue.
+    const round1AutoBids = candidateIds.filter((id) => state.favorites[id] && !round2Advances.includes(id));
+    return [...round1AutoBids, ...round2Advances].map((id) => byId.get(id)).filter(Boolean) as Candidate[];
+  }, [state.round2Queue, state.round2, state.favorites, candidateIds, byId]);
 
   // A round-2 decision (once made) is the final word on someone who already
   // advanced through round 1; otherwise their round-1 decision stands.
@@ -639,30 +759,33 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
   );
 
   return (
-    <div className="pattern-maroon flex min-h-screen text-white lg:flex-row">
+    <div
+      className="flex min-h-screen text-rose-950 lg:flex-row"
+      style={{ background: "radial-gradient(ellipse at 50% 0%, #ffe6f1 0%, #ffc2de 55%, #ff9fcb 100%)" }}
+    >
       <div className="flex min-w-0 flex-1 flex-col">
         <div className="mx-auto flex w-full max-w-lg items-center justify-between px-4 py-4 sm:px-0">
           <div className="flex items-center gap-3">
             <span className="font-display text-lg font-semibold">Final Decisions</span>
-            <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white/70">{stageLabel}</span>
+            <span className="rounded-full bg-black/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-rose-900/80">{stageLabel}</span>
           </div>
           <div className="flex items-center gap-2">
             {state.stage !== "results" && (
-              <span className="text-sm text-white/60">
+              <span className="text-sm text-rose-900/70">
                 {Math.min(currentIndex + 1, stageTotal)} / {stageTotal}
               </span>
             )}
             <button
               type="button"
               onClick={() => setListsOpen(true)}
-              className="rounded-lg border border-white/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white/70 hover:bg-white/10 lg:hidden"
+              className="rounded-lg border border-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-rose-900/80 hover:bg-black/10 lg:hidden"
             >
               Lists
             </button>
             <button
               type="button"
               onClick={resetAll}
-              className="rounded-lg border border-white/25 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-white/60 hover:border-red-300 hover:text-red-300"
+              className="rounded-lg border border-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-rose-900/70 hover:border-red-500 hover:text-red-600"
             >
               Reset
             </button>
@@ -710,8 +833,14 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
               onUndo={undo}
               disabled={!!externalExit}
               onRelease={() => setExternalExit((prev) => prev ?? { verdict: "release", favorite: false })}
-              onAdvance={() => setExternalExit((prev) => prev ?? { verdict: "advance", favorite: false })}
-              onFavorite={() => setExternalExit((prev) => prev ?? { verdict: "advance", favorite: true })}
+              onAdvance={() => {
+                setBurst((prev) => ({ id: (prev?.id ?? 0) + 1, hearts: randomHearts(14) }));
+                setExternalExit((prev) => prev ?? { verdict: "advance", favorite: false });
+              }}
+              onFavorite={() => {
+                setShowAutoBid(true);
+                setExternalExit((prev) => prev ?? { verdict: "advance", favorite: true });
+              }}
             />
           </div>
         ) : (
@@ -729,6 +858,8 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
       />
 
       {detailId && byId.get(detailId) && <DetailSheet candidate={byId.get(detailId)!} onClose={() => setDetailId(null)} />}
+      {burst && <HeartBurst key={burst.id} hearts={burst.hearts} />}
+      {showAutoBid && <AutoBidCelebration onClose={() => setShowAutoBid(false)} />}
     </div>
   );
 }
