@@ -1,7 +1,40 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import familyFile from "../../../content/family.json";
 import type { Candidate } from "./types";
+
+type FamilyMember = { name: string; photo: string };
+
+function normalizeName(s: string): string {
+  return s.toLowerCase().replace(/[^a-z]/g, "");
+}
+
+const FAMILY: FamilyMember[] = familyFile as FamilyMember[];
+const FAMILY_BY_FULL_NAME = new Map(FAMILY.map((m) => [normalizeName(m.name), m]));
+const FAMILY_BY_FIRST_NAME = (() => {
+  const map = new Map<string, FamilyMember[]>();
+  for (const m of FAMILY) {
+    const first = normalizeName(m.name.split(" ")[0]);
+    map.set(first, [...(map.get(first) ?? []), m]);
+  }
+  return map;
+})();
+
+/** Match a raw note's "brother" label (a full name, a first name only, or
+ *  "From their application: ..." for a self-reported note) to a real,
+ *  photographed chapter member from content/family.json. Ambiguous first
+ *  names (more than one member shares it) and application-note labels
+ *  intentionally return no match rather than guess. */
+function matchFamilyMember(brotherLabel: string): FamilyMember | null {
+  if (brotherLabel.startsWith("From their application:")) return null;
+  const full = FAMILY_BY_FULL_NAME.get(normalizeName(brotherLabel));
+  if (full) return full;
+  const firstNameOnly = normalizeName(brotherLabel.trim().split(/\s+/)[0] ?? "");
+  const candidates = FAMILY_BY_FIRST_NAME.get(firstNameOnly);
+  if (candidates && candidates.length === 1) return candidates[0];
+  return null;
+}
 
 const STORAGE_KEY = "final-decisions-v1";
 const SWIPE_THRESHOLD = 110;
@@ -76,6 +109,8 @@ function Avatar({ name, photo, className = "" }: { name: string; photo: string; 
 }
 
 function DetailSheet({ candidate, onClose }: { candidate: Candidate; onClose: () => void }) {
+  const [sourcesOpen, setSourcesOpen] = useState(false);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -84,10 +119,18 @@ function DetailSheet({ candidate, onClose }: { candidate: Candidate; onClose: ()
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
+  const sourceNames = useMemo(() => {
+    const names = candidate.notes
+      .filter((n) => !n.brother.startsWith("From their application:"))
+      .map((n) => matchFamilyMember(n.brother)?.name ?? n.brother);
+    return Array.from(new Set(names));
+  }, [candidate]);
+
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/60 sm:items-center sm:p-6" onClick={onClose}>
       <div
         className="flex max-h-[88vh] w-full max-w-lg flex-col overflow-hidden rounded-t-3xl bg-white shadow-2xl sm:rounded-3xl"
+        style={{ animation: "sheetPopIn 0.3s cubic-bezier(0.16,1,0.3,1) both" }}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative shrink-0">
@@ -109,11 +152,30 @@ function DetailSheet({ candidate, onClose }: { candidate: Candidate; onClose: ()
         </div>
 
         <div className="flex-1 overflow-y-auto px-5 py-5">
-          <p className="mb-4 text-xs font-bold uppercase tracking-wide text-slate-400">
-            {candidate.sourceCount} {candidate.sourceCount === 1 ? "source" : "sources"}
-          </p>
+          <div className="mb-4 flex flex-col items-center gap-2" style={{ animation: "fadeInUp 0.35s ease-out 0.05s both" }}>
+            <button
+              type="button"
+              onClick={() => setSourcesOpen((v) => !v)}
+              className="rounded-full bg-slate-100 px-4 py-1.5 text-xs font-bold uppercase tracking-wide text-slate-500 transition hover:bg-slate-200"
+            >
+              {candidate.sourceCount} {candidate.sourceCount === 1 ? "source" : "sources"}
+            </button>
+            {sourcesOpen && (
+              <div className="flex flex-wrap justify-center gap-2">
+                {sourceNames.length === 0 ? (
+                  <span className="text-xs text-slate-400">No named sources yet.</span>
+                ) : (
+                  sourceNames.map((n, i) => (
+                    <span key={i} className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-600">
+                      {n}
+                    </span>
+                  ))
+                )}
+              </div>
+            )}
+          </div>
 
-          <section className="mb-5">
+          <section className="mb-5" style={{ animation: "fadeInUp 0.35s ease-out 0.1s both" }}>
             <h3 className="text-base font-bold text-emerald-700">Strengths</h3>
             {candidate.strengths.length === 0 ? (
               <p className="mt-1 text-sm text-slate-400">None noted.</p>
@@ -129,7 +191,7 @@ function DetailSheet({ candidate, onClose }: { candidate: Candidate; onClose: ()
             )}
           </section>
 
-          <section className="mb-5">
+          <section className="mb-5" style={{ animation: "fadeInUp 0.35s ease-out 0.15s both" }}>
             <h3 className="text-base font-bold text-red-700">Concerns</h3>
             {candidate.concerns.length === 0 ? (
               <p className="mt-1 text-sm text-slate-400">None noted.</p>
@@ -146,7 +208,7 @@ function DetailSheet({ candidate, onClose }: { candidate: Candidate; onClose: ()
           </section>
 
           {candidate.facts.length > 0 && (
-            <section className="mb-5">
+            <section className="mb-5" style={{ animation: "fadeInUp 0.35s ease-out 0.2s both" }}>
               <h3 className="text-base font-bold text-slate-700">Facts and experience</h3>
               <ul className="mt-2 flex flex-col gap-1.5">
                 {candidate.facts.map((f, i) => (
@@ -160,20 +222,38 @@ function DetailSheet({ candidate, onClose }: { candidate: Candidate; onClose: ()
           )}
 
           {candidate.notes.length > 0 && (
-            <section>
+            <section style={{ animation: "fadeInUp 0.35s ease-out 0.25s both" }}>
               <h3 className="text-base font-bold text-slate-700">What brothers said</h3>
-              <ul className="mt-2 flex flex-col gap-2">
-                {candidate.notes.map((n, i) => (
-                  <li key={i} className="rounded-lg bg-slate-50 p-3 text-sm text-slate-700">
-                    <p className="mb-1 font-semibold text-slate-900">{n.brother}</p>
-                    <p className="whitespace-pre-line">{n.text}</p>
-                  </li>
-                ))}
+              <ul className="mt-3 flex flex-col gap-4">
+                {candidate.notes.map((n, i) => {
+                  const member = matchFamilyMember(n.brother);
+                  return (
+                    <li key={i} className="flex gap-3 text-sm text-slate-700">
+                      {member ? (
+                        <Avatar name={member.name} photo={member.photo} className="h-10 w-10 shrink-0 rounded-full" />
+                      ) : null}
+                      <div className="min-w-0 flex-1">
+                        <p className="mb-1 font-semibold text-slate-900">{member ? member.name : n.brother}</p>
+                        <p className="whitespace-pre-line">{n.text}</p>
+                      </div>
+                    </li>
+                  );
+                })}
               </ul>
             </section>
           )}
         </div>
       </div>
+      <style>{`
+        @keyframes sheetPopIn {
+          0% { opacity: 0; transform: scale(0.92) translateY(16px); }
+          100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        @keyframes fadeInUp {
+          0% { opacity: 0; transform: translateY(10px); }
+          100% { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
     </div>
   );
 }
@@ -547,7 +627,7 @@ function TallySection({
         {title} ({items.length})
       </h3>
       {items.length === 0 ? (
-        <p className="text-sm text-white/40">{emptyText}</p>
+        <p className="text-center text-sm text-rose-900/50">{emptyText}</p>
       ) : (
         <ul className="flex flex-col gap-1">
           {items.map((c) => (
@@ -555,7 +635,7 @@ function TallySection({
               <button
                 type="button"
                 onClick={() => onOpenDetail(c.id)}
-                className="flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-sm text-white/85 transition hover:bg-white/10"
+                className="flex w-full items-center gap-2 rounded-lg px-2 py-1.5 text-left text-sm text-rose-950/90 transition hover:bg-black/10"
               >
                 <Avatar name={c.name} photo={c.photo} className="h-7 w-7 shrink-0 rounded-full" />
                 <span className="truncate">{c.name}</span>
@@ -585,26 +665,27 @@ function TallyPanel({
 }) {
   return (
     <>
-      {open && <div className="fixed inset-0 z-30 bg-black/50 lg:hidden" onClick={onClose} />}
+      {open && <div className="fixed inset-0 z-30 bg-black/30 lg:hidden" onClick={onClose} />}
       <div
-        className={`fixed inset-y-0 right-0 z-40 flex w-80 max-w-[85vw] transform flex-col overflow-y-auto border-l border-white/10 bg-[color:var(--maroon-deep)] px-5 py-5 transition-transform duration-300 lg:static lg:z-0 lg:w-72 lg:shrink-0 lg:translate-x-0 lg:border-l lg:transition-none ${
+        className={`fixed inset-y-0 right-0 z-40 flex w-80 max-w-[85vw] transform flex-col overflow-y-auto px-5 py-6 transition-transform duration-300 lg:static lg:z-0 lg:w-72 lg:shrink-0 lg:translate-x-0 lg:bg-transparent lg:px-6 lg:py-10 lg:transition-none ${
           open ? "translate-x-0" : "translate-x-full"
         }`}
+        style={{ background: "linear-gradient(180deg, #ffd6e8, #ffb3d1)" }}
       >
-        <div className="mb-4 flex items-center justify-between">
-          <h2 className="font-display text-lg font-semibold text-white">Lists</h2>
+        <div className="mb-4 flex items-center justify-between lg:hidden">
+          <h2 className="font-display text-lg font-semibold text-rose-950">Lists</h2>
           <button
             type="button"
             onClick={onClose}
             aria-label="Close lists"
-            className="rounded-lg px-2 py-1 text-xl text-white/60 hover:bg-white/10 lg:hidden"
+            className="rounded-lg px-2 py-1 text-xl text-rose-900/70 hover:bg-black/10"
           >
             &times;
           </button>
         </div>
-        <TallySection title="Auto-Bid" color="text-[color:var(--gold)]" items={favorited} emptyText="No favorites yet." onOpenDetail={onOpenDetail} />
-        <TallySection title="Accepted" color="text-emerald-400" items={accepted} emptyText="No one accepted yet." onOpenDetail={onOpenDetail} />
-        <TallySection title="Rejected" color="text-red-400" items={rejected} emptyText="No one rejected yet." onOpenDetail={onOpenDetail} />
+        <TallySection title="Auto-Bid" color="text-amber-700" items={favorited} emptyText="No favorites yet." onOpenDetail={onOpenDetail} />
+        <TallySection title="Accepted" color="text-emerald-700" items={accepted} emptyText="No one accepted yet." onOpenDetail={onOpenDetail} />
+        <TallySection title="Rejected" color="text-red-700" items={rejected} emptyText="No one rejected yet." onOpenDetail={onOpenDetail} />
       </div>
     </>
   );
@@ -763,8 +844,25 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
       className="flex min-h-screen text-rose-950 lg:flex-row"
       style={{ background: "radial-gradient(ellipse at 50% 0%, #ffe6f1 0%, #ffc2de 55%, #ff9fcb 100%)" }}
     >
+      <div className="hidden shrink-0 flex-col items-start gap-4 p-8 lg:flex lg:w-56">
+        <span className="font-display text-xl font-semibold">Final Decisions</span>
+        <span className="rounded-full bg-black/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-rose-900/80">{stageLabel}</span>
+        {state.stage !== "results" && (
+          <span className="text-sm text-rose-900/70">
+            {Math.min(currentIndex + 1, stageTotal)} / {stageTotal}
+          </span>
+        )}
+        <button
+          type="button"
+          onClick={resetAll}
+          className="rounded-lg border border-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-rose-900/70 hover:border-red-500 hover:text-red-600"
+        >
+          Reset
+        </button>
+      </div>
+
       <div className="flex min-w-0 flex-1 flex-col">
-        <div className="mx-auto flex w-full max-w-lg items-center justify-between px-4 py-4 sm:px-0">
+        <div className="mx-auto flex w-full max-w-lg items-center justify-between px-4 py-4 sm:px-0 lg:hidden">
           <div className="flex items-center gap-3">
             <span className="font-display text-lg font-semibold">Final Decisions</span>
             <span className="rounded-full bg-black/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-rose-900/80">{stageLabel}</span>
@@ -778,7 +876,7 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
             <button
               type="button"
               onClick={() => setListsOpen(true)}
-              className="rounded-lg border border-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-rose-900/80 hover:bg-black/10 lg:hidden"
+              className="rounded-lg border border-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-rose-900/80 hover:bg-black/10"
             >
               Lists
             </button>
