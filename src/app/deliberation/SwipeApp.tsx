@@ -915,7 +915,7 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
         <button
           type="button"
           onClick={resetAll}
-          className="rounded-lg border border-black/20 px-5 py-2.5 text-base font-bold uppercase tracking-wide text-rose-900/70 hover:border-red-500 hover:text-red-600"
+          className="rounded-2xl border-b-4 border-red-700 bg-red-500 px-6 py-3 text-base font-extrabold uppercase tracking-wide text-white shadow-md transition active:translate-y-0.5 active:border-b-2 hover:bg-red-600"
         >
           Reset
         </button>
@@ -943,7 +943,7 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
             <button
               type="button"
               onClick={resetAll}
-              className="rounded-lg border border-black/20 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-rose-900/70 hover:border-red-500 hover:text-red-600"
+              className="rounded-xl border-b-4 border-red-700 bg-red-500 px-4 py-2 text-xs font-extrabold uppercase tracking-wide text-white shadow-md transition active:translate-y-0.5 active:border-b-2 hover:bg-red-600"
             >
               Reset
             </button>
@@ -953,7 +953,7 @@ export function SwipeApp({ initialCandidates }: { initialCandidates: Candidate[]
         {state.stage !== "results" ? (
           <div className="mx-auto flex w-full max-w-lg flex-1 flex-col px-4 pb-4 sm:px-0">
             {currentCandidate ? (
-              <div className="relative mx-auto mt-6 w-full max-w-sm flex-1 sm:mt-10" style={{ minHeight: 420 }}>
+              <div className="relative mx-auto mt-6 h-[420px] w-full max-w-sm shrink-0 sm:mt-10 sm:h-[500px]">
                 {nextIds
                   .map((id) => byId.get(id))
                   .filter(Boolean)
