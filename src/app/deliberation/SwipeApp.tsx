@@ -49,7 +49,11 @@ function loadState(candidateIds: string[]): PersistedState {
     const parsed = JSON.parse(raw) as PersistedState;
     const known = new Set(candidateIds);
     const touchedIds = [...Object.keys(parsed.round1 ?? {}), ...Object.keys(parsed.favorites ?? {})];
-    const datasetChanged = touchedIds.length > 0 && !touchedIds.some((id) => known.has(id));
+    // Any decided/favorited id that's no longer on the roster means the
+    // candidate list itself changed (people added or removed) - the old
+    // stage/index bookkeeping no longer lines up with the new queue
+    // length, so start clean rather than risk an out-of-bounds index.
+    const datasetChanged = touchedIds.some((id) => !known.has(id));
     if (datasetChanged) return initialState();
     return { ...initialState(), ...parsed };
   } catch {
