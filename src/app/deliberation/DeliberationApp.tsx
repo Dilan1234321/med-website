@@ -8,7 +8,7 @@ const DISCUSSION_TIMER_SECONDS = 150; // 2.5 min per candidate in the discussion
 const TARGET_TOTAL_SECONDS = 2 * 60 * 60; // 2-hour chapter target
 const MAX_FINALISTS = 12;
 
-type Stage = "rapid" | "rapid-done" | "discussion" | "final";
+type Stage = "rapid" | "discussion" | "final";
 
 type HistoryEntry = { candidateId: string; previousStatus: DecisionStatus; previousStage: Stage };
 
@@ -546,7 +546,8 @@ export function DeliberationApp({ initialCandidates }: { initialCandidates: Cand
     setState((prev) => {
       const nextIndex = prev.rapidIndex + 1;
       if (nextIndex >= rapidOrder.length) {
-        return { ...prev, rapidIndex: nextIndex, stage: "rapid-done" };
+        const queue = candidates.filter((c) => prev.decisions[c.id] === "discuss" || prev.decisions[c.id] === "hold").map((c) => c.id);
+        return { ...prev, rapidIndex: nextIndex, stage: "discussion", discussionQueue: queue, discussIndex: 0, discussionSecondsLeft: DISCUSSION_TIMER_SECONDS };
       }
       return { ...prev, rapidIndex: nextIndex };
     });
@@ -560,13 +561,6 @@ export function DeliberationApp({ initialCandidates }: { initialCandidates: Cand
 
   function navRapid(delta: number) {
     setState((prev) => ({ ...prev, rapidIndex: Math.min(Math.max(prev.rapidIndex + delta, 0), rapidOrder.length - 1) }));
-  }
-
-  function beginDiscussion() {
-    setState((prev) => {
-      const queue = candidates.filter((c) => prev.decisions[c.id] === "discuss" || prev.decisions[c.id] === "hold").map((c) => c.id);
-      return { ...prev, stage: "discussion", discussionQueue: queue, discussIndex: 0, discussionSecondsLeft: DISCUSSION_TIMER_SECONDS };
-    });
   }
 
   function advanceDiscussion() {
@@ -682,7 +676,6 @@ export function DeliberationApp({ initialCandidates }: { initialCandidates: Cand
             <span className="font-display text-lg font-semibold sm:text-xl">Deliberation</span>
             <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-bold uppercase tracking-wide text-white/70">
               {state.stage === "rapid" && "Rapid Review"}
-              {state.stage === "rapid-done" && "Rapid Review Complete"}
               {state.stage === "discussion" && "Discussion Queue"}
               {state.stage === "final" && "Final Selection"}
             </span>
@@ -720,19 +713,6 @@ export function DeliberationApp({ initialCandidates }: { initialCandidates: Cand
           activeId={currentCandidate.id}
           discussionSecondsLeft={null}
         />
-      )}
-
-      {state.stage === "rapid-done" && (
-        <div className="flex flex-1 flex-col items-center justify-center gap-6 text-center">
-          <h1 className="font-display text-4xl font-semibold">Rapid review complete</h1>
-          <p className="max-w-md text-white/70">
-            {candidates.filter((c) => state.decisions[c.id] === "discuss" || state.decisions[c.id] === "hold").length} candidate(s) flagged for
-            discussion. Everyone else has a preliminary decision.
-          </p>
-          <button type="button" onClick={beginDiscussion} className="rounded-xl bg-emerald-600 px-8 py-4 text-lg font-bold text-white hover:bg-emerald-700">
-            Begin Discussion Queue
-          </button>
-        </div>
       )}
 
       {state.stage === "discussion" && (
